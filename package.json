@@ -15,5 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "scripts": {
+    "start": "node server.js"
   }
 }
