@@ -14,7 +14,7 @@
   "author": "Anukposi Blossom, Mihail Josan, Cristian Trifan, Stefan Cazacu",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.2"
   }
 }
-
