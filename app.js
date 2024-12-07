@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const accountRoutes = require('./com.nhlstenden/api/route/account');
 const episodeRoutes = require('./com.nhlstenden/api/route/episode');
@@ -16,6 +17,10 @@ const watchedMediaRoutes = require('./com.nhlstenden/api/route/watched_media_lis
 const watchlistRoutes = require('./com.nhlstenden/api/route/watchlist');
 
 //only requests with the path /<route> can use this route.
+app.use(cors());
+app.get('/', (req, res) => {
+    res.status(200).json({ message: 'API is running!' });
+});
 app.use('/account', accountRoutes);
 app.use('/episode', episodeRoutes);
 app.use('/genre', genreRoutes);
