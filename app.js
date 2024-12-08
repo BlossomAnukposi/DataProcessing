@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
+const morgan = require('morgan');
 
 const accountRoutes = require('./com.nhlstenden/api/route/account');
 const episodeRoutes = require('./com.nhlstenden/api/route/episode');
@@ -16,11 +16,10 @@ const subtitleRoutes = require('./com.nhlstenden/api/route/subtitle');
 const watchedMediaRoutes = require('./com.nhlstenden/api/route/watched_media_list');
 const watchlistRoutes = require('./com.nhlstenden/api/route/watchlist');
 
-//only requests with the path /<route> can use this route.
-app.use(cors());
-app.get('/', (req, res) => {
-    res.status(200).json({ message: 'API is running!' });
-});
+//use morgan for terminal tracking of requests
+app.use(morgan('dev'));
+
+//only requests with the path /<route> can use this route...
 app.use('/account', accountRoutes);
 app.use('/episode', episodeRoutes);
 app.use('/genre', genreRoutes);
@@ -34,5 +33,20 @@ app.use('/subscription', subscriptionRoutes);
 app.use('/subtitle', subtitleRoutes);
 app.use('/watched_media_list', watchedMediaRoutes);
 app.use('/watchlist', watchlistRoutes);
+
+app.use((req, res, next) => {
+    const error = new Error('Not Found');
+    error.status = 404;
+    next(error);
+});
+
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({
+        error: {
+            message: error.message
+        }
+    });
+});
 
 module.exports = app;
