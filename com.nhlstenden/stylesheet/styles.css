@@ -1,6 +1,32 @@
+@font-face {
+    font-family: 'Netflix Sans';
+    src: url('../font/NetflixSans-Regular.otf');
+    src: url('../font/NetflixSans-Bold.otf');
+    src: url('../font/NetflixSans-Medium.otf');
+    src: url('../font/NetflixSans-Light.otf');
+}
+
 * {
     box-sizing: border-box;
+    font-family: 'Netflix Sans', sans-serif;
     margin: 0;
     padding: 0;
 }
 
+/*MOVIE PLAYER*/
+.movie_display_container {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+.movie_display_nav {
+    width: 100vw;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}

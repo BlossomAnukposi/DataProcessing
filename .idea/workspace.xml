@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Updated server script for deployment (4)">
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/font/NetflixSans-Bold.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/font/NetflixSans-Light.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/font/NetflixSans-Medium.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/font/NetflixSans-Regular.otf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +142,7 @@
       <updated>1733266803033</updated>
       <workItem from="1733266804103" duration="2831000" />
       <workItem from="1733478610239" duration="7601000" />
-      <workItem from="1733752909433" duration="4506000" />
+      <workItem from="1733752909433" duration="7494000" />
     </task>
     <task id="LOCAL-00001" summary="Changed start script for deployment">
       <option name="closed" value="true" />
