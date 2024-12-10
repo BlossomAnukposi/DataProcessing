@@ -1,50 +1,210 @@
-const express = require('express');
-const router = express.Router(); //subpackage that allows us to handle different routs and endpoints
+const express = require("express");
+const router = express.Router();
+const pool = require("../../config/database");
 
-//get route
-router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling GET requests to /account'
+// Get all accounts
+router.get("/", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT account_id, email, account_status, join_date, invited_by_account_id FROM account"
+    );
+    res.status(200).json(result.rows);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error fetching accounts",
+      error: error.message,
     });
+  }
 });
 
-//post route
-router.post('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling POST requests to /account'
+// Create new account
+router.post("/", async (req, res) => {
+  const { email, password, invited_by_account_id } = req.body;
+
+  try {
+    const result = await pool.query(
+      "INSERT INTO account (email, password, login_attempts, account_status, join_date, invited_by_account_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING account_id, email, account_status, join_date",
+      [email, password, 0, "active", new Date(), invited_by_account_id]
+    );
+
+    res.status(201).json({
+      message: "Account created successfully",
+      account: result.rows[0],
     });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error creating account",
+      error: error.message,
+    });
+  }
 });
 
-//get for a single account
-router.get('/:account_id', (req, res, next) => {
-    const id = req.params.account_id;
-    if(id == 'special')
-    {
-        res.status(200).json({
-            message: 'You found a special account',
-            id: id
-        });
+// Get single account
+router.get("/:account_id", async (req, res) => {
+  const account_id = req.params.account_id;
+
+  try {
+    const result = await pool.query(
+      "SELECT account_id, email, account_status, join_date, invited_by_account_id FROM account WHERE account_id = $1",
+      [account_id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        message: "Account not found",
+      });
     }
-    else
-    {
-        res.status(200).json({
-            message: 'You have logged in',
-        });
+
+    res.status(200).json(result.rows[0]);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error fetching account",
+      error: error.message,
+    });
+  }
+});
+
+// Update account
+router.patch("/:account_id", async (req, res) => {
+  const account_id = req.params.account_id;
+  const { email, password, account_status } = req.body;
+
+  try {
+    let updateQuery = "UPDATE account SET ";
+    const updateValues = [];
+    const queryParams = [];
+    let paramCount = 1;
+
+    if (email) {
+      updateValues.push(`email = $${paramCount}`);
+      queryParams.push(email);
+      paramCount++;
     }
-});
 
-//update a single account
-router.patch('/:account_id', (req, res, next) => {
+    if (password) {
+      updateValues.push(`password = $${paramCount}`);
+      queryParams.push(password);
+      paramCount++;
+    }
+
+    if (account_status) {
+      updateValues.push(`account_status = $${paramCount}`);
+      queryParams.push(account_status);
+      paramCount++;
+    }
+
+    queryParams.push(account_id);
+    updateQuery +=
+      updateValues.join(", ") +
+      ` WHERE account_id = $${paramCount} RETURNING account_id, email, account_status, join_date`;
+
+    const result = await pool.query(updateQuery, queryParams);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        message: "Account not found",
+      });
+    }
+
     res.status(200).json({
-        message: 'Updated account!'
+      message: "Account updated successfully",
+      account: result.rows[0],
     });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error updating account",
+      error: error.message,
+    });
+  }
 });
 
-//delete a single account
-router.delete('/:account_id', (req, res, next) => {
+// Delete account
+router.delete("/:account_id", async (req, res) => {
+  const account_id = req.params.account_id;
+
+  try {
+    const result = await pool.query(
+      "DELETE FROM account WHERE account_id = $1 RETURNING account_id",
+      [account_id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        message: "Account not found",
+      });
+    }
+
     res.status(200).json({
-        message: 'Deleted account!'
+      message: "Account deleted successfully",
+      account_id: result.rows[0].account_id,
     });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error deleting account",
+      error: error.message,
+    });
+  }
 });
 
-module.exports = router; //allows other files to use the routes in this file
+// Login attempt endpoint
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // First, get the account and check login attempts
+    const account = await pool.query(
+      "SELECT account_id, password, login_attempts, account_status FROM account WHERE email = $1",
+      [email]
+    );
+
+    if (account.rows.length === 0) {
+      return res.status(401).json({
+        message: "Invalid credentials",
+      });
+    }
+
+    const accountData = account.rows[0];
+
+    // Check if account is locked
+    if (accountData.account_status === "locked") {
+      return res.status(403).json({
+        message: "Account is locked. Please contact support.",
+      });
+    }
+
+    // Verify password (in a real application, use proper password hashing)
+    if (accountData.password === password) {
+      // Reset login attempts on successful login
+      await pool.query(
+        "UPDATE account SET login_attempts = 0 WHERE account_id = $1",
+        [accountData.account_id]
+      );
+
+      return res.status(200).json({
+        message: "Login successful",
+        account_id: accountData.account_id,
+      });
+    } else {
+      // Increment login attempts
+      const newAttempts = accountData.login_attempts + 1;
+      const newStatus = newAttempts >= 3 ? "locked" : "active";
+
+      await pool.query(
+        "UPDATE account SET login_attempts = $1, account_status = $2 WHERE account_id = $3",
+        [newAttempts, newStatus, accountData.account_id]
+      );
+
+      return res.status(401).json({
+        message: "Invalid credentials",
+        attempts_remaining: 3 - newAttempts,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Error processing login",
+      error: error.message,
+    });
+  }
+});
+
+module.exports = router;
