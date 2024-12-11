@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Updated server script for deployment (4)">
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/font/NetflixSans-Bold.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/font/NetflixSans-Light.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/font/NetflixSans-Medium.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/font/NetflixSans-Regular.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/full_screen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/pause.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/subtitle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/volume.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/back_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/back_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/skip_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/skip_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/socials/facebook.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/socials/facebook.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/socials/instagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/socials/instagram.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/socials/twitter.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/socials/twitter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/socials/youtube.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/socials/youtube.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/top_10.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" afterDir="false" />
     </list>
@@ -50,9 +58,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
-}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="2pj5mRPCHkDldP0lP9cSlMJ9SON" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -66,8 +74,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "full.screen.before.presentation.mode": "false",
     "git-widget-placeholder": "frontend",
-    "last_opened_file_path": "/Users/blossom/Desktop/DBProc/DataProcessing",
+    "last_opened_file_path": "/Users/blossom/Desktop/DataProcessing/com.nhlstenden/images/illustration",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -82,7 +91,12 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
+      <recent name="$PROJECT_DIR$/com.nhlstenden/images" />
       <recent name="$PROJECT_DIR$/com.nhlstenden.api/api" />
     </key>
   </component>
@@ -119,9 +133,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.test" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
-        <item itemvalue="npm.test" />
       </list>
     </recent_temporary>
   </component>
