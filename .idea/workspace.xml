@@ -4,22 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Updated server script for deployment (4)">
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/back.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/full_screen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/pause.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/subtitle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/volume.png" afterDir="false" />
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Finished main screen">
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/views/watchlist.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/back_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/back_10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/skip_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/skip_10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/socials/facebook.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/socials/facebook.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/socials/instagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/socials/instagram.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/socials/twitter.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/socials/twitter.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/socials/youtube.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/socials/youtube.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/top_10.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +19,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -95,7 +84,9 @@
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com.nhlstenden/images/profile" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
+      <recent name="$PROJECT_DIR$/com.nhlstenden/images/movie" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images" />
       <recent name="$PROJECT_DIR$/com.nhlstenden.api/api" />
     </key>
@@ -208,7 +199,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733572556474</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Finished movie player">
+      <option name="closed" value="true" />
+      <created>1733953881972</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733953881972</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Finished main screen">
+      <option name="closed" value="true" />
+      <created>1734012774667</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1734012774667</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +239,8 @@
     <MESSAGE value="Updated start script for deployment (3), installed the CORS package" />
     <MESSAGE value="Updated server script for deployment (3)" />
     <MESSAGE value="Updated server script for deployment (4)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated server script for deployment (4)" />
+    <MESSAGE value="Finished movie player" />
+    <MESSAGE value="Finished main screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished main screen" />
   </component>
 </project>

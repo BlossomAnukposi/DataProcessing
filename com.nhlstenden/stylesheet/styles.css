@@ -14,12 +14,12 @@
 }
 
 body {
-    background-color: #111;
+    background-color: #000000;
     color: #fff;
     padding: 0;
 }
 
-footer {
+footer, main, .nav, .main-container {
     width: 100vw;
 }
 
@@ -30,15 +30,36 @@ footer {
     padding: 1.5%;
     background-color: rgba(0, 0, 0, 0.8);
     position: fixed;
-    width: 100vw;
     z-index: 100;
 }
 
 .main_container {
-    width: 100vw;
     height: 100%;
     background-color: black;
     color: white;
+}
+
+#wrapper {
+    display: grid;
+    grid-template-rows: 8vh min-content 41vh;
+    grid-auto-columns: 100vw;
+}
+
+/*WATCHLIST*/
+.watchlist_main {
+    min-height: 40vh;
+    padding: 0 5%
+}
+
+.watchlist_nav {
+    position: sticky;
+}
+
+.watchlist_row {
+    overflow: clip;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 /*MAIN SCREEN*/
@@ -60,12 +81,6 @@ nav ul {
 nav li {
     margin-left: 20px;
     cursor: pointer;
-}
-
-main {
-    position: absolute;
-    top: 0;
-    width: 100vw;
 }
 
 #more_info_button {
@@ -117,6 +132,12 @@ main {
 
 .hero-info img {
     width: 40%;
+}
+
+.age_rating_divider {
+    position: relative;
+    bottom: 10%;
+    width: 2%;
 }
 
 .buttons {
