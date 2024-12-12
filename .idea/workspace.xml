@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Finished main screen">
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/views/watchlist.html" afterDir="false" />
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Finished watchlist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/watchlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/watchlist.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734012774667</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Finished watchlist">
+      <option name="closed" value="true" />
+      <created>1734019777388</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1734019777388</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +249,7 @@
     <MESSAGE value="Updated server script for deployment (4)" />
     <MESSAGE value="Finished movie player" />
     <MESSAGE value="Finished main screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished main screen" />
+    <MESSAGE value="Finished watchlist" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished watchlist" />
   </component>
 </project>

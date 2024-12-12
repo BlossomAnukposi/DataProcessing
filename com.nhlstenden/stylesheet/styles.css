@@ -13,6 +13,13 @@
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #000000;
     color: #fff;
@@ -45,6 +52,62 @@ footer, main, .nav, .main-container {
     grid-auto-columns: 100vw;
 }
 
+/*PREVIEW POP UP*/
+.preview_container {
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(19, 19, 19, 0.45);
+    z-index: 101;
+}
+
+.preview_content {
+    position: relative;
+    top: 0;
+    background-color: black;
+    width: 55%;
+    height: 100vh;
+    margin: auto;
+    overflow: scroll;
+}
+
+.preview_info_containers {
+    padding: 5%;
+}
+
+.preview_image {
+    position: relative;
+    width: 100%;
+}
+
+.preview_image img {
+    width: 100%;
+}
+
+.preview_progress_bar {
+    width: 20%;
+    height: 2%;
+    background-color: grey;
+    border-radius: 15px;
+}
+
+.preview_row {
+    justify-content: center !important;
+    padding: 5%;
+}
+
+.preview_controls_container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 9fr 1fr;
+    width: 100%;
+}
+
+.preview_description {
+    padding: 5% 0;
+}
+
 /*WATCHLIST*/
 .watchlist_main {
     min-height: 40vh;
@@ -55,7 +118,7 @@ footer, main, .nav, .main-container {
     position: sticky;
 }
 
-.watchlist_row {
+.watchlist_row, .preview_row {
     overflow: clip;
     flex-flow: row wrap;
     align-items: center;
@@ -69,7 +132,7 @@ footer, main, .nav, .main-container {
     align-items: center;
 }
 
-.navbar_child * {
+.navbar_child>* {
     margin-left: 20px;
 }
 
@@ -119,7 +182,7 @@ nav li {
     width: 20%;
 }
 
-.hero-info button {
+.hero-info button, .image_buttons {
     background-color: rgba(255, 255, 255, 0);
     border: none;
     padding: 0;
