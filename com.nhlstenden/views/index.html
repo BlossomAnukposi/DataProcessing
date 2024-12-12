@@ -13,9 +13,8 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li>TV Shows</li>
-                <li>Movies</li>
-                <li>New & Popular</li>
+                <li><a href="tv_shows.html">TV Shows</a></li>
+                <li><a href="movies.html">Movies</a></li>
                 <li><a href="watchlist.html">My List</a></li>
             </ul>
         </nav>
@@ -36,7 +35,8 @@
                         <img src="../images/illustration/play_movie.png" alt="Play">
                     </a>
                 </button>
-                <button id="more_info_button">
+                <button id="more_info_button" class="preview_container_trigger">
+                    <img src="../images/illustration/information.png" alt="Information" id="information_icon">
                     More info
                 </button>
             </div>
@@ -81,8 +81,14 @@
                     </button>
                 </div>
                 <div class="preview_information_container">
-                    <div class="preview_duration"></div>
-                    <div class="preview_classifications"></div>
+                    <div class="preview_duration">
+                        <p>2:13:40</p>
+                    </div>
+                    <div class="preview_classifications">
+                        <p>Thriller</p>
+                        <p>Action</p>
+                        <p>Thriller</p>
+                    </div>
                     <p class="preview_description">Some description</p>
                 </div>
                 <div class="preview_recommendations_container">

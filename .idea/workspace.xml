@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Finished watchlist">
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/video/intro.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/images/video/intro.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/views/movies.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/views/tv_shows.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/play_main.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/play_main.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/watchlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/watchlist.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,48 +54,48 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2pj5mRPCHkDldP0lP9cSlMJ9SON" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Node.js.app.js.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "full.screen.before.presentation.mode": "false",
-    "git-widget-placeholder": "frontend",
-    "last_opened_file_path": "/Users/blossom/Desktop/DataProcessing/com.nhlstenden/images/illustration",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.start.executor": "Run",
-    "npm.test.executor": "Run",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Node.js.app.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/blossom/Desktop/DataProcessing/com.nhlstenden/images/illustration&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;npm.test.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com.nhlstenden/images/video" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/profile" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/movie" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images" />
-      <recent name="$PROJECT_DIR$/com.nhlstenden.api/api" />
     </key>
   </component>
   <component name="RunManager" selected="npm.build">
