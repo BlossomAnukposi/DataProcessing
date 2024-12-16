@@ -1,0 +1,94 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #141414;
+    /* Netflix dark background */
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Container for the content */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Netflix Logo Styling */
+.logo {
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 150px;
+    /* Adjust the logo size */
+}
+
+/* Main Heading */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 50px;
+}
+
+/* Profile Grid */
+.profiles {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.profile {
+    text-align: center;
+    width: 180px;
+    cursor: pointer;
+}
+
+.profile img {
+    width: 100%;
+    height: 180px;
+    background-color: #333;
+    /* Placeholder background */
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.profile img:hover {
+    transform: scale(1.1);
+}
+
+.profile p {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-top: 10px;
+    color: #aaa;
+}
+
+/* Manage Profiles Button */
+.manage-btn {
+    background-color: transparent;
+    border: 1px solid #aaa;
+    color: #aaa;
+    padding: 12px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.manage-btn:hover {
+    color: white;
+    border-color: white;
+}
