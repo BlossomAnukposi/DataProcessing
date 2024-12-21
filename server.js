@@ -7,8 +7,5 @@ app.set("port", port);
 
 const server = http.createServer(app);
 server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port ${port}`);
 });
-
-//"test": "echo \"Error: no test specified\" && exit 1"
-//removes from package.json
