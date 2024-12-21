@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Updated server script for deployment (4)">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Added .ds_store to gitignore, installed js2xmlparser to handle conversion to XML format">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/config/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733572556474</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added .ds_store to gitignore, installed js2xmlparser to handle conversion to XML format">
+      <option name="closed" value="true" />
+      <created>1734784405341</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734784405341</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,6 +210,7 @@
     <MESSAGE value="Updated start script for deployment (3), installed the CORS package" />
     <MESSAGE value="Updated server script for deployment (3)" />
     <MESSAGE value="Updated server script for deployment (4)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated server script for deployment (4)" />
+    <MESSAGE value="Added .ds_store to gitignore, installed js2xmlparser to handle conversion to XML format" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added .ds_store to gitignore, installed js2xmlparser to handle conversion to XML format" />
   </component>
 </project>

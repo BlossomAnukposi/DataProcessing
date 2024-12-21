@@ -11,10 +11,18 @@ router.get("/", async (req, res) => {
             "SELECT account_id, email, account_status, join_date, invited_by_account_id FROM account"
         );
 
-        const xml = js2xmlparser.parse("accounts", result.rows);
-        res.set('Content-Type', 'application/xml');
-        res.status(200).send(xml);
-        // res.status(200).json(result.rows);
+        const acceptHeader = req.headers['accept'];
+
+        if (acceptHeader && acceptHeader.includes('application/xml'))
+        {
+            const xml = js2xmlparser.parse("account", result.rows);
+            res.set('Content-Type', 'application/xml');
+            res.status(200).send(xml);
+        }
+        else
+        {
+            res.status(200).json(result.rows); //default will be JSON format if client does not specify the accept header
+        }
     }
     catch (error)
     {

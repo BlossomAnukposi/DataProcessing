@@ -61,4 +61,4 @@ $RECYCLE.BIN/
 *.lnk
 
 ### Environment variables ###
-.env
+#.env
