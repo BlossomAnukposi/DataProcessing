@@ -15,6 +15,7 @@
                 seek_bar = document.getElementById('seek_bar');
                 time_played_text = document.getElementById('time_played_text');
                 total_time_text = document.getElementById('total_time_text');
+                loader = document.getElementById('loader');
 
                 //event listeners
                 play_button.addEventListener('click', play_pause, false);
@@ -58,9 +59,14 @@
                 const value = ((seek_bar.value - seek_bar.min) / (seek_bar.max - seek_bar.min)) * 100;
                 seek_bar.style.background = `linear-gradient(to right, #FF0000FF ${value}%, #808080FF ${value}%)`;
 
-                if (video.currentTime == video.duration)
+                if (Math.abs(video.currentTime - video.duration) < 0.1)
                 {
                     play_button.src = "../images/illustration/play_main.png";
+                    loader.style.display = 'block';
+                }
+                else
+                {
+                    loader.style.display = 'none';
                 }
             }
 
@@ -103,29 +109,30 @@
         <div class="movie_display">
             <video autoplay id="movie_video" width="100%" height="100%">
                 <source src="../images/video/intro.mp4" type="video/mp4">
-                    <source src="../images/video/intro.ogg" type="video/ogg">
-                </video>
+                <source src="../images/video/intro.ogg" type="video/ogg">
+            </video>
+            <div id="loader"></div>
+        </div>
+        <footer class="movie_display_footer">
+            <div class="time_tracker">
+                <p class="time_played_display" id="time_played_text">0:00:00</p>
+                <p class="total_time_display" id="total_time_text">0:00:00</p>
             </div>
-            <footer class="movie_display_footer">
-                <div class="time_tracker">
-                    <p class="time_played_display" id="time_played_text">0:00:00</p>
-                    <p class="total_time_display" id="total_time_text">2:13:40</p>
+            <input class="seek_bar" id="seek_bar" type="range" min="0" max="100" value="0" step="1">
+            <div class="movie_controls">
+                <div>
+                    <img id="play_pause_button" alt="pause" src="../images/illustration/pause.png" width="17%">
+                    <img alt="back_10" src="../images/illustration/back_10.png" width="17%">
+                    <img alt="skip_10" src="../images/illustration/skip_10.png" width="17%">
+                    <img alt="volume" src="../images/illustration/volume.png" width="17%">
                 </div>
-                <input class="seek_bar" id="seek_bar" type="range" min="0" max="100" value="0" step="1">
-                <div class="movie_controls">
-                    <div>
-                        <img id="play_pause_button" alt="pause" src="../images/illustration/pause.png" width="17%">
-                        <img alt="back_10" src="../images/illustration/back_10.png" width="17%">
-                        <img alt="skip_10" src="../images/illustration/skip_10.png" width="17%">
-                        <img alt="volume" src="../images/illustration/volume.png" width="17%">
-                    </div>
-                    <p class="movie_display_title">Movie Title</p>
-                    <div class="right_controls">
-                        <img alt="subtitle" src="../images/illustration/subtitle.png" width="25%">
-                        <img alt="fullscreen" src="../images/illustration/full_screen.png" width="25%">
-                    </div>
+                <p class="movie_display_title">Movie Title</p>
+                <div class="right_controls">
+                    <img alt="subtitle" src="../images/illustration/subtitle.png" width="25%">
+                    <img alt="fullscreen" src="../images/illustration/full_screen.png" width="25%">
                 </div>
-            </footer>
+            </div>
+        </footer>
         </main>
     </body>
 </html>
