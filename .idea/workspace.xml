@@ -4,9 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Added .ds_store to gitignore, installed js2xmlparser to handle conversion to XML format">
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Added .env passwords to github">
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/account_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/episode_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/genre_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/movie_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/preference_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/profile_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/referral_discount_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/season_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/series_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/subscription_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/subtitle_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/watched_media_list_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/watchlist_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/account_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/episode_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/genre_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/movie__model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/preference_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/profile_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/referral_discount_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/season_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/series_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/subscription_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/subtitle_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/watched_media_list_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/watchlist_model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/account_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/episode.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/episode_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/genre.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/genre_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/movie.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/movie_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/preference.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/preference_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/profile_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/referral_discount.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/referral_discount_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/season.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/season_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/series.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/series_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/subscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/subscription_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/subtitle.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/subtitle_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/watched_media_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/watched_media_list_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/watchlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/watchlist_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/config/database.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734784405341</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added .env passwords to github">
+      <option name="closed" value="true" />
+      <created>1734785621928</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1734785621928</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +259,7 @@
     <MESSAGE value="Updated server script for deployment (3)" />
     <MESSAGE value="Updated server script for deployment (4)" />
     <MESSAGE value="Added .ds_store to gitignore, installed js2xmlparser to handle conversion to XML format" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added .ds_store to gitignore, installed js2xmlparser to handle conversion to XML format" />
+    <MESSAGE value="Added .env passwords to github" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added .env passwords to github" />
   </component>
 </project>

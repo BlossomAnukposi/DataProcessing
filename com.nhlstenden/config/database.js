@@ -1,24 +1,55 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 
-const pool = new Pool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
-    password: process.env.DB_PASSWORD,
-    ssl: {
-        rejectUnauthorized: false, // Required for Azure PostgreSQL
-    },
-});
+class Database
+{
+    constructor()
+    {
+        this.pool = new Pool({
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            database: process.env.DB_NAME,
+            port: process.env.DB_PORT,
+            password: process.env.DB_PASSWORD,
+            ssl: {
+                rejectUnauthorized: false, // Required for Azure PostgreSQL
+            },
+        });
 
-// Test the connection
-pool.connect((err, client, release) => {
-    if (err) {
-        return console.error("Error acquiring client:", err.stack);
+        // Connect to the database
+        this.pool.connect((err, client, release) => {
+            if (err)
+            {
+                console.error("Error acquiring client:", err.stack);
+            }
+            else
+            {
+                console.log("Successfully connected to PostgreSQL database");
+            }
+            release();
+        });
     }
-    console.log("Successfully connected to PostgreSQL database");
-    release();
-});
 
-module.exports = pool;
+    // Query method to execute SQL queries
+    async query(queryText, params)
+    {
+        try
+        {
+            const result = await this.pool.query(queryText, params);
+            return result.rows;
+        }
+        catch (error)
+        {
+            console.error("Database query error:", error);
+            throw new Error("Error executing query");
+        }
+    }
+
+    // Close the pool (useful for graceful shutdown)
+    async close()
+    {
+        await this.pool.end();
+    }
+}
+
+module.exports = new Database();
