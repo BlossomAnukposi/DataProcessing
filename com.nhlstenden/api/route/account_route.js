@@ -5,9 +5,7 @@ const account_controller = require("../../api/controller/account_controller");
 router.get('/', account_controller.get_all_accounts);
 router.get('/:id', account_controller.get_account_by_id);
 router.post('/', account_controller.create_account);
-// router.patch('/', account_controller.update_password);
-// router.patch('/', account_controller.update_email);
-// router.patch('/', account_controller.update_account_status);
+router.patch('/:account_id', account_controller.update_account);
 router.delete('/:account_id', account_controller.delete_account);
 
 module.exports = router;

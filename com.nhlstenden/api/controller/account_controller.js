@@ -53,12 +53,15 @@ class account_controller
         }
     }
 
-    async create_account(req, res) {
-        try {
+    async create_account(req, res)
+    {
+        try
+        {
             const { email, password, invited_by_account_id } = req.body;
 
             // Validate required fields
-            if (!email || !password) {
+            if (!email || !password)
+            {
                 return res.status(400).json({
                     message: "Email and password are required"
                 });
@@ -70,11 +73,13 @@ class account_controller
                 message: "Account created successfully",
                 account: account
             });
-        } catch (error) {
+        }
+        catch (error)
+        {
             console.error("Controller Error:", error.message);
 
-            if (error.message.includes('Email is required') ||
-                error.message.includes('Password is required')) {
+            if (error.message.includes('Email is required') || error.message.includes('Password is required'))
+            {
                 return res.status(400).json({
                     message: error.message
                 });
@@ -87,25 +92,87 @@ class account_controller
         }
     }
 
-    async delete_account(req, res) {
-        try {
+    async delete_account(req, res)
+    {
+        try
+        {
             const account = await account_model.delete_account(req.params.account_id);
             res.status(200).json({
                 message: "Account deleted successfully",
                 account_id: account.account_id
             });
-        } catch (error) {
-            if (error.message === "Account not found") {
+        }
+        catch (error)
+        {
+            if (error.message === "Account not found")
+            {
                 res.status(404).json({
                     message: "Account not found"
                 });
-            } else {
+            }
+            else
+            {
                 console.error("Controller Error:", error.message);
                 res.status(500).json({
                     message: "Error deleting account",
                     error: error.message
                 });
             }
+        }
+    }
+
+    async update_account(req, res)
+    {
+        try
+        {
+            const account_id = req.params.account_id;
+            const { email, password, account_status } = req.body;
+
+            if (!email && !password && !account_status)
+            {
+                return res.status(400).json({
+                    message: "At least one field (email, password, or account_status) must be provided"
+                });
+            }
+
+            const validStatuses = ['active', 'inactive', 'blocked'];
+
+            if (account_status && !validStatuses.includes(account_status))
+            {
+                return res.status(400).json({
+                    message: "Invalid account status. Must be one of: " + validStatuses.join(', ')
+                });
+            }
+
+            const account = await account_model.update_account(account_id, email, password, account_status);
+
+            res.status(200).json({
+                message: "Account updated successfully",
+                account: account
+            });
+        }
+        catch (error)
+        {
+            console.error("Controller Error:", error.message);
+
+            if (error.message.includes('Account not found'))
+            {
+                return res.status(404).json({
+                    message: "Account not found"
+                });
+            }
+
+            if (error.message.includes('No updates provided'))
+            {
+                return res.status(400).json({
+                    message: "No valid updates provided"
+                });
+            }
+
+            res.status(500).json({
+                message: "Error updating account",
+                error: error.message
+            });
         }
     }
 }
