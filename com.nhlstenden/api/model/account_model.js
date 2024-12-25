@@ -13,98 +13,72 @@ class account_model {
         }
     }
 
-    async get_account_by_id(account_id)
-    {
+    async get_account_by_id(account_id) {
         try
         {
-            const results = await database.query('SELECT * FROM public.get_all_accounts()');
-            return results;
+            const result = await database.query('SELECT * FROM public.get_account_by_id($1)', [account_id]);
+
+            if (!result || result.length === 0)
+            {
+                console.log("No account found for ID:", account_id);
+                throw new Error("No account found with the specified ID.");
+            }
+
+            return result[0];
         }
-        catch(err)
+        catch (err)
         {
+            console.error("Model Error:", err.message);
             throw new Error("Error fetching accounts. Error message is: " + err.message);
+        }
+    }
+
+    async delete_account(account_id) {
+        try {
+            const result = await database.query('SELECT * FROM public.delete_account_by_id($1)', [account_id]);
+
+            if (!result || result.length === 0)
+            {
+                throw new Error("Account not found");
+            }
+
+            return result[0];
+        }
+        catch (err)
+        {
+            console.error("Model Error:", err.message);
+
+            if (err.message.includes('Account with ID'))
+            {
+                throw new Error("Account not found");
+            }
+
+            throw new Error("Error deleting account: " + err.message);
+        }
+    }
+
+    async create_account(email, password, invited_by_account_id = null) {
+        try {
+            const result = await database.query(
+                'SELECT * FROM public.create_account($1, $2, $3)',
+                [email, password, invited_by_account_id]
+            );
+
+            if (!result || result.length === 0) {
+                throw new Error("Account creation failed");
+            }
+
+            return result[0];
+        } catch (error) {
+            console.error("Model Error:", error.message);
+            throw error;
         }
     }
 }
 
 module.exports = new account_model();
+
 //
-// // Get all accounts
-// router.get("/", async (req, res) => {
-//     try
-//     {
-//         const result = await database.query(
-//             "SELECT account_id, email, account_status, join_date, invited_by_account_id FROM account"
-//         );
-//
-//         const acceptHeader = req.headers['accept'];
-//
-//         if (acceptHeader && acceptHeader.includes('application/xml'))
-//         {
-//             const xml = js2xmlparser.parse("account", result.rows);
-//             res.set('Content-Type', 'application/xml');
-//             res.status(200).send(xml);
-//         }
-//         else
-//         {
-//             res.status(200).json(result.rows); //default will be JSON format if client does not specify the accept header
-//         }
-//     }
-//     catch (error)
-//     {
-//         res.status(500).json({
-//             message: "Error fetching accounts",
-//             error: error.message,
-//         });
-//     }
-// });
-//
-// // Create new account
-// router.post("/", async (req, res) => {
-//     const { email, password, invited_by_account_id } = req.body;
-//
-//     try {
-//         const result = await database.query(
-//             "INSERT INTO account (email, password, login_attempts, account_status, join_date, invited_by_account_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING account_id, email, account_status, join_date",
-//             [email, password, 0, "active", new Date(), invited_by_account_id]
-//         );
-//
-//         res.status(201).json({
-//             message: "Account created successfully",
-//             account: result.rows[0],
-//         });
-//     } catch (error) {
-//         res.status(500).json({
-//             message: "Error creating account",
-//             error: error.message,
-//         });
-//     }
-// });
-//
-// // Get single account
-// router.get("/:account_id", async (req, res) => {
-//     const account_id = req.params.account_id;
-//
-//     try {
-//         const result = await database.query(
-//             "SELECT account_id, email, account_status, join_date, invited_by_account_id FROM account WHERE account_id = $1",
-//             [account_id]
-//         );
-//
-//         if (result.rows.length === 0) {
-//             return res.status(404).json({
-//                 message: "Account not found",
-//             });
-//         }
-//
-//         res.status(200).json(result.rows[0]);
-//     } catch (error) {
-//         res.status(500).json({
-//             message: "Error fetching account",
-//             error: error.message,
-//         });
-//     }
-// });
 //
 // // Update account
 // router.patch("/:account_id", async (req, res) => {
@@ -160,33 +134,6 @@ module.exports = new account_model();
 //     }
 // });
 //
-// // Delete account
-// router.delete("/:account_id", async (req, res) => {
-//     const account_id = req.params.account_id;
-//
-//     try {
-//         const result = await database.query(
-//             "DELETE FROM account WHERE account_id = $1 RETURNING account_id",
-//             [account_id]
-//         );
-//
-//         if (result.rows.length === 0) {
-//             return res.status(404).json({
-//                 message: "Account not found",
-//             });
-//         }
-//
-//         res.status(200).json({
-//             message: "Account deleted successfully",
-//             account_id: result.rows[0].account_id,
-//         });
-//     } catch (error) {
-//         res.status(500).json({
-//             message: "Error deleting account",
-//             error: error.message,
-//         });
-//     }
-// });
 //
 // // Login attempt endpoint
 // router.post("/login", async (req, res) => {

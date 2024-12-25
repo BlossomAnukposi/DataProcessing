@@ -3,40 +3,15 @@ const router = express.Router();
 const account_controller = require("../../api/controller/account_controller");
 
 router.get('/', account_controller.get_all_accounts);
-router.get('/', account_controller.get_account_by_id);
+router.get('/:id', account_controller.get_account_by_id);
+router.post('/', account_controller.create_account);
+// router.patch('/', account_controller.update_password);
+// router.patch('/', account_controller.update_email);
+// router.patch('/', account_controller.update_account_status);
+router.delete('/:account_id', account_controller.delete_account);
 
 module.exports = router;
-//
-// // Get all accounts
-// router.get("/", async (req, res) => {
-//     try
-//     {
-//         const result = await database.query(
-//             "SELECT account_id, email, account_status, join_date, invited_by_account_id FROM account"
-//         );
-//
-//         const acceptHeader = req.headers['accept'];
-//
-//         if (acceptHeader && acceptHeader.includes('application/xml'))
-//         {
-//             const xml = js2xmlparser.parse("account", result.rows);
-//             res.set('Content-Type', 'application/xml');
-//             res.status(200).send(xml);
-//         }
-//         else
-//         {
-//             res.status(200).json(result.rows); //default will be JSON format if client does not specify the accept header
-//         }
-//     }
-//     catch (error)
-//     {
-//         res.status(500).json({
-//             message: "Error fetching accounts",
-//             error: error.message,
-//         });
-//     }
-// });
-//
+
 // // Create new account
 // router.post("/", async (req, res) => {
 //     const { email, password, invited_by_account_id } = req.body;

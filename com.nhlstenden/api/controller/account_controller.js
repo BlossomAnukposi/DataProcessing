@@ -3,27 +3,27 @@ const account_model = require("../../api/model/account_model");
 
 class account_controller
 {
-
     async get_all_accounts(req, res)
     {
         try
         {
-            const accounts = await account_model.get_all_accounts();
+            const result = await account_model.get_all_accounts();
             const acceptHeader = req.headers['accept'];
 
             if (acceptHeader && acceptHeader.includes('application/json'))
             {
-                res.status(200).json(accounts);
+                res.status(200).json(result);
             }
             else
             {
-                const xml = js2xmlparser.parse("accounts", accounts);
+                const xml = js2xmlparser.parse("result", result);
                 res.set('Content-Type', 'application/xml');
                 res.status(200).send(xml);
             }
         }
         catch (error)
         {
+            console.error("Controller Error:", error.message);
             res.status(500).json({ error: error.message });
         }
     }
@@ -32,59 +32,86 @@ class account_controller
     {
         try
         {
-            const accounts = await account_model.get_account_by_id(req.params.id);
+            const result = await account_model.get_account_by_id(req.params.id);
             const acceptHeader = req.headers['accept'];
 
-            if (acceptHeader && acceptHeader.includes('application/json'))
+            if (acceptHeader && acceptHeader.includes('application/xml'))
             {
-                res.status(200).json(accounts);
+                const xml = js2xmlparser.parse("result", result);
+                res.set('Content-Type', 'application/xml');
+                res.status(200).send(xml);
             }
             else
             {
-                const xml = js2xmlparser.parse("accounts", accounts);
-                res.set('Content-Type', 'application/xml');
-                res.status(200).send(xml);
+                res.status(200).json(result);
             }
         }
         catch (error)
         {
+            console.error("Controller Error:", error.message);
             res.status(500).json({ error: error.message });
+        }
+    }
+
+    async create_account(req, res) {
+        try {
+            const { email, password, invited_by_account_id } = req.body;
+
+            // Validate required fields
+            if (!email || !password) {
+                return res.status(400).json({
+                    message: "Email and password are required"
+                });
+            }
+
+            const account = await account_model.create_account(email, password, invited_by_account_id);
+
+            res.status(201).json({
+                message: "Account created successfully",
+                account: account
+            });
+        } catch (error) {
+            console.error("Controller Error:", error.message);
+
+            if (error.message.includes('Email is required') ||
+                error.message.includes('Password is required')) {
+                return res.status(400).json({
+                    message: error.message
+                });
+            }
+
+            res.status(500).json({
+                message: "Error creating account",
+                error: error.message
+            });
+        }
+    }
+
+    async delete_account(req, res) {
+        try {
+            const account = await account_model.delete_account(req.params.account_id);
+            res.status(200).json({
+                message: "Account deleted successfully",
+                account_id: account.account_id
+            });
+        } catch (error) {
+            if (error.message === "Account not found") {
+                res.status(404).json({
+                    message: "Account not found"
+                });
+            } else {
+                console.error("Controller Error:", error.message);
+                res.status(500).json({
+                    message: "Error deleting account",
+                    error: error.message
+                });
+            }
         }
     }
 }
 
 module.exports = new account_controller();
 
-//
-// // Get all accounts
-// router.get("/", async (req, res) => {
-//     try
-//     {
-//         const result = await database.query(
-//             "SELECT account_id, email, account_status, join_date, invited_by_account_id FROM account"
-//         );
-//
-//         const acceptHeader = req.headers['accept'];
-//
-//         if (acceptHeader && acceptHeader.includes('application/xml'))
-//         {
-//             const xml = js2xmlparser.parse("account", result.rows);
-//             res.set('Content-Type', 'application/xml');
-//             res.status(200).send(xml);
-//         }
-//         else
-//         {
-//             res.status(200).json(result.rows); //default will be JSON format if client does not specify the accept header
-//         }
-//     }
-//     catch (error)
-//     {
-//         res.status(500).json({
-//             message: "Error fetching accounts",
-//             error: error.message,
-//         });
-//     }
-// });
 //
 // // Create new account
 // router.post("/", async (req, res) => {
@@ -108,30 +135,6 @@ module.exports = new account_controller();
 //     }
 // });
 //
-// // Get single account
-// router.get("/:account_id", async (req, res) => {
-//     const account_id = req.params.account_id;
-//
-//     try {
-//         const result = await database.query(
-//             "SELECT account_id, email, account_status, join_date, invited_by_account_id FROM account WHERE account_id = $1",
-//             [account_id]
-//         );
-//
-//         if (result.rows.length === 0) {
-//             return res.status(404).json({
-//                 message: "Account not found",
-//             });
-//         }
-//
-//         res.status(200).json(result.rows[0]);
-//     } catch (error) {
-//         res.status(500).json({
-//             message: "Error fetching account",
-//             error: error.message,
-//         });
-//     }
-// });
 //
 // // Update account
 // router.patch("/:account_id", async (req, res) => {
