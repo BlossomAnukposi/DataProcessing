@@ -23,13 +23,13 @@ app.use((req, res, next) => {
     next();
 });
 
-const accountRoutes = require("./com.nhlstenden/api/route/account_route");
-// const episodeRoutes = require("./com.nhlstenden/api/route/episode_route");
-// const genreRoutes = require("./com.nhlstenden/api/route/genre_route");
-// const movieRoutes = require("./com.nhlstenden/api/route/movie_route");
-// const preferenceRoutes = require("./com.nhlstenden/api/route/preference_route");
-// const profileRoutes = require("./com.nhlstenden/api/route/profile_route");
-// const referralRoutes = require("./com.nhlstenden/api/route/referral_discount_route");
+const accountRoutes = require("./com.nhlstenden/api/route/accountRoute");
+const episodeRoutes = require("./com.nhlstenden/api/route/episodeRoute");
+const genreRoutes = require("./com.nhlstenden/api/route/genreRoute");
+const movieRoutes = require("./com.nhlstenden/api/route/movieRoute");
+const preferenceRoutes = require("./com.nhlstenden/api/route/preferenceRoute");
+const profileRoutes = require("./com.nhlstenden/api/route/profileRoute");
+const referralRoutes = require("./com.nhlstenden/api/route/referralDiscountRoute");
 // const seasonRoutes = require("./com.nhlstenden/api/route/season_route");
 // const seriesRoutes = require("./com.nhlstenden/api/route/series_route");
 // const subscriptionRoutes = require("./com.nhlstenden/api/route/subscription_route");
@@ -42,12 +42,12 @@ app.use(morgan("dev"));
 
 //only requests with the path /<route> can use this route...
 app.use("/account", accountRoutes);
-// app.use("/episode", episodeRoutes);
-// app.use("/genre", genreRoutes);
-// app.use("/movie", movieRoutes);
-// app.use("/preference", preferenceRoutes);
-// app.use("/profile", profileRoutes);
-// app.use("/referral_discount", referralRoutes);
+app.use("/episode", episodeRoutes);
+app.use("/genre", genreRoutes);
+app.use("/movie", movieRoutes);
+app.use("/preference", preferenceRoutes);
+app.use("/profile", profileRoutes);
+app.use("/referralDiscount", referralRoutes);
 // app.use("/season", seasonRoutes);
 // app.use("/series", seriesRoutes);
 // app.use("/subscription", subscriptionRoutes);
