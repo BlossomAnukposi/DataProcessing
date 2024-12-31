@@ -8,6 +8,7 @@ class accountController extends controllerParent
         super(accountModel);
 
         this.getAllEntries = this.getAllEntries.bind(this);
+        this.getEntryById = this.getEntryById.bind(this);
         this.createAccount = this.createAccount.bind(this);
         this.updateAccount = this.updateAccount.bind(this);
     }
@@ -17,36 +18,11 @@ class accountController extends controllerParent
         await super.getAllEntries(req, res, 'getAllAccountsQuery');
     }
 
-    // ASYNC METHODS - BASIC ENDPOINTS
-    // getAllAccounts = async (req, res) =>
-    // {
-    //     const acceptHeader = req.headers['accept'];
-    //
-    //     try {
-    //         const result = await accountModel.getAllEntries('get_all_accounts');
-    //
-    //         if (acceptHeader && acceptHeader.includes('application/json'))
-    //         {
-    //             this.returnJson(200, "Accounts retrieved successfully", result, res);
-    //         }
-    //         else if (acceptHeader && acceptHeader.includes('application/xml'))
-    //         {
-    //             this.returnXml(200, "Accounts retrieved successfully", result, res);
-    //         }
-    //         else
-    //         {
-    //             this.returnJson(200, "Accounts retrieved successfully", result, res);
-    //         }
-    //     } catch (error) {
-    //         console.error("Controller Error:", error.message);
-    //         if (acceptHeader && acceptHeader.includes('application/xml')) {
-    //             this.returnXml(500, error.message, null, res);
-    //         } else {
-    //             this.returnJson(500, error.message, null, res);
-    //         }
-    //     }
-    // }
-    //
+    async getEntryById(req, res, method)
+    {
+        await super.getEntryById(req, res, 'getAccountByIdQuery');
+    }
+
     // getAccountById = async (req, res) => {
     //     const acceptHeader = req.headers['accept'];
     //

@@ -9,11 +9,17 @@ class episodeController extends controllerParent
         super(episodeModel);
 
         this.getAllEntries = this.getAllEntries.bind(this);
+        this.getEntryById = this.getEntryById.bind(this);
     }
 
     async getAllEntries(req, res, method)
     {
         await super.getAllEntries(req, res, 'getAllEpisodesQuery');
+    }
+
+    async getEntryById(req, res, method)
+    {
+        await super.getEntryById(req, res, 'getEpisodeByIdQuery');
     }
 
     async getEpisodesBySeason(req, res)

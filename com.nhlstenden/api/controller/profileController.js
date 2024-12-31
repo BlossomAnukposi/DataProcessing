@@ -8,11 +8,17 @@ class profileController extends controllerParent
         super(profileModel);
 
         this.getAllEntries = this.getAllEntries.bind(this);
+        this.getEntryById = this.getEntryById.bind(this);
     }
 
     async getAllEntries(req, res, method)
     {
         await super.getAllEntries(req, res, 'getAllProfilesQuery');
+    }
+
+    async getEntryById(req, res, method)
+    {
+        await super.getEntryById(req, res, 'getProfileByIdQuery');
     }
 }
 

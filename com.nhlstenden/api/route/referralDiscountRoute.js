@@ -3,10 +3,10 @@ const router = express.Router();
 const referralDiscountController = require('../controller/referralDiscountController');
 
 router.get('/', referralDiscountController.getAllEntries);
-// router.get('/:id', genreController.getEntryById);
-// router.delete('/:account_id', genreController.deleteEntry);
-// router.get('/:id', genreController.getEpisodesBySeason);
-// router.post('/', episode_controller.create_episode);
-// router.put('/:account_id', episode_controller.update_episode);
+router.get('/:id', referralDiscountController.getEntryById);
+// router.delete('/:account_id', referralDiscountController.deleteEntry);
+// router.get('/:id', referralDiscountController.getEpisodesBySeason);
+// router.post('/', referralDiscountController.create_episode);
+// router.put('/:account_id', referralDiscountController.update_episode);
 
 module.exports = router;

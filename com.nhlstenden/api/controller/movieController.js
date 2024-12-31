@@ -8,11 +8,17 @@ class movieController extends controllerParent
         super(movieModel);
 
         this.getAllEntries = this.getAllEntries.bind(this);
+        this.getEntryById = this.getEntryById.bind(this);
     }
 
     async getAllEntries(req, res, method)
     {
         await super.getAllEntries(req, res, 'getAllMoviesQuery');
+    }
+
+    async getEntryById(req, res, method)
+    {
+        await super.getEntryById(req, res, 'getMovieByIdQuery');
     }
 }
 

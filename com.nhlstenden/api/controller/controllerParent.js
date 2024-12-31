@@ -84,6 +84,7 @@ class controllerParent {
 
     async getEntryById(req, res, method)
     {
+        console.log(`Method: ${method}`);
         const acceptHeader = req.headers['accept'];
 
         try {
