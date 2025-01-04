@@ -1,18 +1,18 @@
-const accountModel = require("../model/accountModel");
-const controllerParent = require("../../api/controller/controllerParent");
+const AccountModel = require("../model/accountModel");
+const ControllerParent = require("../../api/controller/controllerParent");
 
-class accountController extends controllerParent
+class AccountController extends ControllerParent
 {
     constructor()
     {
-        super(accountModel);
+        super(AccountModel);
 
-        this.getAllEntries = this.getAllEntries.bind(this);
-        this.getEntryById = this.getEntryById.bind(this);
-        this.createAccount = this.createAccount.bind(this);
-        this.updateAccount = this.updateAccount.bind(this);
+        ['createAccount', 'updateAccount'].forEach(
+            method => this[method] = this[method].bind(this)
+        );
     }
 
+    //OVERWRITTEN
     async getAllEntries(req, res, method)
     {
         await super.getAllEntries(req, res, 'getAllAccountsQuery');
@@ -23,36 +23,31 @@ class accountController extends controllerParent
         await super.getEntryById(req, res, 'getAccountByIdQuery');
     }
 
-    // getAccountById = async (req, res) => {
-    //     const acceptHeader = req.headers['accept'];
-    //
-    //     try {
-    //         const result = await accountModel.getEntryById(req.params.id);
-    //
-    //         if (!result) {
-    //             if (acceptHeader && acceptHeader.includes('application/xml')) {
-    //                 this.returnXml(404, "Account not found", null, res);
-    //             } else {
-    //                 this.returnJson(404, "Account not found", null, res);
-    //             }
-    //             return;
-    //         }
-    //
-    //         if (acceptHeader && acceptHeader.includes('application/xml')) {
-    //             this.returnXml(200, "Account retrieved successfully", result, res);
-    //         } else {
-    //             this.returnJson(200, "Account retrieved successfully", result, res);
-    //         }
-    //     } catch (error) {
-    //         console.error("Controller Error:", error.message);
-    //         if (acceptHeader && acceptHeader.includes('application/xml')) {
-    //             this.returnXml(500, error.message, null, res);
-    //         } else {
-    //             this.returnJson(500, error.message, null, res);
-    //         }
-    //     }
-    // }
+    async deleteEntryById(req, res, method)
+    {
+        await super.deleteEntryById(req, res, 'deleteAccountByIdQuery');
+    }
 
+    async createAccount(req, res)
+    {
+        const isXml = this.isXmlRequest(req);
+
+        try
+        {
+            const {email, password, invitedByAccountId} = req.body;
+
+            !email || !password ? this.sendResponse(res, 400, 'email address or password required', null, isXml) : null;
+
+            const account = await AccountModel.createAccount(email, password, invitedByAccountId);
+            this.sendResponse(res, 200, 'account created successfully.', account, isXml);
+        }
+        catch (err)
+        {
+            this.handleError(err, res, isXml);
+        }
+    }
+
+    //OTHER METHODS
     async createAccount(req, res)
     {
         const acceptHeader = req.headers['accept'];
@@ -77,6 +72,9 @@ class accountController extends controllerParent
             } else {
                 this.returnJson(201, "Account created successfully", account, res);
             }
+
+            acceptHeader && acceptHeader.includes('application/xml') ? this.returnXml() : this.returnJson();
+
         } catch (error) {
             console.error("Controller Error:", error.message);
             const status = error.message.includes('required') ? 400 : 500;
@@ -88,36 +86,6 @@ class accountController extends controllerParent
             }
         }
     }
-
-    // deleteAccount = async (req, res) => {
-    //     const acceptHeader = req.headers['accept'];
-    //
-    //     try {
-    //         const account = await accountModel.deleteAccount(req.params.accountId);
-    //
-    //         if (!account) {
-    //             if (acceptHeader && acceptHeader.includes('application/xml')) {
-    //                 this.returnXml(404, "Account not found", null, res);
-    //             } else {
-    //                 this.returnJson(404, "Account not found", null, res);
-    //             }
-    //             return;
-    //         }
-    //
-    //         if (acceptHeader && acceptHeader.includes('application/xml')) {
-    //             this.returnXml(200, "Account deleted successfully", account.accountId, res);
-    //         } else {
-    //             this.returnJson(200, "Account deleted successfully", account.accountId, res);
-    //         }
-    //     } catch (error) {
-    //         console.error("Controller Error:", error.message);
-    //         if (acceptHeader && acceptHeader.includes('application/xml')) {
-    //             this.returnXml(500, error.message, null, res);
-    //         } else {
-    //             this.returnJson(500, error.message, null, res);
-    //         }
-    //     }
-    // }
 
     async updateAccount(req, res)
     {
@@ -174,5 +142,5 @@ class accountController extends controllerParent
     }
 }
 
-const controller = new accountController();
+const controller = new AccountController();
 module.exports = controller;

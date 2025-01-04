@@ -1,14 +1,11 @@
 const profileModel = require("../model/profileModel");
-const controllerParent = require("../../api/controller/controllerParent");
+const ControllerParent = require("../../api/controller/controllerParent");
 
-class profileController extends controllerParent
+class ProfileController extends ControllerParent
 {
     constructor()
     {
         super(profileModel);
-
-        this.getAllEntries = this.getAllEntries.bind(this);
-        this.getEntryById = this.getEntryById.bind(this);
     }
 
     async getAllEntries(req, res, method)
@@ -20,6 +17,11 @@ class profileController extends controllerParent
     {
         await super.getEntryById(req, res, 'getProfileByIdQuery');
     }
+
+    async deleteEntryById(req, res, method)
+    {
+        await super.deleteEntryById(req, res, 'deleteProfileByIdQuery');
+    }
 }
 
-module.exports = new profileController();
+module.exports = new ProfileController();

@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const preferenceController = require('../controller/preferenceController');
+const PreferenceController = require('../controller/preferenceController');
 
-router.get('/', preferenceController.getAllEntries);
-router.get('/:id', preferenceController.getEntryById);
-// router.delete('/:account_id', preferenceController.deleteEntry);
-// router.get('/:id', preferenceController.getEpisodesBySeason);
-// router.post('/', preferenceController.create_episode);
-// router.put('/:account_id', preferenceController.update_episode);
+router.get('/', PreferenceController.getAllEntries);
+router.get('/:id', PreferenceController.getEntryById);
+router.delete('/:id', PreferenceController.deleteEntryById);
+// router.get('/:id', PreferenceController.getEpisodesBySeason);
+// router.post('/', PreferenceController.create_episode);
+// router.put('/:id', PreferenceController.update_episode);
 
 module.exports = router;

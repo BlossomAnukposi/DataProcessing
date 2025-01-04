@@ -1,14 +1,11 @@
 const preferenceModel = require("../model/preferenceModel");
-const controllerParent = require("../../api/controller/controllerParent");
+const ControllerParent = require("../../api/controller/controllerParent");
 
-class preferenceController extends controllerParent
+class PreferenceController extends ControllerParent
 {
     constructor()
     {
         super(preferenceModel);
-
-        this.getAllEntries = this.getAllEntries.bind(this);
-        this.getEntryById = this.getEntryById.bind(this);
     }
 
     async getAllEntries(req, res, method)
@@ -20,6 +17,11 @@ class preferenceController extends controllerParent
     {
         await super.getEntryById(req, res, 'getPreferenceByIdQuery');
     }
+
+    async deleteEntryById(req, res, method)
+    {
+        await super.deleteEntryById(req, res, 'deletePreferenceByIdQuery');
+    }
 }
 
-module.exports = new preferenceController();
+module.exports = new PreferenceController();

@@ -1,14 +1,11 @@
 const genreModel = require("../model/genreModel");
-const controllerParent = require("../../api/controller/controllerParent");
+const ControllerParent = require("../../api/controller/controllerParent");
 
-class genreController extends controllerParent
+class GenreController extends ControllerParent
 {
     constructor()
     {
         super(genreModel);
-
-        this.getAllEntries = this.getAllEntries.bind(this);
-        this.getEntryById = this.getEntryById.bind(this);
     }
 
     async getAllEntries(req, res, method)
@@ -20,6 +17,12 @@ class genreController extends controllerParent
     {
         await super.getEntryById(req, res, 'getGenreByIdQuery');
     }
+
+    async deleteEntryById(req, res, method)
+    {
+        await super.deleteEntryById(req, res, 'deleteGenreByIdQuery');
+    }
 }
 
-module.exports = new genreController();
+const controller = new GenreController();
+module.exports = controller;

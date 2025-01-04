@@ -1,7 +1,7 @@
 const database = require("../../config/database");
-const modelParent = require("./modelParent");
+const ModelParent = require("./modelParent");
 
-class episodeModel extends modelParent
+class EpisodeModel extends ModelParent
 {
     constructor()
     {
@@ -23,7 +23,7 @@ class episodeModel extends modelParent
     }
 }
 
-module.exports = new episodeModel();
+module.exports = new EpisodeModel();
 //
 //    async get_all_episodes()
 //     {

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="finished all the get-all endpoints for 7 tables. Included inheritance using parent classes for Model, and controller.">
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="finished all the get-by-id endpoints for 7 tables.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/accountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/accountController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/controllerParent.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/controllerParent.js" afterDir="false" />
@@ -14,7 +14,16 @@
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/preferenceController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/preferenceController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/profileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/profileController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/referralDiscountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/referralDiscountController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/accountModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/accountModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/genreModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/genreModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/modelParent.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/modelParent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/movieModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/movieModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/preferenceModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/preferenceModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/profileModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/profileModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/referralDiscountModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/referralDiscountModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/accountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/accountRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/genreRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/genreRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/movieRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/movieRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/preferenceRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/preferenceRoute.js" afterDir="false" />
@@ -238,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735666887647</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="finished all the get-by-id endpoints for 7 tables.">
+      <option name="closed" value="true" />
+      <created>1735669963986</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1735669963986</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,6 +285,7 @@
     <MESSAGE value="finished 4 endpoints" />
     <MESSAGE value="basic account endpoints done" />
     <MESSAGE value="finished all the get-all endpoints for 7 tables. Included inheritance using parent classes for Model, and controller." />
-    <option name="LAST_COMMIT_MESSAGE" value="finished all the get-all endpoints for 7 tables. Included inheritance using parent classes for Model, and controller." />
+    <MESSAGE value="finished all the get-by-id endpoints for 7 tables." />
+    <option name="LAST_COMMIT_MESSAGE" value="finished all the get-by-id endpoints for 7 tables." />
   </component>
 </project>

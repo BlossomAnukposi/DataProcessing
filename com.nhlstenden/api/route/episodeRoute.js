@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const episodeController = require('../controller/episodeController');
+const EpisodeController = require('../controller/episodeController');
 
-router.get('/', episodeController.getAllEntries);
-router.get('/:id', episodeController.getEntryById);
-router.delete('/:account_id', episodeController.deleteEntry);
-router.get('/:id', episodeController.getEpisodesBySeason);
-// router.post('/', episode_controller.create_episode);
-// router.put('/:account_id', episode_controller.update_episode);
+router.get('/', EpisodeController.getAllEntries);
+router.get('/:id', EpisodeController.getEntryById);
+router.delete('/:id', EpisodeController.deleteEntryById);
+router.get('/:id', EpisodeController.getEpisodesBySeason);
+// router.post('/', EpisodeController.create_episode);
+// router.put('/:id', EpisodeController.update_episode);
 
 module.exports = router;

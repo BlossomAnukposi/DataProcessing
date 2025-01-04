@@ -1,14 +1,11 @@
 const movieModel = require("../model/movieModel");
-const controllerParent = require("../../api/controller/controllerParent");
+const ControllerParent = require("../../api/controller/controllerParent");
 
-class movieController extends controllerParent
+class MovieController extends ControllerParent
 {
     constructor()
     {
         super(movieModel);
-
-        this.getAllEntries = this.getAllEntries.bind(this);
-        this.getEntryById = this.getEntryById.bind(this);
     }
 
     async getAllEntries(req, res, method)
@@ -20,6 +17,12 @@ class movieController extends controllerParent
     {
         await super.getEntryById(req, res, 'getMovieByIdQuery');
     }
+
+    async deleteEntryById(req, res, method)
+    {
+        await super.deleteEntryById(req, res, 'deleteMovieByIdQuery');
+    }
 }
 
-module.exports = new movieController();
+const controller = new MovieController();
+module.exports = controller;

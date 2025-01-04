@@ -1,7 +1,7 @@
 const database = require("../../config/database");
-const modelParent = require("./modelParent");
+const ModelParent = require("./modelParent");
 
-class referralDiscountModel extends modelParent
+class ReferralDiscountModel extends ModelParent
 {
     constructor()
     {
@@ -9,4 +9,4 @@ class referralDiscountModel extends modelParent
     }
 }
 
-module.exports = new referralDiscountModel();
+module.exports = new ReferralDiscountModel();

@@ -1,15 +1,12 @@
 const episodeModel = require("../model/episodeModel");
 const seasonModel = require("../model/seasonModel");
-const controllerParent = require("../../api/controller/controllerParent");
+const ControllerParent = require("../../api/controller/controllerParent");
 
-class episodeController extends controllerParent
+class EpisodeController extends ControllerParent
 {
     constructor()
     {
         super(episodeModel);
-
-        this.getAllEntries = this.getAllEntries.bind(this);
-        this.getEntryById = this.getEntryById.bind(this);
     }
 
     async getAllEntries(req, res, method)
@@ -20,6 +17,11 @@ class episodeController extends controllerParent
     async getEntryById(req, res, method)
     {
         await super.getEntryById(req, res, 'getEpisodeByIdQuery');
+    }
+
+    async deleteEntryById(req, res, method)
+    {
+        await super.deleteEntryById(req, res, 'deleteEpisodeByIdQuery');
     }
 
     async getEpisodesBySeason(req, res)
@@ -75,7 +77,8 @@ class episodeController extends controllerParent
     }
 }
 
-module.exports = new episodeController();
+const controller = new EpisodeController();
+module.exports = controller;
 
 // // // GET all episodes
 // // router.get('/', async (req, res) => {

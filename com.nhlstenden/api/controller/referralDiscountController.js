@@ -1,14 +1,11 @@
 const referralDiscountModel = require("../model/referralDiscountModel");
-const controllerParent = require("../../api/controller/controllerParent");
+const ControllerParent = require("../../api/controller/controllerParent");
 
-class referralDiscountController extends controllerParent
+class ReferralDiscountController extends ControllerParent
 {
     constructor()
     {
         super(referralDiscountModel);
-
-        this.getAllEntries = this.getAllEntries.bind(this);
-        this.getEntryById = this.getEntryById.bind(this);
     }
 
     async getAllEntries(req, res, method)
@@ -20,6 +17,11 @@ class referralDiscountController extends controllerParent
     {
         await super.getEntryById(req, res, 'getReferralDiscountByIdQuery');
     }
+
+    async deleteEntryById(req, res, method)
+    {
+        await super.deleteEntryById(req, res, 'deleteReferralDiscountByIdQuery');
+    }
 }
 
-module.exports = new referralDiscountController();
+module.exports = new ReferralDiscountController();

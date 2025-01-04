@@ -1,7 +1,7 @@
 const database = require("../../config/database");
-const modelParent = require("./modelParent");
+const ModelParent = require("./modelParent");
 
-class movieModel extends modelParent
+class MovieModel extends ModelParent
 {
     constructor()
     {
@@ -9,4 +9,4 @@ class movieModel extends modelParent
     }
 }
 
-module.exports = new movieModel();
+module.exports = new MovieModel();
