@@ -4,31 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="finished all the get-by-id endpoints for 7 tables.">
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="updated naming to fit Pascals convention.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/accountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/accountController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/controllerParent.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/controllerParent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/episodeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/episodeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/genreController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/genreController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/movieController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/movieController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/preferenceController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/preferenceController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/profileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/profileController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/referralDiscountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/referralDiscountController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/accountModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/accountModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/genreModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/genreModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/modelParent.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/modelParent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/movieModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/movieModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/preferenceModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/preferenceModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/profileModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/profileModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/referralDiscountModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/referralDiscountModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/accountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/accountRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/genreRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/genreRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/movieRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/movieRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/preferenceRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/preferenceRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/profileRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/profileRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/referralDiscountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/referralDiscountRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,10 +50,12 @@
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Node.js.app.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "backend",
-    "last_opened_file_path": "/Users/blossom/Desktop/DBProc/DataProcessing",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/blossom/Desktop/DataProcessing",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -133,13 +113,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -150,6 +123,8 @@
       <updated>1733266803033</updated>
       <workItem from="1733266804103" duration="2831000" />
       <workItem from="1733478610239" duration="7601000" />
+      <workItem from="1735990189381" duration="4000" />
+      <workItem from="1736115114027" duration="1246000" />
     </task>
     <task id="LOCAL-00001" summary="Changed start script for deployment">
       <option name="closed" value="true" />
@@ -255,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735669963986</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="updated naming to fit Pascals convention.">
+      <option name="closed" value="true" />
+      <created>1735989598471</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1735989598471</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +269,7 @@
     <MESSAGE value="basic account endpoints done" />
     <MESSAGE value="finished all the get-all endpoints for 7 tables. Included inheritance using parent classes for Model, and controller." />
     <MESSAGE value="finished all the get-by-id endpoints for 7 tables." />
-    <option name="LAST_COMMIT_MESSAGE" value="finished all the get-by-id endpoints for 7 tables." />
+    <MESSAGE value="updated naming to fit Pascals convention." />
+    <option name="LAST_COMMIT_MESSAGE" value="updated naming to fit Pascals convention." />
   </component>
 </project>

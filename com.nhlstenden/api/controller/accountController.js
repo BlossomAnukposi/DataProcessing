@@ -36,7 +36,9 @@ class AccountController extends ControllerParent
         {
             const {email, password, invitedByAccountId} = req.body;
 
-            !email || !password ? this.sendResponse(res, 400, 'email address or password required', null, isXml) : null;
+            if (!email || !password) {
+                return this.sendResponse(res, 400, 'Email address or password required', null, isXml);
+            }
 
             const account = await AccountModel.createAccount(email, password, invitedByAccountId);
             this.sendResponse(res, 200, 'account created successfully.', account, isXml);
@@ -48,44 +50,44 @@ class AccountController extends ControllerParent
     }
 
     //OTHER METHODS
-    async createAccount(req, res)
-    {
-        const acceptHeader = req.headers['accept'];
-
-        try {
-            const { email, password, invitedByAccountId } = req.body;
-
-            if (!email || !password) {
-                const errorMessage = "Email and password are required";
-                if (acceptHeader && acceptHeader.includes('application/xml')) {
-                    this.returnXml(400, errorMessage, null, res);
-                } else {
-                    this.returnJson(400, errorMessage, null, res);
-                }
-                return;
-            }
-
-            const account = await accountModel.createAccount(email, password, invitedByAccountId);
-
-            if (acceptHeader && acceptHeader.includes('application/xml')) {
-                this.returnXml(201, "Account created successfully", account, res);
-            } else {
-                this.returnJson(201, "Account created successfully", account, res);
-            }
-
-            acceptHeader && acceptHeader.includes('application/xml') ? this.returnXml() : this.returnJson();
-
-        } catch (error) {
-            console.error("Controller Error:", error.message);
-            const status = error.message.includes('required') ? 400 : 500;
-
-            if (acceptHeader && acceptHeader.includes('application/xml')) {
-                this.returnXml(status, error.message, null, res);
-            } else {
-                this.returnJson(status, error.message, null, res);
-            }
-        }
-    }
+    // async createAccount(req, res)
+    // {
+    //     const acceptHeader = req.headers['accept'];
+    //
+    //     try {
+    //         const { email, password, invitedByAccountId } = req.body;
+    //
+    //         if (!email || !password) {
+    //             const errorMessage = "Email and password are required";
+    //             if (acceptHeader && acceptHeader.includes('application/xml')) {
+    //                 this.returnXml(400, errorMessage, null, res);
+    //             } else {
+    //                 this.returnJson(400, errorMessage, null, res);
+    //             }
+    //             return;
+    //         }
+    //
+    //         const account = await accountModel.createAccount(email, password, invitedByAccountId);
+    //
+    //         if (acceptHeader && acceptHeader.includes('application/xml')) {
+    //             this.returnXml(201, "Account created successfully", account, res);
+    //         } else {
+    //             this.returnJson(201, "Account created successfully", account, res);
+    //         }
+    //
+    //         acceptHeader && acceptHeader.includes('application/xml') ? this.returnXml() : this.returnJson();
+    //
+    //     } catch (error) {
+    //         console.error("Controller Error:", error.message);
+    //         const status = error.message.includes('required') ? 400 : 500;
+    //
+    //         if (acceptHeader && acceptHeader.includes('application/xml')) {
+    //             this.returnXml(status, error.message, null, res);
+    //         } else {
+    //             this.returnJson(status, error.message, null, res);
+    //         }
+    //     }
+    // }
 
     async updateAccount(req, res)
     {
