@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Genre Management - Netflix Admin</title>
+    <link rel="stylesheet" href="../../stylesheet/admin.css" />
+    <link rel="stylesheet" href="../../stylesheet/genres.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- Sidebar Navigation -->
+      <nav class="admin-sidebar">
+        <div class="logo">
+          <img
+            src="../../images/logo/logo_short.png"
+            alt="Netflix Logo"
+            width="50"
+          />
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+          </li>
+          <li>
+            <a href="content-management.html"
+              ><i class="fas fa-film"></i> Content Management</a
+            >
+          </li>
+          <li>
+            <a href="users.html"><i class="fas fa-users"></i> Users</a>
+          </li>
+          <li>
+            <a href="genres.html" class="active"
+              ><i class="fas fa-tags"></i> Genres</a
+            >
+          </li>
+          <li>
+            <a href="subscriptions.html"
+              ><i class="fas fa-credit-card"></i> Subscriptions</a
+            >
+          </li>
+          <li>
+            <a href="analytics.html"
+              ><i class="fas fa-chart-bar"></i> Analytics</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <header class="admin-header">
+          <h1>Genre Management</h1>
+          <button class="add-genre-btn">
+            <i class="fas fa-plus"></i> Add New Genre
+          </button>
+        </header>
+
+        <!-- Genre Grid -->
+        <div class="genre-grid">
+          <!-- Genre Card -->
+          <div class="genre-card">
+            <div class="genre-header">
+              <h3>Action</h3>
+              <span class="content-count">245 titles</span>
+            </div>
+            <div class="genre-description">
+              Fast-paced and full of excitement, featuring intense sequences and
+              thrilling adventures.
+            </div>
+            <div class="genre-stats">
+              <div class="stat">
+                <span class="label">Popularity</span>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 85%"></div>
+                </div>
+              </div>
+              <div class="stat">
+                <span class="label">Growth</span>
+                <span class="value">+12% ↑</span>
+              </div>
+            </div>
+            <div class="genre-actions">
+              <button class="edit-btn" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="delete-btn" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="genre-card">
+            <div class="genre-header">
+              <h3>Comedy</h3>
+              <span class="content-count">189 titles</span>
+            </div>
+            <div class="genre-description">
+              Light-hearted entertainment designed to amuse and make audiences
+              laugh.
+            </div>
+            <div class="genre-stats">
+              <div class="stat">
+                <span class="label">Popularity</span>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 75%"></div>
+                </div>
+              </div>
+              <div class="stat">
+                <span class="label">Growth</span>
+                <span class="value">+8% ↑</span>
+              </div>
+            </div>
+            <div class="genre-actions">
+              <button class="edit-btn" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="delete-btn" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="genre-card">
+            <div class="genre-header">
+              <h3>Drama</h3>
+              <span class="content-count">312 titles</span>
+            </div>
+            <div class="genre-description">
+              Character-driven narratives focusing on emotional relationships
+              and personal conflicts.
+            </div>
+            <div class="genre-stats">
+              <div class="stat">
+                <span class="label">Popularity</span>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 92%"></div>
+                </div>
+              </div>
+              <div class="stat">
+                <span class="label">Growth</span>
+                <span class="value">+15% ↑</span>
+              </div>
+            </div>
+            <div class="genre-actions">
+              <button class="edit-btn" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="delete-btn" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Add Genre Card -->
+          <div class="genre-card add-card">
+            <div class="add-genre-content">
+              <i class="fas fa-plus-circle"></i>
+              <span>Add New Genre</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Genre Modal (Hidden by default) -->
+        <div class="genre-modal" style="display: none">
+          <div class="modal-content">
+            <h2>Add New Genre</h2>
+            <form class="genre-form">
+              <div class="form-group">
+                <label for="genre-name">Genre Name</label>
+                <input type="text" id="genre-name" required />
+              </div>
+              <div class="form-group">
+                <label for="genre-description">Description</label>
+                <textarea id="genre-description" required></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="cancel-btn">Cancel</button>
+                <button type="submit" class="save-btn">Save Genre</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
