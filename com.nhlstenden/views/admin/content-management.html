@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Content Management - Netflix Admin</title>
+    <link rel="stylesheet" href="../../stylesheet/admin.css" />
+    <link rel="stylesheet" href="../../stylesheet/content-management.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- Sidebar Navigation -->
+      <nav class="admin-sidebar">
+        <div class="logo">
+          <img
+            src="../../images/logo/logo_short.png"
+            alt="Netflix Logo"
+            width="50"
+          />
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+          </li>
+          <li>
+            <a href="content-management.html" class="active"
+              ><i class="fas fa-film"></i> Content Management</a
+            >
+          </li>
+          <li>
+            <a href="users.html"><i class="fas fa-users"></i> Users</a>
+          </li>
+          <li>
+            <a href="genres.html"><i class="fas fa-tags"></i> Genres</a>
+          </li>
+          <li>
+            <a href="subscriptions.html"
+              ><i class="fas fa-credit-card"></i> Subscriptions</a
+            >
+          </li>
+          <li>
+            <a href="analytics.html"
+              ><i class="fas fa-chart-bar"></i> Analytics</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <header class="admin-header">
+          <h1>Content Management</h1>
+          <button class="add-content-btn">
+            <i class="fas fa-plus"></i> Add New Content
+          </button>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+          <div class="search-box">
+            <input type="text" placeholder="Search content..." />
+            <i class="fas fa-search"></i>
+          </div>
+          <div class="filters">
+            <select>
+              <option value="">Content Type</option>
+              <option value="movie">Movie</option>
+              <option value="series">TV Series</option>
+            </select>
+            <select>
+              <option value="">Genre</option>
+              <option value="action">Action</option>
+              <option value="comedy">Comedy</option>
+              <option value="drama">Drama</option>
+            </select>
+            <select>
+              <option value="">Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+              <option value="upcoming">Upcoming</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Content List -->
+        <div class="content-list">
+          <!-- Content Item -->
+          <div class="content-item">
+            <img
+              src="../../images/movie/lost_in_space.png"
+              alt="Lost in Space"
+            />
+            <div class="content-details">
+              <h3>Lost in Space</h3>
+              <p class="type">TV Series • 3 Seasons</p>
+              <p class="genre">Sci-Fi, Adventure</p>
+            </div>
+            <div class="content-status active">Active</div>
+            <div class="content-actions">
+              <button class="edit-btn"><i class="fas fa-edit"></i></button>
+              <button class="delete-btn"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+
+          <div class="content-item">
+            <img src="../../images/movie/skyscraper.png" alt="Skyscraper" />
+            <div class="content-details">
+              <h3>Skyscraper</h3>
+              <p class="type">Movie • 2h 15m</p>
+              <p class="genre">Action, Thriller</p>
+            </div>
+            <div class="content-status active">Active</div>
+            <div class="content-actions">
+              <button class="edit-btn"><i class="fas fa-edit"></i></button>
+              <button class="delete-btn"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+
+          <div class="content-item">
+            <img
+              src="../../images/movie/kung_fu_panda.png"
+              alt="Kung Fu Panda"
+            />
+            <div class="content-details">
+              <h3>Kung Fu Panda</h3>
+              <p class="type">Movie • 1h 32m</p>
+              <p class="genre">Animation, Action</p>
+            </div>
+            <div class="content-status upcoming">Upcoming</div>
+            <div class="content-actions">
+              <button class="edit-btn"><i class="fas fa-edit"></i></button>
+              <button class="delete-btn"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+          <div class="page-numbers">
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <span>...</span>
+            <button>10</button>
+          </div>
+          <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Netflix Admin Dashboard</title>
+    <link rel="stylesheet" href="../../stylesheet/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- Sidebar Navigation -->
+      <nav class="admin-sidebar">
+        <div class="logo">
+          <img
+            src="../../images/logo/logo_short.png"
+            alt="Netflix Logo"
+            width="50"
+          />
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="dashboard.html" class="active"
+              ><i class="fas fa-home"></i> Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="content-management.html"
+              ><i class="fas fa-film"></i> Content Management</a
+            >
+          </li>
+          <li>
+            <a href="users.html"><i class="fas fa-users"></i> Users</a>
+          </li>
+          <li>
+            <a href="genres.html"><i class="fas fa-tags"></i> Genres</a>
+          </li>
+          <li>
+            <a href="subscriptions.html"
+              ><i class="fas fa-credit-card"></i> Subscriptions</a
+            >
+          </li>
+          <li>
+            <a href="analytics.html"
+              ><i class="fas fa-chart-bar"></i> Analytics</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <header class="admin-header">
+          <h1>Admin Dashboard</h1>
+          <div class="admin-profile">
+            <span>Admin Name</span>
+            <img
+              src="../../images/profile-placeholder.png"
+              alt="Admin Profile"
+            />
+          </div>
+        </header>
+
+        <!-- Dashboard Overview Cards -->
+        <div class="dashboard-cards">
+          <div class="card">
+            <h3>Total Users</h3>
+            <p class="number">15,234</p>
+            <span class="trend up">+12% ↑</span>
+          </div>
+          <div class="card">
+            <h3>Active Subscriptions</h3>
+            <p class="number">12,456</p>
+            <span class="trend up">+8% ↑</span>
+          </div>
+          <div class="card">
+            <h3>Total Content</h3>
+            <p class="number">2,345</p>
+            <span class="trend up">+15% ↑</span>
+          </div>
+          <div class="card">
+            <h3>Revenue</h3>
+            <p class="number">$234,567</p>
+            <span class="trend up">+10% ↑</span>
+          </div>
+        </div>
+
+        <!-- Recent Activity Section -->
+        <section class="recent-activity">
+          <h2>Recent Activity</h2>
+          <div class="activity-list">
+            <div class="activity-item">
+              <span class="time">2h ago</span>
+              <p>New movie "Example Movie" added to library</p>
+            </div>
+            <div class="activity-item">
+              <span class="time">3h ago</span>
+              <p>User subscription updated</p>
+            </div>
+            <div class="activity-item">
+              <span class="time">5h ago</span>
+              <p>New genre "Documentary" created</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Management - Netflix Admin</title>
+    <link rel="stylesheet" href="../../stylesheet/admin.css" />
+    <link rel="stylesheet" href="../../stylesheet/users.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- Sidebar Navigation -->
+      <nav class="admin-sidebar">
+        <div class="logo">
+          <img
+            src="../../images/logo/logo_short.png"
+            alt="Netflix Logo"
+            width="50"
+          />
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+          </li>
+          <li>
+            <a href="content-management.html"
+              ><i class="fas fa-film"></i> Content Management</a
+            >
+          </li>
+          <li>
+            <a href="users.html" class="active"
+              ><i class="fas fa-users"></i> Users</a
+            >
+          </li>
+          <li>
+            <a href="genres.html"><i class="fas fa-tags"></i> Genres</a>
+          </li>
+          <li>
+            <a href="subscriptions.html"
+              ><i class="fas fa-credit-card"></i> Subscriptions</a
+            >
+          </li>
+          <li>
+            <a href="analytics.html"
+              ><i class="fas fa-chart-bar"></i> Analytics</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <header class="admin-header">
+          <h1>User Management</h1>
+          <button class="add-user-btn">
+            <i class="fas fa-user-plus"></i> Add New User
+          </button>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+          <div class="search-box">
+            <input type="text" placeholder="Search users..." />
+            <i class="fas fa-search"></i>
+          </div>
+          <div class="filters">
+            <select>
+              <option value="">Subscription Type</option>
+              <option value="basic">Basic</option>
+              <option value="standard">Standard</option>
+              <option value="premium">Premium</option>
+            </select>
+            <select>
+              <option value="">Status</option>
+              <option value="active">Active</option>
+              <option value="suspended">Suspended</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+            <select>
+              <option value="">Join Date</option>
+              <option value="last-7">Last 7 days</option>
+              <option value="last-30">Last 30 days</option>
+              <option value="last-90">Last 90 days</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="users-table-container">
+          <table class="users-table">
+            <thead>
+              <tr>
+                <th>
+                  <input type="checkbox" class="select-all-checkbox" />
+                </th>
+                <th>User</th>
+                <th>Email</th>
+                <th>Subscription</th>
+                <th>Join Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <input type="checkbox" class="user-checkbox" />
+                </td>
+                <td class="user-info">
+                  <img
+                    src="../../images/profile-placeholder.png"
+                    alt="User Avatar"
+                  />
+                  <div>
+                    <span class="user-name">John Doe</span>
+                    <span class="user-id">#12345</span>
+                  </div>
+                </td>
+                <td>john.doe@example.com</td>
+                <td>Premium</td>
+                <td>2024-01-15</td>
+                <td><span class="status-badge active">Active</span></td>
+                <td class="actions">
+                  <button class="edit-btn" title="Edit">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="suspend-btn" title="Suspend">
+                    <i class="fas fa-ban"></i>
+                  </button>
+                  <button class="delete-btn" title="Delete">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="checkbox" class="user-checkbox" />
+                </td>
+                <td class="user-info">
+                  <img
+                    src="../../images/profile-placeholder.png"
+                    alt="User Avatar"
+                  />
+                  <div>
+                    <span class="user-name">Jane Smith</span>
+                    <span class="user-id">#12346</span>
+                  </div>
+                </td>
+                <td>jane.smith@example.com</td>
+                <td>Standard</td>
+                <td>2024-02-01</td>
+                <td><span class="status-badge suspended">Suspended</span></td>
+                <td class="actions">
+                  <button class="edit-btn" title="Edit">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="activate-btn" title="Activate">
+                    <i class="fas fa-check"></i>
+                  </button>
+                  <button class="delete-btn" title="Delete">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+          <div class="page-numbers">
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <span>...</span>
+            <button>10</button>
+          </div>
+          <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
