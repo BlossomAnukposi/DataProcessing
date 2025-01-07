@@ -27,29 +27,6 @@ class AccountModel extends ModelParent
         }
     }
 
-    // async createAccount(email, password, invitedByAccountId = null)
-    // {
-    //     try
-    //     {
-    //         const result = await database.query(
-    //             'SELECT * FROM public.create_account($1, $2, $3)',
-    //             [email, password, invitedByAccountId]
-    //         );
-    //
-    //         if (!result || result.length === 0)
-    //         {
-    //             throw new Error("Account creation failed");
-    //         }
-    //
-    //         return result[0];
-    //     }
-    //     catch (error)
-    //     {
-    //         console.error("Model Error:", error.message);
-    //         throw error;
-    //     }
-    // }
-
     async updateAccount(accountId, email = null, password = null, accountStatus = null)
     {
         try
