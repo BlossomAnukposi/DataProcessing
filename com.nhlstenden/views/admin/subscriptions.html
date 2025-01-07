@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Subscription Management - Netflix Admin</title>
+    <link rel="stylesheet" href="../../stylesheet/admin.css" />
+    <link rel="stylesheet" href="../../stylesheet/subscriptions.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- Sidebar Navigation -->
+      <nav class="admin-sidebar">
+        <div class="logo">
+          <img
+            src="../../images/logo/logo_short.png"
+            alt="Netflix Logo"
+            width="50"
+          />
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+          </li>
+          <li>
+            <a href="content-management.html"
+              ><i class="fas fa-film"></i> Content Management</a
+            >
+          </li>
+          <li>
+            <a href="users.html"><i class="fas fa-users"></i> Users</a>
+          </li>
+          <li>
+            <a href="genres.html"><i class="fas fa-tags"></i> Genres</a>
+          </li>
+          <li>
+            <a href="subscriptions.html" class="active"
+              ><i class="fas fa-credit-card"></i> Subscriptions</a
+            >
+          </li>
+          <li>
+            <a href="analytics.html"
+              ><i class="fas fa-chart-bar"></i> Analytics</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <header class="admin-header">
+          <h1>Subscription Management</h1>
+          <button class="add-plan-btn">
+            <i class="fas fa-plus"></i> Add New Plan
+          </button>
+        </header>
+
+        <!-- Subscription Plans Grid -->
+        <div class="subscription-grid">
+          <!-- Basic Plan -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <h3>Basic Plan</h3>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">8.99</span>
+                <span class="period">/month</span>
+              </div>
+            </div>
+            <div class="plan-features">
+              <ul>
+                <li><i class="fas fa-check"></i> Good video quality</li>
+                <li><i class="fas fa-check"></i> 720p Resolution</li>
+                <li><i class="fas fa-check"></i> Watch on any device</li>
+                <li><i class="fas fa-check"></i> Cancel anytime</li>
+                <li class="disabled">
+                  <i class="fas fa-times"></i> Ultra HD Available
+                </li>
+              </ul>
+            </div>
+            <div class="plan-stats">
+              <div class="stat">
+                <span class="label">Active Users</span>
+                <span class="value">5,234</span>
+              </div>
+              <div class="stat">
+                <span class="label">Monthly Revenue</span>
+                <span class="value">$47,053.66</span>
+              </div>
+            </div>
+            <div class="plan-actions">
+              <button class="edit-btn" title="Edit Plan">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="delete-btn" title="Delete Plan">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Standard Plan -->
+          <div class="plan-card featured">
+            <div class="plan-badge">Most Popular</div>
+            <div class="plan-header">
+              <h3>Standard Plan</h3>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">13.99</span>
+                <span class="period">/month</span>
+              </div>
+            </div>
+            <div class="plan-features">
+              <ul>
+                <li><i class="fas fa-check"></i> Better video quality</li>
+                <li><i class="fas fa-check"></i> 1080p Resolution</li>
+                <li><i class="fas fa-check"></i> Watch on any device</li>
+                <li><i class="fas fa-check"></i> Cancel anytime</li>
+                <li><i class="fas fa-check"></i> Download available</li>
+              </ul>
+            </div>
+            <div class="plan-stats">
+              <div class="stat">
+                <span class="label">Active Users</span>
+                <span class="value">8,756</span>
+              </div>
+              <div class="stat">
+                <span class="label">Monthly Revenue</span>
+                <span class="value">$122,496.44</span>
+              </div>
+            </div>
+            <div class="plan-actions">
+              <button class="edit-btn" title="Edit Plan">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="delete-btn" title="Delete Plan">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Premium Plan -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <h3>Premium Plan</h3>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">17.99</span>
+                <span class="period">/month</span>
+              </div>
+            </div>
+            <div class="plan-features">
+              <ul>
+                <li><i class="fas fa-check"></i> Best video quality</li>
+                <li><i class="fas fa-check"></i> 4K+HDR Resolution</li>
+                <li><i class="fas fa-check"></i> Watch on any device</li>
+                <li><i class="fas fa-check"></i> Cancel anytime</li>
+                <li><i class="fas fa-check"></i> Spatial audio</li>
+              </ul>
+            </div>
+            <div class="plan-stats">
+              <div class="stat">
+                <span class="label">Active Users</span>
+                <span class="value">3,421</span>
+              </div>
+              <div class="stat">
+                <span class="label">Monthly Revenue</span>
+                <span class="value">$61,543.79</span>
+              </div>
+            </div>
+            <div class="plan-actions">
+              <button class="edit-btn" title="Edit Plan">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="delete-btn" title="Delete Plan">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subscription Analytics -->
+        <section class="subscription-analytics">
+          <h2>Subscription Analytics</h2>
+          <div class="analytics-cards">
+            <div class="analytics-card">
+              <h4>Total Revenue</h4>
+              <p class="amount">$231,093.89</p>
+              <span class="trend up">+15% from last month</span>
+            </div>
+            <div class="analytics-card">
+              <h4>Active Subscriptions</h4>
+              <p class="amount">17,411</p>
+              <span class="trend up">+8% from last month</span>
+            </div>
+            <div class="analytics-card">
+              <h4>Churn Rate</h4>
+              <p class="amount">2.4%</p>
+              <span class="trend down">-0.5% from last month</span>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
