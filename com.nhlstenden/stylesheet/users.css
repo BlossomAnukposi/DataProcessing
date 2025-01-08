@@ -1,22 +1,3 @@
-/* User Management Specific Styles */
-
-.add-user-btn {
-  background-color: var(--netflix-red);
-  color: var(--text-color);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-}
-
-.add-user-btn:hover {
-  background-color: #f40612;
-}
-
 /* Search and Filter Section */
 .search-filter-section {
   margin-bottom: 30px;
