@@ -187,5 +187,99 @@
         </div>
       </main>
     </div>
+
+    <script>
+      // Get DOM elements
+      const modal = document.querySelector(".genre-modal");
+      const addGenreBtn = document.querySelector(".add-genre-btn");
+      const addGenreCard = document.querySelector(".add-card");
+      const cancelBtn = document.querySelector(".cancel-btn");
+      const genreForm = document.querySelector(".genre-form");
+
+      // Show modal function
+      function showModal() {
+        modal.style.display = "flex";
+        // Clear form
+        genreForm.reset();
+      }
+
+      // Hide modal function
+      function hideModal() {
+        modal.style.display = "none";
+      }
+
+      // Add click event listeners
+      addGenreBtn.addEventListener("click", showModal);
+      addGenreCard.addEventListener("click", showModal);
+      cancelBtn.addEventListener("click", hideModal);
+
+      // Close modal when clicking outside
+      modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          hideModal();
+        }
+      });
+
+      // Handle form submission
+      genreForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const genreName = document.getElementById("genre-name").value;
+        const genreDescription =
+          document.getElementById("genre-description").value;
+
+        // Basic validation
+        if (!genreName.trim() || !genreDescription.trim()) {
+          alert("Please fill in all required fields");
+          return;
+        }
+
+        // Create new genre card
+        const newGenreCard = document.createElement("div");
+        newGenreCard.className = "genre-card";
+        newGenreCard.innerHTML = `
+          <div class="genre-header">
+            <h3>${genreName}</h3>
+            <span class="content-count">0 titles</span>
+          </div>
+          <div class="genre-description">
+            ${genreDescription}
+          </div>
+          <div class="genre-stats">
+            <div class="stat">
+              <span class="label">Popularity</span>
+              <div class="progress-bar">
+                <div class="progress" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="stat">
+              <span class="label">Growth</span>
+              <span class="value">0% ↑</span>
+            </div>
+          </div>
+          <div class="genre-actions">
+            <button class="edit-btn" title="Edit">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="delete-btn" title="Delete">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        `;
+
+        // Insert the new card before the "Add Genre" card
+        const addCard = document.querySelector(".add-card");
+        addCard.parentNode.insertBefore(newGenreCard, addCard);
+
+        // Here you would typically send the data to your backend
+        console.log("New Genre:", {
+          name: genreName,
+          description: genreDescription,
+        });
+
+        // Hide the modal
+        hideModal();
+      });
+    </script>
   </body>
 </html>
