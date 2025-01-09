@@ -30,12 +30,12 @@ const movieRoutes = require("./com.nhlstenden/api/route/movieRoute");
 const preferenceRoutes = require("./com.nhlstenden/api/route/preferenceRoute");
 const profileRoutes = require("./com.nhlstenden/api/route/profileRoute");
 const referralRoutes = require("./com.nhlstenden/api/route/referralDiscountRoute");
-// const seasonRoutes = require("./com.nhlstenden/api/route/season_route");
-// const seriesRoutes = require("./com.nhlstenden/api/route/series_route");
-// const subscriptionRoutes = require("./com.nhlstenden/api/route/subscription_route");
-// const subtitleRoutes = require("./com.nhlstenden/api/route/subtitle_route");
-// const watchedMediaRoutes = require("./com.nhlstenden/api/route/watched_media_list_route");
-// const watchlistRoutes = require("./com.nhlstenden/api/route/watchlist_route");
+const seasonRoutes = require("./com.nhlstenden/api/route/seasonRoute");
+const seriesRoutes = require("./com.nhlstenden/api/route/seriesRoute");
+const subscriptionRoutes = require("./com.nhlstenden/api/route/subscriptionRoute");
+const subtitleRoutes = require("./com.nhlstenden/api/route/subtitleRoute");
+const watchedMediaRoutes = require("./com.nhlstenden/api/route/watchedMediaListRoute");
+// const watchlistRoutes = require("./com.nhlstenden/api/route/watchlistRoute");
 
 //use morgan for terminal tracking of requests
 app.use(morgan("dev"));
@@ -48,11 +48,11 @@ app.use("/movie", movieRoutes);
 app.use("/preference", preferenceRoutes);
 app.use("/profile", profileRoutes);
 app.use("/referralDiscount", referralRoutes);
-// app.use("/season", seasonRoutes);
-// app.use("/series", seriesRoutes);
-// app.use("/subscription", subscriptionRoutes);
-// app.use("/subtitle", subtitleRoutes);
-// app.use("/watched_media_list", watchedMediaRoutes);
+app.use("/season", seasonRoutes);
+app.use("/series", seriesRoutes);
+app.use("/subscription", subscriptionRoutes);
+app.use("/subtitle", subtitleRoutes);
+app.use("/watched_media_list", watchedMediaRoutes);
 // app.use("/watchlist", watchlistRoutes);
 
 app.use((req, res, next) => {
