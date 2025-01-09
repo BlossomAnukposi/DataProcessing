@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Finished account controller.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/modelParent.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/modelParent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" afterDir="false" />
-    </list>
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Started Episode controller." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,7 +135,7 @@
       <workItem from="1736115114027" duration="10702000" />
       <workItem from="1736167803234" duration="1294000" />
       <workItem from="1736206307826" duration="8523000" />
-      <workItem from="1736420426270" duration="7490000" />
+      <workItem from="1736420426270" duration="8254000" />
     </task>
     <task id="LOCAL-00001" summary="Changed start script for deployment">
       <option name="closed" value="true" />
@@ -262,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736117990986</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Started Episode controller.">
+      <option name="closed" value="true" />
+      <created>1736435585053</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1736435585053</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,6 +298,7 @@
     <MESSAGE value="finished all the get-by-id endpoints for 7 tables." />
     <MESSAGE value="updated naming to fit Pascals convention." />
     <MESSAGE value="fixed bug in accountController - create new acct endpoint." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug in accountController - create new acct endpoint." />
+    <MESSAGE value="Started Episode controller." />
+    <option name="LAST_COMMIT_MESSAGE" value="Started Episode controller." />
   </component>
 </project>

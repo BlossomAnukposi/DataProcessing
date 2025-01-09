@@ -63,3 +63,4 @@ $RECYCLE.BIN/
 ### Environment variables ###
 #.env
 /com.nhlstenden/frontendTester/
+node_modules/
