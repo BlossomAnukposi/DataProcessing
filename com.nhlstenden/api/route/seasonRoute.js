@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const pool = require("../../config/database");
+const SeasonController = require("../controller/seasonController");
 
 router.get('/', SeasonController.getAllEntries);
 router.get('/:id', SeasonController.getEntryById);

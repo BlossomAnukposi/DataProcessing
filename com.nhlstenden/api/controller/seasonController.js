@@ -42,7 +42,7 @@ class SeasonController extends ControllerParent {
     }
 
     // Update an existing season by ID
-    async updateSeason(req, res) {
+    async updateSeasonById(req, res) {
         const isXml = this.isXmlRequest(req);
 
         try {
