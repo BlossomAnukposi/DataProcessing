@@ -4,6 +4,7 @@ const EpisodeController = require('../controller/episodeController');
 
 router.get('/', EpisodeController.getAllEntries);
 router.get('/:id', EpisodeController.getEntryById);
+router.get('/:id', EpisodeController.getEpisodesBySeason);
 router.delete('/:id', EpisodeController.deleteEntryById);
 router.get('/:id', EpisodeController.getEpisodesBySeason);
 // router.post('/', EpisodeController.create_episode);

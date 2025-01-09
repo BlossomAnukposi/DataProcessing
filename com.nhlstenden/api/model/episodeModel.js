@@ -8,7 +8,7 @@ class EpisodeModel extends ModelParent
         super("episode");
     }
 
-    getEpisodesBySeason = async(seasonId) =>
+    async getEpisodesBySeason(seasonId)
     {
         try {
             return await database.query(
@@ -21,92 +21,30 @@ class EpisodeModel extends ModelParent
             throw new Error(`Could not get episodes for this season. ${error}`);
         }
     }
+
+    async createEpisode(seasonId, title, number, description = null, episode_url = null, duration)
+    {
+        try {
+            const result = await database.query(
+                'SELECT * FROM public.create_episode($1, $2, $3, $4, $5, $6)',
+                [seasonId, title, number, description, episode_url, duration]
+            );
+
+            if(!result?.length) {
+                console.log(`Could not create episode`);
+                return null;
+            }
+            return result[0];
+        }
+        catch (error)
+        {
+            this.handleError('creating', error);
+        }
+    }
 }
 
 module.exports = new EpisodeModel();
-//
-//    async get_all_episodes()
-//     {
-//         try
-//         {
-//             return await database.query('SELECT * FROM public.get_all_episodes()');
-//         }
-//         catch (error)
-//         {
-//             throw new Error("Error fetching accounts. Error message is: " + error.message);
-//         }
-//     }
-// }
-//
-// module.exports = new episode_model();
-//
-// // // GET all episodes
-// // router.get('/', async (req, res) => {
-// //     try {
-// //         const query = `
-// //             SELECT e.episode_id, e.season_id, e.title, e.number,
-// //                    e.description, e.duration
-// //             FROM episode e
-// //             ORDER BY e.number ASC
-// //         `;
-// //         const result = await pool.query(query);
-// //         res.status(200).json(result.rows);
-// //     } catch (error) {
-// //         res.status(500).json({
-// //             message: 'Error fetching episodes',
-// //             error: error.message
-// //         });
-// //     }
-// // });
-// //
-// // // GET episodes by season
-// // router.get('/season/:season_id', async (req, res) => {
-// //     try {
-// //         const seasonId = req.params.season_id;
-// //         const query = `
-// //             SELECT episode_id, season_id, title, number,
-// //                    description, duration
-// //             FROM episode
-// //             WHERE season_id = $1
-// //             ORDER BY number ASC
-// //         `;
-// //         const result = await pool.query(query, [seasonId]);
-// //         res.status(200).json(result.rows);
-// //     } catch (error) {
-// //         res.status(500).json({
-// //             message: 'Error fetching episodes for season',
-// //             error: error.message
-// //         });
-// //     }
-// // });
-// //
-// // // GET specific episode
-// // router.get('/:episode_id', async (req, res) => {
-// //     try {
-// //         const episodeId = req.params.episode_id;
-// //         const query = `
-// //             SELECT episode_id, season_id, title, number,
-// //                    description, duration
-// //             FROM episode
-// //             WHERE episode_id = $1
-// //         `;
-// //         const result = await pool.query(query, [episodeId]);
-// //
-// //         if (result.rows.length === 0) {
-// //             return res.status(404).json({
-// //                 message: 'Episode not found'
-// //             });
-// //         }
-// //
-// //         res.status(200).json(result.rows[0]);
-// //     } catch (error) {
-// //         res.status(500).json({
-// //             message: 'Error fetching episode',
-// //             error: error.message
-// //         });
-// //     }
-// // });
-// //
+
 // // // CREATE new episode
 // // router.post('/', async (req, res) => {
 // //     try {

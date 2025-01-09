@@ -39,6 +39,8 @@ class ModelParent {
     // Generic error handler
     handleError(operation, err) {
         console.error(`ModelParent Error (${operation}):`, err.message);
+        console.error(err.stack);
+
         const baseError = `Error ${operation} ${this.tableName}`;
 
         if (err.message.includes(`${this.tableName} with ID`)) {
