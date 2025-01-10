@@ -165,3 +165,66 @@
 }
 
 /* Pagination styles are inherited from admin.css */
+
+/* Add these styles to your users.css file */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 2rem;
+}
+
+.pagination button {
+  border: none;
+  background: #2f2f2f;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.pagination button:hover {
+  background: #404040;
+}
+
+.pagination button.active {
+  background: #e50914;
+  color: white;
+}
+
+.prev-btn,
+.next-btn {
+  background: #2f2f2f;
+  border: none;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+  background: #404040;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.page-numbers span {
+  color: #fff;
+}
