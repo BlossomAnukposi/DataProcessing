@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="updated Gitignore">
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/seasonController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/seasonController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/seasonRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/seasonRoute.js" afterDir="false" />
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Fixed Season bug">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/episodeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/episodeController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,9 +41,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
-}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="2pj5mRPCHkDldP0lP9cSlMJ9SON" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -139,7 +140,7 @@
       <workItem from="1736115114027" duration="10702000" />
       <workItem from="1736167803234" duration="1294000" />
       <workItem from="1736206307826" duration="8523000" />
-      <workItem from="1736420426270" duration="8625000" />
+      <workItem from="1736420426270" duration="23092000" />
     </task>
     <task id="LOCAL-00001" summary="Changed start script for deployment">
       <option name="closed" value="true" />
@@ -277,7 +278,23 @@
       <option name="project" value="LOCAL" />
       <updated>1736435773062</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="updated Gitignore">
+      <option name="closed" value="true" />
+      <created>1736436141758</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1736436141758</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Fixed Season bug">
+      <option name="closed" value="true" />
+      <created>1736436159066</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1736436159066</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,6 +329,7 @@
     <MESSAGE value="fixed bug in accountController - create new acct endpoint." />
     <MESSAGE value="Started Episode controller." />
     <MESSAGE value="updated Gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated Gitignore" />
+    <MESSAGE value="Fixed Season bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Season bug" />
   </component>
 </project>
