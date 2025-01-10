@@ -168,7 +168,9 @@
 
         <!-- Pagination -->
         <div class="pagination">
-          <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+          <button class="prev-btn" aria-label="Previous page">
+            <i class="fas fa-chevron-left"></i>
+          </button>
           <div class="page-numbers">
             <button class="active">1</button>
             <button>2</button>
@@ -176,9 +178,193 @@
             <span>...</span>
             <button>10</button>
           </div>
-          <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+          <button class="next-btn" aria-label="Next page">
+            <i class="fas fa-chevron-right"></i>
+          </button>
         </div>
       </main>
     </div>
+
+    <!-- Add this script before the closing body tag -->
+    <script>
+      // Edit, Delete, Suspend/Activate functionality
+      document.querySelectorAll('.edit-btn').forEach(button => {
+          button.addEventListener('click', function(e) {
+              const userRow = this.closest('tr');
+              const userName = userRow.querySelector('.user-name').textContent;
+              const userEmail = userRow.querySelector('td:nth-child(3)').textContent;
+              const subscription = userRow.querySelector('td:nth-child(4)').textContent;
+              const status = userRow.querySelector('.status-badge').textContent;
+
+              // Here you would typically open a modal with a form
+              // For now, we'll use a simple prompt
+              const newEmail = prompt('Edit user email:', userEmail);
+              if (newEmail !== null) {
+                  userRow.querySelector('td:nth-child(3)').textContent = newEmail;
+                  // Here you would typically make an API call to update the user
+                  console.log(`Updated user ${userName}'s email to ${newEmail}`);
+              }
+          });
+      });
+
+      document.querySelectorAll('.delete-btn').forEach(button => {
+          button.addEventListener('click', function(e) {
+              const userRow = this.closest('tr');
+              const userName = userRow.querySelector('.user-name').textContent;
+              
+              if (confirm(`Are you sure you want to delete user "${userName}"?`)) {
+                  // Add animation for smooth removal
+                  userRow.style.animation = 'fadeOut 0.3s ease';
+                  setTimeout(() => {
+                      userRow.remove();
+                  }, 300);
+                  
+                  // Here you would typically make an API call to delete the user
+                  console.log(`Deleted user: ${userName}`);
+              }
+          });
+      });
+
+      document.querySelectorAll('.suspend-btn, .activate-btn').forEach(button => {
+          button.addEventListener('click', function(e) {
+              const userRow = this.closest('tr');
+              const userName = userRow.querySelector('.user-name').textContent;
+              const statusBadge = userRow.querySelector('.status-badge');
+              const actionsCell = userRow.querySelector('.actions');
+              
+              if (statusBadge.classList.contains('active')) {
+                  // Suspend user
+                  statusBadge.classList.remove('active');
+                  statusBadge.classList.add('suspended');
+                  statusBadge.textContent = 'Suspended';
+                  
+                  // Update button
+                  this.innerHTML = '<i class="fas fa-check"></i>';
+                  this.classList.remove('suspend-btn');
+                  this.classList.add('activate-btn');
+                  this.title = 'Activate';
+                  
+                  console.log(`Suspended user: ${userName}`);
+              } else {
+                  // Activate user
+                  statusBadge.classList.remove('suspended');
+                  statusBadge.classList.add('active');
+                  statusBadge.textContent = 'Active';
+                  
+                  // Update button
+                  this.innerHTML = '<i class="fas fa-ban"></i>';
+                  this.classList.remove('activate-btn');
+                  this.classList.add('suspend-btn');
+                  this.title = 'Suspend';
+                  
+                  console.log(`Activated user: ${userName}`);
+              }
+          });
+      });
+
+      // Pagination functionality
+      function updatePagination(totalPages) {
+          const paginationDiv = document.querySelector('.page-numbers');
+          paginationDiv.innerHTML = '';
+          
+          // Calculate range of pages to show
+          let startPage = Math.max(1, currentPage - 2);
+          let endPage = Math.min(totalPages, currentPage + 2);
+          
+          // Adjust range if at the edges
+          if (currentPage <= 3) {
+              endPage = Math.min(5, totalPages);
+          }
+          if (currentPage >= totalPages - 2) {
+              startPage = Math.max(1, totalPages - 4);
+          }
+          
+          // First page
+          if (startPage > 1) {
+              const firstBtn = document.createElement('button');
+              firstBtn.textContent = '1';
+              firstBtn.addEventListener('click', () => goToPage(1));
+              paginationDiv.appendChild(firstBtn);
+              
+              if (startPage > 2) {
+                  const ellipsis = document.createElement('span');
+                  ellipsis.textContent = '...';
+                  paginationDiv.appendChild(ellipsis);
+              }
+          }
+          
+          // Page numbers
+          for (let i = startPage; i <= endPage; i++) {
+              const pageBtn = document.createElement('button');
+              pageBtn.textContent = i;
+              if (i === currentPage) {
+                  pageBtn.classList.add('active');
+              }
+              pageBtn.addEventListener('click', () => goToPage(i));
+              paginationDiv.appendChild(pageBtn);
+          }
+          
+          // Last page
+          if (endPage < totalPages) {
+              if (endPage < totalPages - 1) {
+                  const ellipsis = document.createElement('span');
+                  ellipsis.textContent = '...';
+                  paginationDiv.appendChild(ellipsis);
+              }
+              
+              const lastBtn = document.createElement('button');
+              lastBtn.textContent = totalPages;
+              lastBtn.addEventListener('click', () => goToPage(totalPages));
+              paginationDiv.appendChild(lastBtn);
+          }
+      }
+
+      // Update the prev/next button states
+      function updateNavigationButtons() {
+          const prevBtn = document.querySelector('.prev-btn');
+          const nextBtn = document.querySelector('.next-btn');
+          
+          prevBtn.disabled = currentPage === 1;
+          nextBtn.disabled = currentPage === totalPages;
+          
+          prevBtn.style.opacity = currentPage === 1 ? '0.5' : '1';
+          nextBtn.style.opacity = currentPage === totalPages ? '0.5' : '1';
+      }
+
+      function goToPage(page) {
+          currentPage = page;
+          updatePagination(totalPages);
+          updateNavigationButtons();
+          // Here you would typically fetch new data for the page
+      }
+
+      // Initialize variables
+      const totalPages = 10; // Set this to your actual total pages
+      let currentPage = 1;
+
+      // Initial setup
+      updatePagination(totalPages);
+      updateNavigationButtons();
+
+      // Select all checkbox functionality
+      const selectAllCheckbox = document.querySelector('.select-all-checkbox');
+      const userCheckboxes = document.querySelectorAll('.user-checkbox');
+
+      selectAllCheckbox.addEventListener('change', function() {
+          userCheckboxes.forEach(checkbox => {
+              checkbox.checked = this.checked;
+          });
+      });
+
+      // Add fade out animation style
+      const style = document.createElement('style');
+      style.textContent = `
+          @keyframes fadeOut {
+              from { opacity: 1; }
+              to { opacity: 0; }
+          }
+      `;
+      document.head.appendChild(style);
+    </script>
   </body>
 </html>
