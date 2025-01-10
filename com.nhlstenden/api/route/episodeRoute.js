@@ -4,10 +4,9 @@ const EpisodeController = require('../controller/episodeController');
 
 router.get('/', EpisodeController.getAllEntries);
 router.get('/:id', EpisodeController.getEntryById);
-router.get('/:id', EpisodeController.getEpisodesBySeason);
+router.get('/season/:id', EpisodeController.getEpisodesBySeason);
 router.delete('/:id', EpisodeController.deleteEntryById);
-router.get('/:id', EpisodeController.getEpisodesBySeason);
-// router.post('/', EpisodeController.create_episode);
-// router.put('/:id', EpisodeController.update_episode);
+router.post('/season/:id', EpisodeController.createEpisode);
+router.put('/:id', EpisodeController.updateEpisode);
 
 module.exports = router;

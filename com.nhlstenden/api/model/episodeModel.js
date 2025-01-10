@@ -30,10 +30,7 @@ class EpisodeModel extends ModelParent
                 [seasonId, title, number, description, episode_url, duration]
             );
 
-            if(!result?.length) {
-                console.log(`Could not create episode`);
-                return null;
-            }
+            if(!result?.length) return console.log(`Could not create episode`);
             return result[0];
         }
         catch (error)
@@ -41,6 +38,41 @@ class EpisodeModel extends ModelParent
             this.handleError('creating', error);
         }
     }
+
+    async updateEpisode(episodeId, seasonId, title, number, description, episode_url, duration) {
+        try {
+            let formattedDuration = null;
+            if (duration && typeof duration === 'object') {
+                const hours = parseInt(duration.hours || 0, 10);
+                const minutes = parseInt(duration.minutes || 0, 10);
+                const seconds = parseInt(duration.seconds || 0, 10);
+
+                // Format as HH:MM:SS for INTERVAL type
+                formattedDuration = `${hours}:${minutes}:${seconds}`;
+            }
+
+            const params = [
+                episodeId,
+                seasonId !== undefined ? seasonId : null,
+                title !== undefined ? title : null,
+                number !== undefined ? number : null,
+                description !== undefined ? description : null,
+                episode_url !== undefined ? episode_url : null,
+                formattedDuration !== undefined ? formattedDuration : null
+            ];
+
+            const result = await database.query(
+                'SELECT * FROM public.update_episode($1::INTEGER, $2::INTEGER, $3::VARCHAR, $4::INTEGER, $5::TEXT, $6::VARCHAR, $7::INTERVAL)',
+                params
+            );
+
+            if (!result?.length) throw new Error('Episode not found');
+            return result[0];
+        } catch (error) {
+            this.handleError('updating', error);
+        }
+    }
+
 }
 
 module.exports = new EpisodeModel();

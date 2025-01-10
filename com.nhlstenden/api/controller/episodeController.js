@@ -1,12 +1,17 @@
-const episodeModel = require("../model/episodeModel");
-const seasonModel = require("../model/seasonModel");
+const SeasonModel = require("../model/seasonModel");
 const ControllerParent = require("../../api/controller/controllerParent");
+const EpisodeModel = require("../model/episodeModel");
+const sea = require("node:sea");
 
 class EpisodeController extends ControllerParent
 {
     constructor()
     {
-        super(episodeModel);
+        super(EpisodeModel);
+
+        ['getEpisodesBySeason', 'updateEpisode'].forEach(
+            method => this[method] = this[method].bind(this)
+        );
     }
 
     async getAllEntries(req, res, method)
@@ -26,53 +31,57 @@ class EpisodeController extends ControllerParent
 
     async getEpisodesBySeason(req, res)
     {
-        const acceptHeader = req.headers['accept'];
+        const isXml = this.isXmlRequest(req);
+        const seasonId = req.params.id;
 
-        try
-        {
-            const season = await seasonModel.getSeasonById(req.params.seasonId);
+        try {
+            if (!seasonId) return this.sendResponse(res, 400, 'Season id required', null, isXml);
 
-            if (!season) {
-                if (acceptHeader && acceptHeader.includes('application/xml')) {
-                    this.returnXml(404, "Season not found.", null, res);
-                } else {
-                    this.returnJson(404, "Season not found.", null, res);
-                }
+            const season = await SeasonModel.getEntryById(seasonId);
+            if (!season?.length) return this.sendResponse(res, 404, 'Season does not exist', null, isXml);
 
-                return;
-            }
-
-            const episodes = await episodeModel.getEpisodesBySeason(req.params.seasonId);
-
-            if (!episodes)
-            {
-                if (acceptHeader && acceptHeader.includes('application/json')) {
-                    this.returnJson(204, "No episodes in this season yet. Check back later!", null, res);
-                }
-                else
-                {
-                    this.returnXml(204, "No episodes in this season yet. Check back later!", null, res);
-                }
-
-                return;
-            }
-
-            if (acceptHeader && acceptHeader.includes('application/json'))
-            {
-                this.returnJson(200, "Episodes retrieved successfully", episodes, res);
-            }
-            else
-            {
-                this.returnXml(200, "Episodes retrieved successfully", episodes, res);
-            }
+            const result = await EpisodeModel.getEpisodesBySeason(seasonId);
+            this.sendResponse(res, 200, 'episodes gathered successfully', result, isXml);
         }
-        catch (error)
+        catch (err)
         {
-            if (acceptHeader && acceptHeader.includes('application/xml')) {
-                this.returnXml(500, "An error occurred while fetching episodes.", error, res);
-            } else {
-                this.returnJson(500, "An error occurred while fetching episodes.", error, res);
-            }
+            this.handleError(err, res, isXml);
+        }
+    }
+
+    async createEpisode(req, res)
+    {
+        const isXml = this.isXmlRequest(req);
+
+        try {
+            const { seasonId, title, number, description, episode_url, duration } = req.body;
+            if (!seasonId || !title || !number || !duration) return this.sendResponse(res, 400, 'You must provide the season, title, number, and duration of this episode', null, isXml);
+
+            const season = await SeasonModel.getEntryById(req.params.id);
+            if (!season?.length) return this.sendResponse(res, 404, 'Season does not exist', null, isXml);
+
+            const result = await EpisodeModel.createEpisode(seasonId, title, number, description, episode_url, duration);
+            this.sendResponse(res, 200, 'episode created', result, isXml);
+        }
+        catch (err)
+        {
+            this.handleError(err, res, isXml);
+        }
+    }
+
+    async updateEpisode(req, res) {
+        try {
+            const isXml = this.isXmlRequest(req);
+            const episodeId = req.params.id;
+            const { seasonId, title, number, description, episode_url, duration } = req.body;
+            const result = await EpisodeModel.updateEpisode(episodeId, seasonId, title, number, description, episode_url, duration);
+
+            if (!result?.length) return this.sendResponse(res, 404, 'Episode not found', null, isXml);
+
+            return result[0];
+        }
+        catch (error) {
+            this.handleError('updating', error);
         }
     }
 }
@@ -80,73 +89,6 @@ class EpisodeController extends ControllerParent
 const controller = new EpisodeController();
 module.exports = controller;
 
-// // // GET all episodes
-// // router.get('/', async (req, res) => {
-// //     try {
-// //         const query = `
-// //             SELECT e.episode_id, e.season_id, e.title, e.number,
-// //                    e.description, e.duration
-// //             FROM episode e
-// //             ORDER BY e.number ASC
-// //         `;
-// //         const result = await pool.query(query);
-// //         res.status(200).json(result.rows);
-// //     } catch (error) {
-// //         res.status(500).json({
-// //             message: 'Error fetching episodes',
-// //             error: error.message
-// //         });
-// //     }
-// // });
-// //
-// // // GET episodes by season
-// // router.get('/season/:season_id', async (req, res) => {
-// //     try {
-// //         const seasonId = req.params.season_id;
-// //         const query = `
-// //             SELECT episode_id, season_id, title, number,
-// //                    description, duration
-// //             FROM episode
-// //             WHERE season_id = $1
-// //             ORDER BY number ASC
-// //         `;
-// //         const result = await pool.query(query, [seasonId]);
-// //         res.status(200).json(result.rows);
-// //     } catch (error) {
-// //         res.status(500).json({
-// //             message: 'Error fetching episodes for season',
-// //             error: error.message
-// //         });
-// //     }
-// // });
-// //
-// // // GET specific episode
-// // router.get('/:episode_id', async (req, res) => {
-// //     try {
-// //         const episodeId = req.params.episode_id;
-// //         const query = `
-// //             SELECT episode_id, season_id, title, number,
-// //                    description, duration
-// //             FROM episode
-// //             WHERE episode_id = $1
-// //         `;
-// //         const result = await pool.query(query, [episodeId]);
-// //
-// //         if (result.rows.length === 0) {
-// //             return res.status(404).json({
-// //                 message: 'Episode not found'
-// //             });
-// //         }
-// //
-// //         res.status(200).json(result.rows[0]);
-// //     } catch (error) {
-// //         res.status(500).json({
-// //             message: 'Error fetching episode',
-// //             error: error.message
-// //         });
-// //     }
-// // });
-// //
 // // // CREATE new episode
 // // router.post('/', async (req, res) => {
 // //     try {
