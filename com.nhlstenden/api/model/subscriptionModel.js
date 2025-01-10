@@ -8,12 +8,12 @@ class SubscriptionModel extends ModelParent
         super("subscription");
     }
 
-    async createSubscription(subscriptionType, subscriptionPrice)
+    async createSubscription(subscriptionPrice , subscriptionType)
     {
         try {
             const result = await database.query(
-                'SELECT * FROM public.create_subscription($1, $2)',
-                [subscriptionType, subscriptionPrice]
+                'SELECT * FROM public.create_subscription($1, "HD")',
+                [subscriptionPrice]
             );
 
             if (!result?.length) {

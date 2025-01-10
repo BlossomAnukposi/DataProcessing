@@ -35,15 +35,15 @@ class SubscriptionController extends ControllerParent
         const isXml = this.isXmlRequest(req);
 
         try
-        {
-            const { subscriptionType, subscriptionPrice } = req.body;
+        {            
+            const { subscriptionPrice, subscriptionType } = req.body;
 
             if (!subscriptionType || !subscriptionPrice) 
             {
                 return this.sendResponse(res, 400, 'Subscription type and price are required', null, isXml);
             }
 
-            const subscription = await SubscriptionModel.createSubscription(subscriptionType, subscriptionPrice);
+            const subscription = await SubscriptionModel.createSubscription(subscriptionPrice , subscriptionType);
             this.sendResponse(res, 200, 'Subscription created successfully.', subscription, isXml);
         }
         catch (err)
