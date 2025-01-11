@@ -5,8 +5,8 @@ const ProfileController = require('../controller/profileController');
 router.get('/', ProfileController.getAllEntries);
 router.get('/:id', ProfileController.getEntryById);
 router.delete('/:id', ProfileController.deleteEntryById);
-// router.get('/:id', ProfileController.getEpisodesBySeason);
-// router.post('/', ProfileController.create_episode);
-// router.put('/:id', ProfileController.update_episode);
+router.get('/account/:id', ProfileController.getProfilesByAccount);
+router.post('/', ProfileController.createProfile);
+router.put('/:id', ProfileController.updateProfile);
 
 module.exports = router;

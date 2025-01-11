@@ -6,7 +6,7 @@ router.get('/', MovieController.getAllEntries);
 router.get('/:id', MovieController.getEntryById);
 router.delete('/:id', MovieController.deleteEntryById);
 // router.get('/:id', MovieController.getEpisodesBySeason);
-// router.post('/', MovieController.create_episode);
-// router.put('/:id', MovieController.update_episode);
+router.post('/', MovieController.createMovie);
+router.put('/:id', MovieController.updateMovie);
 
 module.exports = router;

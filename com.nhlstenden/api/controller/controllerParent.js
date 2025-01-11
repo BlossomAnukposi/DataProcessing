@@ -31,6 +31,7 @@ class ControllerParent {
 
     handleError(error, res, isXml) {
         console.error("Error:", error.message);
+        console.error("Full error object:", error);
 
         let status;
         let message = error.message || "Internal server error";

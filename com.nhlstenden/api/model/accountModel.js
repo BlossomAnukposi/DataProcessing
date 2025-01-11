@@ -13,7 +13,7 @@ class AccountModel extends ModelParent
         try {
             const result = await database.query(
                 'SELECT * FROM public.create_account($1, $2, $3)',
-                [email, password, invitedByAccount]
+                [password, email, invitedByAccount]
             );
 
             if (!result?.length) {
