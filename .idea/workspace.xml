@@ -4,30 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Episode endpoints">
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="account, genre, movie, episode, preference, profile, and referral discount endpoints done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/controllerParent.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/controllerParent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/episodeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/episodeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/genreController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/genreController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/movieController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/movieController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/preferenceController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/preferenceController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/profileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/profileController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/referralDiscountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/referralDiscountController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/accountModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/accountModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/genreModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/genreModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/seriesController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/seriesController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/modelParent.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/modelParent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/movieModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/movieModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/preferenceModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/preferenceModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/profileModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/profileModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/referralDiscountModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/referralDiscountModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/genreRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/genreRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/movieRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/movieRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/preferenceRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/preferenceRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/profileRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/profileRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/referralDiscountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/referralDiscountRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/config/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/seriesModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/seriesModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/seriesRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/seriesRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +144,7 @@
       <workItem from="1736206307826" duration="8523000" />
       <workItem from="1736420426270" duration="23092000" />
       <workItem from="1736520731294" duration="2770000" />
-      <workItem from="1736523607374" duration="19334000" />
+      <workItem from="1736523607374" duration="25732000" />
     </task>
     <task id="LOCAL-00001" summary="Changed start script for deployment">
       <option name="closed" value="true" />
@@ -315,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736436159066</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="account, genre, movie, episode, preference, profile, and referral discount endpoints done">
+      <option name="closed" value="true" />
+      <created>1736600853045</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1736600853045</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,7 +342,8 @@
     <MESSAGE value="Started Episode controller." />
     <MESSAGE value="updated Gitignore" />
     <MESSAGE value="Fixed Season bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Season bug" />
+    <MESSAGE value="account, genre, movie, episode, preference, profile, and referral discount endpoints done" />
+    <option name="LAST_COMMIT_MESSAGE" value="account, genre, movie, episode, preference, profile, and referral discount endpoints done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

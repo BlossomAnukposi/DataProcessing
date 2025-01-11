@@ -13,19 +13,15 @@ class ModelParent {
     initializeQueries() {
         const tables = [
             'account', 'episode', 'genre', 'movie', 'preference', 'profile',
-            'referral_discount', 'season', 'series', 'subscription', 'subtitle',
+            'referral_discount', 'season', 'subscription', 'subtitle',
             'watched_media_list', 'watchlist'
         ];
     
         return tables.reduce((queries, table) => {
-            // Convert snake_case to CamelCase for JavaScript
-            const camelCaseTable = table.split('_').map((word, index) => 
+            const camelCaseTable = table.split('_').map((word, index) =>
                 index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
             ).join('');
-    
             const capitalizedCamelCase = camelCaseTable.charAt(0).toUpperCase() + camelCaseTable.slice(1);
-    
-            // Keep snake_case for SQL functions
             const snakeCaseTable = table.toLowerCase();
     
             // Get all entries query
