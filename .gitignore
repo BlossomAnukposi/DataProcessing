@@ -1,6 +1,5 @@
 ### macOS ###
 # General
-.DS_Store
 .AppleDouble
 .LSOverride
 
@@ -61,6 +60,6 @@ $RECYCLE.BIN/
 *.lnk
 
 ### Environment variables ###
-#.env
+.env
 /com.nhlstenden/frontendTester/
 node_modules/
