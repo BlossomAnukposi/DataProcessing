@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Subscription Management - Netflix Admin</title>
+    <link rel="stylesheet" href="../../stylesheet/admin.css" />
+    <link rel="stylesheet" href="../../stylesheet/subscriptions.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- Sidebar Navigation -->
+      <nav class="admin-sidebar">
+        <div class="logo">
+          <img
+            src="../../images/logo/logo_short.png"
+            alt="Netflix Logo"
+            width="50"
+          />
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+          </li>
+          <li>
+            <a href="content-management.html"
+              ><i class="fas fa-film"></i> Content Management</a
+            >
+          </li>
+          <li>
+            <a href="users.html"><i class="fas fa-users"></i> Users</a>
+          </li>
+          <li>
+            <a href="genres.html"><i class="fas fa-tags"></i> Genres</a>
+          </li>
+          <li>
+            <a href="subscriptions.html" class="active"
+              ><i class="fas fa-credit-card"></i> Subscriptions</a
+            >
+          </li>
+          <li>
+            <a href="analytics.html"
+              ><i class="fas fa-chart-bar"></i> Analytics</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <header class="admin-header">
+          <h1>Subscription Management</h1>
+          <button class="add-plan-btn">
+            <i class="fas fa-plus"></i> Add New Plan
+          </button>
+        </header>
+
+        <!-- Subscription Plans Grid -->
+        <div class="subscription-grid">
+          <!-- Basic Plan -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <h3>Basic Plan</h3>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">8.99</span>
+                <span class="period">/month</span>
+              </div>
+            </div>
+            <div class="plan-features">
+              <ul>
+                <li><i class="fas fa-check"></i> Good video quality</li>
+                <li><i class="fas fa-check"></i> 720p Resolution</li>
+                <li><i class="fas fa-check"></i> Watch on any device</li>
+                <li><i class="fas fa-check"></i> Cancel anytime</li>
+                <li class="disabled">
+                  <i class="fas fa-times"></i> Ultra HD Available
+                </li>
+              </ul>
+            </div>
+            <div class="plan-stats">
+              <div class="stat">
+                <span class="label">Active Users</span>
+                <span class="value">5,234</span>
+              </div>
+              <div class="stat">
+                <span class="label">Monthly Revenue</span>
+                <span class="value">$47,053.66</span>
+              </div>
+            </div>
+            <div class="plan-actions">
+              <button class="edit-btn" title="Edit Plan">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="delete-btn" title="Delete Plan">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Standard Plan -->
+          <div class="plan-card featured">
+            <div class="plan-badge">Most Popular</div>
+            <div class="plan-header">
+              <h3>Standard Plan</h3>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">13.99</span>
+                <span class="period">/month</span>
+              </div>
+            </div>
+            <div class="plan-features">
+              <ul>
+                <li><i class="fas fa-check"></i> Better video quality</li>
+                <li><i class="fas fa-check"></i> 1080p Resolution</li>
+                <li><i class="fas fa-check"></i> Watch on any device</li>
+                <li><i class="fas fa-check"></i> Cancel anytime</li>
+                <li><i class="fas fa-check"></i> Download available</li>
+              </ul>
+            </div>
+            <div class="plan-stats">
+              <div class="stat">
+                <span class="label">Active Users</span>
+                <span class="value">8,756</span>
+              </div>
+              <div class="stat">
+                <span class="label">Monthly Revenue</span>
+                <span class="value">$122,496.44</span>
+              </div>
+            </div>
+            <div class="plan-actions">
+              <button class="edit-btn" title="Edit Plan">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="delete-btn" title="Delete Plan">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Premium Plan -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <h3>Premium Plan</h3>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">17.99</span>
+                <span class="period">/month</span>
+              </div>
+            </div>
+            <div class="plan-features">
+              <ul>
+                <li><i class="fas fa-check"></i> Best video quality</li>
+                <li><i class="fas fa-check"></i> 4K+HDR Resolution</li>
+                <li><i class="fas fa-check"></i> Watch on any device</li>
+                <li><i class="fas fa-check"></i> Cancel anytime</li>
+                <li><i class="fas fa-check"></i> Spatial audio</li>
+              </ul>
+            </div>
+            <div class="plan-stats">
+              <div class="stat">
+                <span class="label">Active Users</span>
+                <span class="value">3,421</span>
+              </div>
+              <div class="stat">
+                <span class="label">Monthly Revenue</span>
+                <span class="value">$61,543.79</span>
+              </div>
+            </div>
+            <div class="plan-actions">
+              <button class="edit-btn" title="Edit Plan">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="delete-btn" title="Delete Plan">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subscription Analytics -->
+        <section class="subscription-analytics">
+          <h2>Subscription Analytics</h2>
+          <div class="analytics-cards">
+            <div class="analytics-card">
+              <h4>Total Revenue</h4>
+              <p class="amount">$231,093.89</p>
+              <span class="trend up">+15% from last month</span>
+            </div>
+            <div class="analytics-card">
+              <h4>Active Subscriptions</h4>
+              <p class="amount">17,411</p>
+              <span class="trend up">+8% from last month</span>
+            </div>
+            <div class="analytics-card">
+              <h4>Churn Rate</h4>
+              <p class="amount">2.4%</p>
+              <span class="trend down">-0.5% from last month</span>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Add/Edit Plan Modal -->
+    <div class="modal" id="planModal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modalTitle">Add New Plan</h2>
+        <form id="planForm">
+          <div class="form-group">
+            <label for="planName">Plan Name</label>
+            <input type="text" id="planName" name="planName" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="planPrice">Price ($/month)</label>
+            <input type="number" id="planPrice" name="planPrice" step="0.01" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Features</label>
+            <div class="feature-inputs">
+              <div class="feature-input">
+                <input type="text" name="features[]" placeholder="Enter a feature">
+                <button type="button" class="remove-feature">&times;</button>
+              </div>
+            </div>
+            <button type="button" class="add-feature-btn">+ Add Feature</button>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="cancel-btn">Cancel</button>
+            <button type="submit" class="save-btn">Save Plan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+      <div class="modal-content">
+        <h2>Delete Plan</h2>
+        <p>Are you sure you want to delete this plan? This action cannot be undone.</p>
+        <div class="form-actions">
+          <button class="cancel-btn">Cancel</button>
+          <button class="delete-confirm-btn">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Modal elements
+      const planModal = document.getElementById('planModal');
+      const deleteModal = document.getElementById('deleteModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const planForm = document.getElementById('planForm');
+      
+      // Add New Plan button
+      document.querySelector('.add-plan-btn').addEventListener('click', () => {
+        modalTitle.textContent = 'Add New Plan';
+        planForm.reset();
+        // Clear all feature inputs except the first one
+        const featureInputs = document.querySelector('.feature-inputs');
+        featureInputs.innerHTML = `
+          <div class="feature-input">
+            <input type="text" name="features[]" placeholder="Enter a feature">
+            <button type="button" class="remove-feature">&times;</button>
+          </div>
+        `;
+        planModal.style.display = 'block';
+      });
+      
+      // Close modal buttons
+      document.querySelectorAll('.close-modal, .cancel-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          planModal.style.display = 'none';
+          deleteModal.style.display = 'none';
+        });
+      });
+      
+      // Add feature button
+      document.querySelector('.add-feature-btn').addEventListener('click', () => {
+        const featureInputs = document.querySelector('.feature-inputs');
+        const newFeature = document.createElement('div');
+        newFeature.className = 'feature-input';
+        newFeature.innerHTML = `
+          <input type="text" name="features[]" placeholder="Enter a feature">
+          <button type="button" class="remove-feature">&times;</button>
+        `;
+        featureInputs.appendChild(newFeature);
+      });
+      
+      // Remove feature button
+      document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-feature')) {
+          const featureInputs = document.querySelector('.feature-inputs');
+          if (featureInputs.children.length > 1) {
+            e.target.parentElement.remove();
+          }
+        }
+      });
+      
+      // Edit plan buttons
+      document.querySelectorAll('.edit-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          const planCard = button.closest('.plan-card');
+          const planName = planCard.querySelector('h3').textContent;
+          const planPrice = planCard.querySelector('.amount').textContent;
+          const features = Array.from(planCard.querySelectorAll('.plan-features li'))
+            .map(li => li.textContent.replace(/^[✓✗]\s/, '')); // Remove check/cross marks
+          
+          modalTitle.textContent = 'Edit Plan';
+          document.getElementById('planName').value = planName;
+          document.getElementById('planPrice').value = planPrice;
+          
+          // Set features
+          const featureInputs = document.querySelector('.feature-inputs');
+          featureInputs.innerHTML = features.map(feature => `
+            <div class="feature-input">
+              <input type="text" name="features[]" value="${feature}">
+              <button type="button" class="remove-feature">&times;</button>
+            </div>
+          `).join('');
+          
+          planModal.style.display = 'block';
+        });
+      });
+      
+      // Delete plan buttons
+      document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          const planCard = button.closest('.plan-card');
+          deleteModal.style.display = 'block';
+          
+          // Handle delete confirmation
+          document.querySelector('.delete-confirm-btn').onclick = () => {
+            planCard.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+              planCard.remove();
+              deleteModal.style.display = 'none';
+            }, 300);
+          };
+        });
+      });
+      
+      // Form submission
+      planForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = {
+          name: document.getElementById('planName').value,
+          price: document.getElementById('planPrice').value,
+          features: Array.from(document.querySelectorAll('input[name="features[]"]'))
+            .map(input => input.value)
+            .filter(Boolean)
+        };
+        
+        // Here you would typically send the data to your backend
+        console.log('Plan data:', formData);
+        
+        // Create or update plan card
+        const newPlanCard = createPlanCard(formData);
+        
+        if (modalTitle.textContent === 'Add New Plan') {
+          document.querySelector('.subscription-grid').appendChild(newPlanCard);
+        } else {
+          // Update existing plan
+          const existingPlan = document.querySelector(`[data-plan-name="${formData.name}"]`);
+          if (existingPlan) {
+            existingPlan.replaceWith(newPlanCard);
+          }
+        }
+        
+        planModal.style.display = 'none';
+      });
+      
+      // Helper function to create plan card
+      function createPlanCard(planData) {
+        const card = document.createElement('div');
+        card.className = 'plan-card';
+        card.setAttribute('data-plan-name', planData.name);
+        
+        card.innerHTML = `
+          <div class="plan-header">
+            <h3>${planData.name}</h3>
+            <div class="price">
+              <span class="currency">$</span>
+              <span class="amount">${planData.price}</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <div class="plan-features">
+            <ul>
+              ${planData.features.map(feature => 
+                `<li><i class="fas fa-check"></i> ${feature}</li>`
+              ).join('')}
+            </ul>
+          </div>
+          <div class="plan-stats">
+            <div class="stat">
+              <span class="label">Active Users</span>
+              <span class="value">0</span>
+            </div>
+            <div class="stat">
+              <span class="label">Monthly Revenue</span>
+              <span class="value">$0.00</span>
+            </div>
+          </div>
+          <div class="plan-actions">
+            <button class="edit-btn" title="Edit Plan">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="delete-btn" title="Delete Plan">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        `;
+        
+        // Add event listeners to new buttons
+        card.querySelector('.edit-btn').addEventListener('click', () => {
+          // Reuse edit functionality
+          modalTitle.textContent = 'Edit Plan';
+          document.getElementById('planName').value = planData.name;
+          document.getElementById('planPrice').value = planData.price;
+          
+          const featureInputs = document.querySelector('.feature-inputs');
+          featureInputs.innerHTML = planData.features.map(feature => `
+            <div class="feature-input">
+              <input type="text" name="features[]" value="${feature}">
+              <button type="button" class="remove-feature">&times;</button>
+            </div>
+          `).join('');
+          
+          planModal.style.display = 'block';
+        });
+        
+        card.querySelector('.delete-btn').addEventListener('click', () => {
+          deleteModal.style.display = 'block';
+          document.querySelector('.delete-confirm-btn').onclick = () => {
+            card.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+              card.remove();
+              deleteModal.style.display = 'none';
+            }, 300);
+          };
+        });
+        
+        return card;
+      }
+      
+      // Close modals when clicking outside
+      window.addEventListener('click', (e) => {
+        if (e.target === planModal) {
+          planModal.style.display = 'none';
+        }
+        if (e.target === deleteModal) {
+          deleteModal.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>

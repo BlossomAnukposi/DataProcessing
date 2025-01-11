@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="../stylesheet/styles.css">
+</head>
+<body>
+<header class="nav">
+    <div class="navbar_child">
+        <img src="../images/logo/logo_full.png" alt="Logo" width="90">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tv_shows.html">TV Shows</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="watchlist.html">My List</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="navbar_child">
+        <img src="../images/illustration/notification.png" alt="Notification" width="30">
+        <a href="profileSelect.html"><img src="../images/profile/chicken.jpg" alt="profile" width="30"></a>
+    </div>
+</header>
+<main>
+    <section class="hero">
+        <img src="../images/movie/hero.jpg" alt="Featured Movie">
+        <div class="hero-info">
+            <img src="../images/illustration/hero.png" alt="Featured Movie">
+            <div class="buttons">
+                <button class="image_buttons">
+                    <a href="movie_player.html">
+                        <img src="../images/illustration/play_movie.png" alt="Play">
+                    </a>
+                </button>
+                <button id="more_info_button" class="preview_container_trigger">
+                    <img src="../images/illustration/information.png" alt="Information" id="information_icon">
+                    More info
+                </button>
+            </div>
+            <div class="age_rating">
+                <div class="age_rating_divider"></div>
+            </div>
+        </div>
+    </section>
+    <section class="preview_container">
+        <div class="preview_content">
+            <div class="preview_image">
+                <img src="../images/movie/preview_hero.jpg" alt="Preview Movie">
+            </div>
+            <div class="preview_info_containers">
+                <div class="preview_progress_container">
+                    <div class="preview_progress_bar">
+                        <div class="preview_progress_fill"></div>
+                    </div>
+                    <p>20 of 150m</p>
+                </div>
+                <div class="preview_controls_container">
+                    <button class="image_buttons">
+                        <a href="movie_player.html">
+                            <img src="../images/illustration/play_movie.png" alt="Play" width="110px">
+                        </a>
+                    </button>
+                    <button class="image_buttons">
+                        <a href="#">
+                            <img src="../images/illustration/add.png" alt="Add" width="60px">
+                        </a>
+                    </button>
+                    <button class="image_buttons">
+                        <a href="#">
+                            <img src="../images/illustration/like.png" alt="Like" width="53px">
+                        </a>
+                    </button>
+                    <div></div>
+                    <button class="image_buttons">
+                        <a href="#">
+                            <img src="../images/illustration/mute.png" alt="Mute" width="53px">
+                        </a>
+                    </button>
+                </div>
+                <div class="preview_information_container">
+                    <div class="preview_duration">
+                        <p>2:13:40</p>
+                    </div>
+                    <div class="preview_classifications">
+                        <p>Thriller</p>
+                        <p>Action</p>
+                        <p>Thriller</p>
+                    </div>
+                    <p class="preview_description">Some description</p>
+                </div>
+                <div class="preview_recommendations_container">
+                    <h3>Similar Titles</h3>
+                    <div class="row preview_row">
+                        <img src="../images/movie/jawan.png" alt="Jawan">
+                        <img src="../images/movie/bro.png" alt="Bro">
+                        <img src="../images/movie/malayam.png" alt="Malayalam Movie">
+                        <img src="../images/movie/shankai.png" alt="Shankai">
+                        <img src="../images/movie/shetty_polishetty.png" alt="Shetty Polishetty">
+                        <img src="../images/movie/mismatched.png" alt="Mismatched">
+                        <img src="../images/movie/kung_fu_panda.png" alt="Kung fu panda">
+                        <img src="../images/movie/lost_in_space.png" alt="Lost in Space">
+                        <img src="../images/movie/strong_girl_nam-soon.png" alt="Strong Girl Nam-Soon">
+                        <img src="../images/movie/lucifer.png" alt="Lucifer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="category">
+        <h3>For You</h3>
+        <div class="row">
+            <img class="preview_container_trigger" src="../images/movie/jawan.png" alt="Jawan">
+            <img class="preview_container_trigger" src="../images/movie/bro.png" alt="Bro">
+            <img class="preview_container_trigger" src="../images/movie/malayam.png" alt="Malayalam Movie">
+            <img class="preview_container_trigger" src="../images/movie/shankai.png" alt="Shankai">
+            <img class="preview_container_trigger" src="../images/movie/shetty_polishetty.png" alt="Shetty Polishetty">
+            <img class="preview_container_trigger" src="../images/movie/mismatched.png" alt="Mismatched">
+            <img class="preview_container_trigger" src="../images/movie/kung_fu_panda.png" alt="Kung fu panda">
+            <img class="preview_container_trigger" src="../images/movie/lost_in_space.png" alt="Lost in Space">
+            <img class="preview_container_trigger" src="../images/movie/strong_girl_nam-soon.png" alt="Strong Girl Nam-Soon">
+            <img class="preview_container_trigger" src="../images/movie/lucifer.png" alt="Lucifer">
+        </div>
+    </section>
+    <section class="category">
+        <h3>Trending Now</h3>
+        <div class="row">
+            <img class="preview_container_trigger" src="../images/movie/mad.png" alt="Mad">
+            <img class="preview_container_trigger" src="../images/movie/shetty_polishetty.png" alt="Shetty Polishetty">
+            <img class="preview_container_trigger" src="../images/movie/malayam.png" alt="Malayalam Movie">
+            <img class="preview_container_trigger" src="../images/movie/mismatched.png" alt="Mismatched">
+            <img class="preview_container_trigger" src="../images/movie/shankai.png" alt="Shankai">
+            <img class="preview_container_trigger" src="../images/movie/squid_game.png" alt="Squid Game">
+            <img class="preview_container_trigger" src="../images/movie/sweet_tooth.png" alt="Sweet Tooth">
+            <img class="preview_container_trigger" src="../images/movie/spiderman_2.png" alt="Spiderman 2">
+            <img class="preview_container_trigger" src="../images/movie/kaala_paani.png" alt="Kaala Paani">
+            <img class="preview_container_trigger" src="../images/movie/gemini_man.png" alt="Gemini Man">
+        </div>
+    </section>
+
+    <section class="category">
+        <h3>Critically Acclaimed TV Shows</h3>
+        <div class="row">
+            <img class="preview_container_trigger" src="../images/movie/life_on_our_planet.png" alt="Life on our Planet">
+            <img class="preview_container_trigger" src="../images/movie/lost_in_space.png" alt="Lost in Space">
+            <img class="preview_container_trigger" src="../images/movie/shankai.png" alt="Shankai">
+            <img class="preview_container_trigger" src="../images/movie/sweet_tooth.png" alt="Sweet Tooth">
+            <img class="preview_container_trigger" src="../images/movie/the_call.png" alt="The Call">
+            <img class="preview_container_trigger" src="../images/movie/the_conjuring.png" alt="The Conjuring">
+            <img class="preview_container_trigger" src="../images/movie/the_night_agent.png" alt="The Night Agent">
+            <img class="preview_container_trigger" src="../images/movie/true_beauty.png" alt="True Beauty">
+            <img class="preview_container_trigger" src="../images/movie/we_have_a_ghost.png" alt="We Have a Ghost">
+            <img class="preview_container_trigger" src="../images/movie/strong_girl_nam-soon.png" alt="Strong Girl Nam-Soon">
+        </div>
+    </section>
+</main>
+<footer>
+    <img src="../images/illustration/footer.png" alt="Footer" width="100%">
+</footer>
+</body>
+</html>
+<script>
+    const preview_container = document.getElementsByClassName('preview_container')[0];
+    const preview_triggers = document.getElementsByClassName('preview_container_trigger');
+    var divToFade = document.getElementsByClassName('preview_container')[0];
+
+    preview_container.addEventListener('click', () => {
+        divToFade.style.display = 'none';
+    });
+    for (let i = 0; i < preview_triggers.length; i++) {
+        preview_triggers[i].addEventListener('click', () => {
+            divToFade.style.display = 'block';
+        });
+    }
+</script>

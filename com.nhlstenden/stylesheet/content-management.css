@@ -1,0 +1,269 @@
+/* Content Management Specific Styles */
+
+.add-content-btn {
+  background-color: var(--netflix-red);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.add-content-btn:hover {
+  background-color: #f40612;
+}
+
+/* Search and Filter Section */
+.search-filter-section {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 40px 12px 15px;
+  background-color: var(--netflix-dark-gray);
+  border: 1px solid var(--netflix-light-gray);
+  border-radius: 4px;
+  color: var(--text-color);
+}
+
+.search-box i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.filters {
+  display: flex;
+  gap: 15px;
+}
+
+.filters select {
+  padding: 10px 15px;
+  background-color: var(--netflix-dark-gray);
+  border: 1px solid var(--netflix-light-gray);
+  border-radius: 4px;
+  color: var(--text-color);
+  min-width: 150px;
+}
+
+/* Content List */
+.content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.content-item {
+  display: flex;
+  align-items: center;
+  background-color: var(--netflix-dark-gray);
+  padding: 15px;
+  border-radius: 8px;
+  gap: 20px;
+}
+
+.content-item img {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.content-details {
+  flex: 1;
+}
+
+.content-details h3 {
+  margin-bottom: 8px;
+}
+
+.content-details p {
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.content-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.content-status.active {
+  background-color: #2ecc71;
+}
+
+.content-status.inactive {
+  background-color: #e74c3c;
+}
+
+.content-status.upcoming {
+  background-color: #f39c12;
+}
+
+.content-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.content-actions button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.edit-btn:hover {
+  background-color: var(--netflix-light-gray);
+}
+
+.delete-btn:hover {
+  background-color: var(--netflix-red);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 5px;
+}
+
+.pagination button {
+  background-color: var(--netflix-dark-gray);
+  border: none;
+  color: var(--text-color);
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: var(--netflix-red);
+}
+
+.pagination button:hover:not(.active) {
+  background-color: var(--netflix-light-gray);
+}
+
+.pagination span {
+  color: var(--text-color);
+  align-self: center;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+}
+
+.modal-content {
+  background-color: #1f1f1f;
+  margin: 2% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  margin-bottom: 2%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #fff;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #333;
+  color: #fff;
+}
+
+.submit-btn {
+  background-color: #e50914;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #f40612;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #333;
+  color: #fff;
+  resize: vertical;
+}
+
+.form-group select[multiple] {
+  height: 100px;
+}
+
+.form-group small {
+  color: #aaa;
+  font-size: 0.8em;
+  margin-top: 4px;
+  display: block;
+}
+
+.series-field,
+.movie-field {
+  transition: all 0.3s ease;
+}
