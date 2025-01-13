@@ -12,8 +12,8 @@ class SubscriptionModel extends ModelParent
     {
         try {
             const result = await database.query(
-                'SELECT * FROM public.create_subscription($1, "HD")',
-                [subscriptionPrice]
+                'SELECT * FROM public.create_subscription($1, $2)',
+                [subscriptionPrice, subscriptionType]
             );
 
             if (!result?.length) {
