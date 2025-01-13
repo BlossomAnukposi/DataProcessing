@@ -34,7 +34,7 @@ const seasonRoutes = require("./com.nhlstenden/api/route/seasonRoute");
 const seriesRoutes = require("./com.nhlstenden/api/route/seriesRoute");
 const subscriptionRoutes = require("./com.nhlstenden/api/route/subscriptionRoute");
 const subtitleRoutes = require("./com.nhlstenden/api/route/subtitleRoute");
-const watchedMediaRoutes = require("./com.nhlstenden/api/route/watchedMediaListRoute");
+// const watchedMediaListRoutes = require("./com.nhlstenden/api/route/watchedMediaListRoute");
 // const watchlistRoutes = require("./com.nhlstenden/api/route/watchlistRoute");
 
 //use morgan for terminal tracking of requests
@@ -52,7 +52,7 @@ app.use("/season", seasonRoutes);
 app.use("/series", seriesRoutes);
 app.use("/subscription", subscriptionRoutes);
 app.use("/subtitle", subtitleRoutes);
-app.use("/watched_media_list", watchedMediaRoutes);
+// app.use("/watchedMediaList", watchedMediaListRoutes);
 // app.use("/watchlist", watchlistRoutes);
 
 app.use((req, res, next) => {
