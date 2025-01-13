@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Analytics Dashboard - Netflix Admin</title>
+    <link rel="stylesheet" href="../../stylesheet/admin.css" />
+    <link rel="stylesheet" href="../../stylesheet/analytics.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- Sidebar Navigation -->
+      <nav class="admin-sidebar">
+        <div class="logo">
+          <img
+            src="../../images/logo/logo_short.png"
+            alt="Netflix Logo"
+            width="50"
+          />
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+          </li>
+          <li>
+            <a href="content-management.html"
+              ><i class="fas fa-film"></i> Content Management</a
+            >
+          </li>
+          <li>
+            <a href="users.html"><i class="fas fa-users"></i> Users</a>
+          </li>
+          <li>
+            <a href="genres.html"><i class="fas fa-tags"></i> Genres</a>
+          </li>
+          <li>
+            <a href="subscriptions.html"
+              ><i class="fas fa-credit-card"></i> Subscriptions</a
+            >
+          </li>
+          <li>
+            <a href="analytics.html" class="active"
+              ><i class="fas fa-chart-bar"></i> Analytics</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <header class="admin-header">
+          <h1>Analytics Dashboard</h1>
+          <div class="date-filter">
+            <select>
+              <option value="7">Last 7 days</option>
+              <option value="30" selected>Last 30 days</option>
+              <option value="90">Last 90 days</option>
+              <option value="365">Last year</option>
+            </select>
+          </div>
+        </header>
+
+        <!-- Key Metrics -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="metric-content">
+              <h3>Total Users</h3>
+              <p class="metric-value">17,411</p>
+              <span class="trend up">+8.2% vs last period</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="metric-content">
+              <h3>Watch Time</h3>
+              <p class="metric-value">245,892 hrs</p>
+              <span class="trend up">+12.5% vs last period</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="metric-content">
+              <h3>Revenue</h3>
+              <p class="metric-value">$231,093</p>
+              <span class="trend up">+15.3% vs last period</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon">
+              <i class="fas fa-user-minus"></i>
+            </div>
+            <div class="metric-content">
+              <h3>Churn Rate</h3>
+              <p class="metric-value">2.4%</p>
+              <span class="trend down">-0.5% vs last period</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-grid">
+          <!-- User Growth Chart -->
+          <div class="chart-card large">
+            <h3>User Growth</h3>
+            <canvas id="userGrowthChart"></canvas>
+          </div>
+
+          <!-- Content Performance -->
+          <div class="chart-card">
+            <h3>Top Genres</h3>
+            <canvas id="genresChart"></canvas>
+          </div>
+
+          <!-- Subscription Distribution -->
+          <div class="chart-card">
+            <h3>Subscription Plans</h3>
+            <canvas id="subscriptionChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Popular Content Section -->
+        <section class="popular-content">
+          <h2>Top Performing Content</h2>
+          <div class="content-table-container">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Genre</th>
+                  <th>Watch Time</th>
+                  <th>Rating</th>
+                  <th>Trend</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lost in Space</td>
+                  <td>Sci-Fi</td>
+                  <td>45,231 hrs</td>
+                  <td>4.8/5</td>
+                  <td><span class="trend up">↑ 12%</span></td>
+                </tr>
+                <tr>
+                  <td>Skyscraper</td>
+                  <td>Action</td>
+                  <td>38,456 hrs</td>
+                  <td>4.5/5</td>
+                  <td><span class="trend up">↑ 8%</span></td>
+                </tr>
+                <tr>
+                  <td>Kung Fu Panda</td>
+                  <td>Animation</td>
+                  <td>32,789 hrs</td>
+                  <td>4.7/5</td>
+                  <td><span class="trend up">↑ 15%</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Chart Initialization Script -->
+    <script>
+      // User Growth Chart
+      const userGrowthCtx = document
+        .getElementById("userGrowthChart")
+        .getContext("2d");
+      new Chart(userGrowthCtx, {
+        type: "line",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          datasets: [
+            {
+              label: "Total Users",
+              data: [12000, 13200, 14500, 15800, 16500, 17411],
+              borderColor: "#E50914",
+              tension: 0.4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        },
+      });
+
+      // Genres Chart
+      const genresCtx = document.getElementById("genresChart").getContext("2d");
+      new Chart(genresCtx, {
+        type: "doughnut",
+        data: {
+          labels: ["Action", "Drama", "Comedy", "Sci-Fi", "Horror"],
+          datasets: [
+            {
+              data: [30, 25, 20, 15, 10],
+              backgroundColor: [
+                "#E50914",
+                "#B81D24",
+                "#831010",
+                "#E50914",
+                "#B81D24",
+              ],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        },
+      });
+
+      // Subscription Chart
+      const subscriptionCtx = document
+        .getElementById("subscriptionChart")
+        .getContext("2d");
+      new Chart(subscriptionCtx, {
+        type: "pie",
+        data: {
+          labels: ["Basic", "Standard", "Premium"],
+          datasets: [
+            {
+              data: [30, 45, 25],
+              backgroundColor: ["#831010", "#B81D24", "#E50914"],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        },
+      });
+    </script>
+  </body>
+</html>

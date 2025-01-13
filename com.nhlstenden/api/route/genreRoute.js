@@ -6,7 +6,7 @@ router.get('/', GenreController.getAllEntries);
 router.get('/:id', GenreController.getEntryById);
 router.delete('/:id', GenreController.deleteEntryById);
 // router.get('/:id', GenreController.getEpisodesBySeason);
-// router.post('/', GenreController.create_episode);
+router.post('/', GenreController.createGenre);
 // router.put('/:id', GenreController.update_episode);
 
 module.exports = router;

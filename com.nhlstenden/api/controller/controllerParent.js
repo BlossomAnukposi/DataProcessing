@@ -31,16 +31,17 @@ class ControllerParent {
 
     handleError(error, res, isXml) {
         console.error("Error:", error.message);
-
+        console.error("Full error object:", error);
+    
         let status;
         let message = error.message || "Internal server error";
-
+    
         if (error.message.includes('required')) {
             status = 400;  //Missing fields
-        } else if (error.message.includes('violates foreign key constraint')) {
+        } else if (error.message.toLowerCase().includes('violates foreign key constraint')) {
             status = 409;  //Database constraint violation
             message = "A related record prevents this action. Please check dependencies.";
-        } else if (error.message.includes('not found')) {
+        } else if (error.message.toLowerCase().includes('not found')) {
             status = 404;  //Not found
         } else if (error.code === '23505') {  //Postgres specific violation
             status = 409;
@@ -48,33 +49,34 @@ class ControllerParent {
         } else {
             status = error.statusCode || 500;  //Other
         }
-
+    
         console.error("Status:", status);
         if (error.stack) {
             console.error("Stack trace:", error.stack);
         }
-
+    
         this.sendResponse(res, status, message, null, isXml);
     }
 
     async handleRequest(req, res, operation, method) {
         console.log(`Method: ${method}`);
         const isXml = this.isXmlRequest(req);
-
+    
         try {
             const result = await operation();
-
-            if (!result && ['getEntryById', 'deleteEntryById'].includes(method)) {
-                return this.sendResponse(res, 404, "Account not found", null, isXml);
+    
+            if (!result) {
+                const entityName = this.model.constructor.name.replace('Model', '');
+                return this.sendResponse(res, 404, `${entityName} not found`, null, isXml);
             }
-
+    
             const successMessages = {
                 getAllEntries: "Entries retrieved successfully",
-                getEntryById: "Account retrieved successfully",
-                deleteEntryById: "Account deleted successfully"
+                getEntryById: `Entry retrieved successfully`,
+                deleteEntryById: `Entry deleted successfully`
             };
-
-            const finalResult = method === 'deleteEntryById' ? result.accountId : result;
+    
+            const finalResult = method === 'deleteEntryById' ? result.id : result;
             this.sendResponse(res, 200, successMessages[method], finalResult, isXml);
         } catch (error) {
             this.handleError(error, res, isXml);

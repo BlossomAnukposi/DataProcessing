@@ -13,25 +13,29 @@ class ModelParent {
     initializeQueries() {
         const tables = [
             'account', 'episode', 'genre', 'movie', 'preference', 'profile',
-            'referralDiscount', 'season', 'series', 'subscription', 'subtitle',
-            'watchedMediaList', 'watchlist'
+            'referral_discount', 'season', 'subscription', 'subtitle',
+            'watched_media_list', 'watchlist'
         ];
-
+    
         return tables.reduce((queries, table) => {
-            const capitalizedTableName = table.charAt(0).toUpperCase() + table.slice(1);
-
+            const camelCaseTable = table.split('_').map((word, index) =>
+                index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
+            ).join('');
+            const capitalizedCamelCase = camelCaseTable.charAt(0).toUpperCase() + camelCaseTable.slice(1);
+            const snakeCaseTable = table.toLowerCase();
+    
             // Get all entries query
-            queries[`getAll${capitalizedTableName}sQuery`] =
-                () => database.query(`SELECT * FROM public.get_all_${table.toLowerCase()}s()`);
-
+            queries[`getAll${capitalizedCamelCase}sQuery`] =
+                () => database.query(`SELECT * FROM public.get_all_${snakeCaseTable}s()`);
+    
             // Get by ID query
-            queries[`get${capitalizedTableName}ByIdQuery`] =
-                (id) => database.query(`SELECT * FROM public.get_${table.toLowerCase()}_by_id($1)`, [id]);
-
+            queries[`get${capitalizedCamelCase}ByIdQuery`] =
+                (id) => database.query(`SELECT * FROM public.get_${snakeCaseTable}_by_id($1)`, [id]);
+    
             // Delete by ID query
-            queries[`delete${capitalizedTableName}ByIdQuery`] =
-                (id) => database.query(`SELECT * FROM public.delete_${table.toLowerCase()}_by_id($1)`, [id]);
-
+            queries[`delete${capitalizedCamelCase}ByIdQuery`] =
+                (id) => database.query(`SELECT * FROM public.delete_${snakeCaseTable}_by_id($1)`, [id]);
+    
             return queries;
         }, {});
     }

@@ -1,0 +1,246 @@
+/* Genre Management Specific Styles */
+
+.add-genre-btn {
+  background-color: var(--netflix-red);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.add-genre-btn:hover {
+  background-color: #f40612;
+}
+
+/* Genre Grid */
+.genre-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+/* Genre Card */
+.genre-card {
+  background-color: var(--netflix-dark-gray);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.genre-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.genre-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.genre-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.content-count {
+  font-size: 14px;
+  color: #999;
+}
+
+.genre-description {
+  color: #999;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  min-height: 60px;
+}
+
+/* Genre Stats */
+.genre-stats {
+  margin-top: 20px;
+}
+
+.stat {
+  margin-bottom: 12px;
+}
+
+.stat .label {
+  display: block;
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.progress-bar {
+  background-color: rgba(255, 255, 255, 0.1);
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: var(--netflix-red);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.stat .value {
+  color: #2ecc71;
+  font-size: 14px;
+}
+
+/* Genre Actions */
+.genre-actions {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.genre-card:hover .genre-actions {
+  opacity: 1;
+}
+
+.genre-actions button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.edit-btn:hover {
+  background-color: var(--netflix-light-gray);
+}
+
+.delete-btn:hover {
+  background-color: var(--netflix-red);
+}
+
+/* Add Genre Card */
+.add-card {
+  border: 2px dashed var(--netflix-light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  min-height: 200px;
+}
+
+.add-card:hover {
+  border-color: var(--netflix-red);
+  background-color: rgba(229, 9, 20, 0.1);
+}
+
+.add-genre-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #999;
+}
+
+.add-genre-content i {
+  font-size: 24px;
+}
+
+/* Genre Modal */
+.genre-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--netflix-dark-gray);
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.genre-form .form-group {
+  margin-bottom: 20px;
+}
+
+.genre-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #999;
+}
+
+.genre-form input,
+.genre-form textarea {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--netflix-black);
+  border: 1px solid var(--netflix-light-gray);
+  border-radius: 4px;
+  color: var(--text-color);
+}
+
+.genre-form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cancel-btn {
+  background: none;
+  border: 1px solid var(--netflix-light-gray);
+  color: var(--text-color);
+}
+
+.save-btn {
+  background-color: var(--netflix-red);
+  border: none;
+  color: var(--text-color);
+}
+
+.cancel-btn:hover {
+  background-color: var(--netflix-light-gray);
+}
+
+.save-btn:hover {
+  background-color: #f40612;
+}

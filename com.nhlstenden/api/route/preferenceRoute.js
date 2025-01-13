@@ -5,8 +5,7 @@ const PreferenceController = require('../controller/preferenceController');
 router.get('/', PreferenceController.getAllEntries);
 router.get('/:id', PreferenceController.getEntryById);
 router.delete('/:id', PreferenceController.deleteEntryById);
-// router.get('/:id', PreferenceController.getEpisodesBySeason);
-// router.post('/', PreferenceController.create_episode);
-// router.put('/:id', PreferenceController.update_episode);
+router.get('/profile/:id', PreferenceController.getPreferencesByProfile);
+router.post('/', PreferenceController.createPreference);
 
 module.exports = router;

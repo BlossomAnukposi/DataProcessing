@@ -5,8 +5,6 @@ const ReferralDiscountController = require('../controller/referralDiscountContro
 router.get('/', ReferralDiscountController.getAllEntries);
 router.get('/:id', ReferralDiscountController.getEntryById);
 router.delete('/:id', ReferralDiscountController.deleteEntryById);
-// router.get('/:id', ReferralDiscountController.getEpisodesBySeason);
-// router.post('/', ReferralDiscountController.create_episode);
-// router.put('/:id', ReferralDiscountController.update_episode);
+router.post('/', ReferralDiscountController.createReferralDiscount);
 
 module.exports = router;

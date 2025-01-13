@@ -45,6 +45,17 @@ class Database
         }
     }
 
+    // To retrieve a client for transactions
+    async getClient() {
+        try {
+            const client = await this.pool.connect();
+            return client;
+        } catch (error) {
+            console.error("Error acquiring client from pool:", error);
+            throw new Error("Could not get a database client");
+        }
+    }
+
     // Close the pool (useful for graceful shutdown)
     async close()
     {
