@@ -1,4 +1,5 @@
 const ProfileModel = require("../model/profileModel");
+const AccountModel = require("../model/accountModel");
 const ControllerParent = require("../../api/controller/controllerParent");
 
 class ProfileController extends ControllerParent
@@ -51,10 +52,14 @@ class ProfileController extends ControllerParent
         const accountId = req.params.id;
 
         try {
-            const profile = await ProfileModel.getProfilesByAccount(accountId);
+            const account = await AccountModel.getEntryById(accountId, 'getAccountByIdQuery');
+            if (!account) {
+                return this.sendResponse(res, 404, "Account not found", null, isXml);
+            }
 
+            const profile = await ProfileModel.getProfilesByAccount(accountId);
             if (!profile) {
-                return this.sendResponse(res, 404, "Profile not found", null, isXml);
+                return this.sendResponse(res, 404, "No Profiles for account", null, isXml);
             }
 
             this.sendResponse(res, 200, "Profile found", profile, isXml);

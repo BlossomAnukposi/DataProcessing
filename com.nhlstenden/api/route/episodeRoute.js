@@ -9,4 +9,6 @@ router.delete('/:id', EpisodeController.deleteEntryById);
 router.post('/', EpisodeController.createEpisode);
 router.put('/:id', EpisodeController.updateEpisode);
 
+// episode subtitles
+
 module.exports = router;

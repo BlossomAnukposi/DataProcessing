@@ -26,7 +26,7 @@ body {
     padding: 0;
 }
 
-footer, main, .nav, .main-container {
+footer, main, .nav, .mainContainer {
     width: 100vw;
 }
 
@@ -40,7 +40,7 @@ footer, main, .nav, .main-container {
     z-index: 100;
 }
 
-.main_container {
+.mainContainer {
     height: 100%;
     background-color: black;
     color: white;
@@ -52,8 +52,8 @@ footer, main, .nav, .main-container {
     grid-auto-columns: 100vw;
 }
 
-/*PREVIEW POP UP*/
-.preview_container {
+/* PREVIEW POP UP */
+.previewContainer {
     display: none;
     position: fixed;
     top: 0;
@@ -63,7 +63,19 @@ footer, main, .nav, .main-container {
     z-index: 101;
 }
 
-.preview_content {
+.previewClassifications {
+    text-align: right;
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.previewClassifications p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.previewContent {
     position: relative;
     top: 0;
     background-color: black;
@@ -73,11 +85,11 @@ footer, main, .nav, .main-container {
     overflow: scroll;
 }
 
-.preview_info_containers {
+.previewInfoContainers {
     padding: 0 5% 5%;
 }
 
-.preview_image {
+.previewImage {
     position: relative;
     width: 100%;
     --mask: linear-gradient(to bottom,
@@ -87,57 +99,83 @@ footer, main, .nav, .main-container {
     mask: var(--mask);
 }
 
-.preview_image img {
+.previewImage img {
     width: 100%;
 }
 
-.preview_progress_bar {
-    width: 20%;
-    height: 2%;
+.previewProgressContainer {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.previewProgressBar {
+    width: 100%;
+    height: 10px;
     background-color: grey;
+    border-radius: 15px;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.previewProgressFill {
+    width: 20%;
+    height: 100%;
+    background-color: red;
     border-radius: 15px;
 }
 
-.preview_row {
+.previewTimeContainer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: white;
+}
+
+.currentTime,
+.totalTime {
+    font-size: 14px;
+}
+
+.previewRow {
     justify-content: center !important;
     padding: 5%;
 }
 
-.preview_controls_container {
+.previewControlsContainer {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 9fr 1fr;
     width: 100%;
 }
 
-.preview_description {
+.previewDescription {
     padding: 5% 0;
 }
 
-/*WATCHLIST*/
-.watchlist_main {
+/* WATCHLIST */
+.watchlistMain {
     min-height: 40vh;
     padding: 0 5%
 }
 
-.watchlist_nav {
+.watchlistNav {
     position: sticky;
 }
 
-.watchlist_row, .preview_row {
+.watchlistRow, .previewRow {
     overflow: clip;
     flex-flow: row wrap;
     align-items: center;
     justify-content: flex-start;
 }
 
-/*MAIN SCREEN*/
-.navbar_child {
+/* MAIN SCREEN */
+.navbarChild {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
 }
 
-.navbar_child>* {
+.navbarChild>* {
     margin-left: 20px;
 }
 
@@ -151,7 +189,7 @@ nav li {
     cursor: pointer;
 }
 
-#more_info_button {
+#moreInfoButton {
     padding: 10px 50px;
     background-color: rgba(128, 128, 128, 0.84);
     color: white;
@@ -160,7 +198,7 @@ nav li {
     align-items: center;
 }
 
-#information_icon {
+#informationIcon {
     width: 20px;
     height: 20px;
     margin-right: 10px;
@@ -180,38 +218,38 @@ nav li {
     object-fit: cover;
 }
 
-.hero-info {
+.heroInfo {
     position: relative;
     bottom: 80%;
     padding: 5%;
     color: black;
 }
 
-.hero-info h2 {
+.heroInfo h2 {
     font-size: 2.5em;
     margin-bottom: 10px;
 }
 
-.hero-info p {
+.heroInfo p {
     width: 20%;
 }
 
-.hero-info button, .image_buttons {
+.heroInfo button, .imageButtons {
     background-color: rgba(255, 255, 255, 0);
     border: none;
     padding: 0;
     cursor: pointer;
 }
 
-.hero-info button img {
+.heroInfo button img {
     width: 90px;
 }
 
-.hero-info img {
+.heroInfo img {
     width: 40%;
 }
 
-.age_rating_divider {
+.ageRatingDivider {
     position: relative;
     bottom: 10%;
     width: 2%;
@@ -260,12 +298,12 @@ nav li {
     transform: scale(1.1);
 }
 
-/*MOVIE PLAYER*/
-.movie_player_main_container {
+/* MOVIE PLAYER */
+.moviePlayerMainContainer {
     height: 100vh;
 }
 
-.movie_display_footer {
+.movieDisplayFooter {
     width: 100vw;
     height: 25vh;
     padding: 1% 4% 4%;
@@ -280,14 +318,18 @@ nav li {
     bottom: 0;
 }
 
-.time_tracker {
+.playPauseButton {
+    cursor: pointer;
+}
+
+.timeTracker {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
 }
 
-.movie_controls {
+.movieControls {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -295,30 +337,30 @@ nav li {
     width: 100%;
 }
 
-.movie_controls > div > * {
+.movieControls > div > * {
     padding: 0 4%;
 }
 
-.movie_display {
+.movieDisplay {
     z-index: 50;
 }
 
-.right_controls {
+.rightControls {
     display: flex;
     flex-flow: row nowrap;
     justify-content: end;
 }
 
-.seek_bar {
+.seekBar {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
-    height: 10%;
+    height: 3px;
     background: grey;
     outline: none;
 }
 
-.seek_bar::-webkit-slider-thumb {
+.seekBar::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 30px;

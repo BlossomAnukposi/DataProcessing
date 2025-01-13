@@ -1,5 +1,6 @@
 const AccountModel = require("../model/accountModel");
 const ControllerParent = require("../../api/controller/controllerParent");
+const bcrypt = require("bcryptjs");
 
 class AccountController extends ControllerParent
 {
@@ -37,12 +38,37 @@ class AccountController extends ControllerParent
             const {email, password, invitedByAccountId} = req.body;
 
             if (!email || !password) return this.sendResponse(res, 400, 'Email address or password required', null, isXml);
+            if (!email.includes('@') || !email.includes('.') || !email.includes('com')) return this.sendResponse(res, 400, 'Invalid email address', null, isXml);
 
             const account = await AccountModel.createAccount(email, password, invitedByAccountId);
             this.sendResponse(res, 200, 'account created successfully.', account, isXml);
         }
         catch (err)
         {
+            this.handleError(err, res, isXml);
+        }
+    }
+
+    async signIn(req, res) {
+        const isXml = this.isXmlRequest(req);
+
+        try {
+            const { email, password } = req.body;
+            if (!email || !password) return this.sendResponse(res, 400, 'Email address or password required', null, isXml);
+
+            // Fetch the account by email
+            const account = await AccountModel.getAccountByEmail(email);
+            if (!account) return this.sendResponse(res, 400, 'Account not found', null, isXml);
+
+            // Compare the provided password with the stored hashed password
+            const isPasswordCorrect = await bcrypt.compare(password, account.password);
+            if (!isPasswordCorrect) {
+                return this.sendResponse(res, 400, 'Invalid credentials', null, isXml);
+            }
+
+            this.sendResponse(res, 200, 'Sign in successful.', account, isXml);
+        }
+        catch (err) {
             this.handleError(err, res, isXml);
         }
     }

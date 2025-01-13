@@ -5,8 +5,9 @@ const GenreController = require('../controller/genreController');
 router.get('/', GenreController.getAllEntries);
 router.get('/:id', GenreController.getEntryById);
 router.delete('/:id', GenreController.deleteEntryById);
-// router.get('/:id', GenreController.getEpisodesBySeason);
 router.post('/', GenreController.createGenre);
-// router.put('/:id', GenreController.update_episode);
+
+// genre movies
+// genre series
 
 module.exports = router;

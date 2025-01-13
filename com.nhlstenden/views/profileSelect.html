@@ -1,48 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix Profile Selection</title>
-    <link rel="stylesheet" href="../stylesheet/profileSelect.css"> <!-- Link to your updated CSS file -->
+    <link rel="stylesheet" href="../stylesheet/profileSelect.css">
 </head>
-
 <body>
-    <!-- Navigation Logo -->
-    <nav>
-        <a href="#"><img src="../images/logo/logo_full.png" alt="Netflix Logo"></a> <!-- Replace with your logo link -->
-    </nav>
-
-    <!-- Profile Selection Wrapper -->
-    <div class="form-wrapper">
-        <h2>Who's Watching?</h2>
-
-        <!-- Profile Grid -->
-        <div class="profiles">
-            <div class="profile">
-                <a href="index.html"><img src="../images/profile/blue.jpg" alt="Profile 1"></a>
-                <p>Pays For Account<br>Never Watches</p>
-            </div>
-            <div class="profile">
-                <a href="index.html"><img src="../images/profile/blue.jpg" alt="Profile 2"></a>
-                <p>Freeloading Adult<br>Child</p>
-            </div>
-            <div class="profile">
-                <a href="index.html"><img src="../images/profile/blue.jpg" alt="Profile 3"></a>
-                <p>Ex Still Has Your<br>Password</p>
-            </div>
-            <div class="profile">
-                <a href="index.html"><img src="../images/profile/blue.jpg" alt="Profile 4"></a>
-                <p>Never Scrolled This<br>Far</p>
-            </div>
-        </div>
-
-        <!-- Manage Profiles Button -->
-        <div class="manage-profiles">
-            <button>MANAGE PROFILES</button>
-        </div>
+<div class="profileSelectionWrapper">
+    <h1 class="heading">Who's watching?</h1>
+    <div class="profilesWrapper">
+        <a href="../views/profileEdit.html" style="text-decoration: none"><div class="profile">
+            <img src="../images/profile/chicken.jpg" alt="Steven">
+            <p>Steven</p>
+        </div></a>
+        <a href="../views/profileEdit.html" style="text-decoration: none"><div class="profile">
+            <img src="../images/profile/panda.jpg" alt="Will">
+            <p>Will</p>
+        </div></a>
+        <a href="../views/profileEdit.html" style="text-decoration: none"><div class="profile">
+            <img src="../images/profile/red.jpg" alt="Kids">
+            <p>Kids</p>
+        </div></a>
+        <a href="../views/profileCreate.html" style="text-decoration: none"><div class="profile addProfile">
+            <div class="addProfileIcon">+</div>
+        </div></a>
     </div>
+</div>
 </body>
-
 </html>

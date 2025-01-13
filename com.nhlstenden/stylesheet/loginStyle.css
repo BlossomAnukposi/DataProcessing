@@ -33,7 +33,7 @@ nav a img {
     width: 167px;
 }
 
-.form-wrapper {
+.formWrapper {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -44,22 +44,22 @@ nav a img {
     background: rgba(0, 0, 0, .75);
 }
 
-.form-wrapper h2 {
+.formWrapper h2 {
     color: #fff;
     font-size: 2rem;
 }
 
-.form-wrapper form {
+.formWrapper form {
     margin: 25px 0 65px;
 }
 
-form .form-control {
+form .formControl {
     height: 50px;
     position: relative;
     margin-bottom: 16px;
 }
 
-.form-control input {
+.formControl input {
     height: 100%;
     width: 100%;
     background: #333;
@@ -71,12 +71,12 @@ form .form-control {
     padding: 0 20px;
 }
 
-.form-control input:is(:focus, :valid) {
+.formControl input:is(:focus, :valid) {
     background: #444;
     padding: 16px 20px 0;
 }
 
-.form-control label {
+.formControl label {
     position: absolute;
     left: 20px;
     top: 50%;
@@ -87,7 +87,7 @@ form .form-control {
     transition: all 0.1s ease;
 }
 
-.form-control input:is(:focus, :valid)~label {
+.formControl input:is(:focus, :valid)~label {
     font-size: 0.75rem;
     transform: translateY(-130%);
 }
@@ -111,47 +111,47 @@ form button:hover {
     background: #c40812;
 }
 
-.form-wrapper a {
+.formWrapper a {
     text-decoration: none;
 }
 
-.form-wrapper a:hover {
+.formWrapper a:hover {
     text-decoration: underline;
 }
 
-.form-wrapper :where(label, p, small, a) {
+.formWrapper :where(label, p, small, a) {
     color: #b3b3b3;
 }
 
-form .form-help {
+form .formHelp {
     display: flex;
     justify-content: space-between;
 }
 
-form .remember-me {
+form .rememberMe {
     display: flex;
 }
 
-form .remember-me input {
+form .rememberMe input {
     margin-right: 5px;
     accent-color: #b3b3b3;
 }
 
-form .form-help :where(label, a) {
+form .formHelp :where(label, a) {
     font-size: 0.9rem;
 }
 
-.form-wrapper p a {
+.formWrapper p a {
     color: #fff;
 }
 
-.form-wrapper small {
+.formWrapper small {
     display: block;
     margin-top: 15px;
     color: #b3b3b3;
 }
 
-.form-wrapper small a {
+.formWrapper small a {
     color: #0071eb;
 }
 
@@ -161,7 +161,7 @@ form .form-help :where(label, a) {
     }
 
     nav,
-    .form-wrapper {
+    .formWrapper {
         padding: 20px;
     }
 
@@ -169,12 +169,12 @@ form .form-help :where(label, a) {
         width: 140px;
     }
 
-    .form-wrapper {
+    .formWrapper {
         width: 100%;
         top: 43%;
     }
 
-    .form-wrapper form {
+    .formWrapper form {
         margin: 25px 0 40px;
     }
 }

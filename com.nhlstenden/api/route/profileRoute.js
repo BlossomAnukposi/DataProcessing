@@ -9,4 +9,8 @@ router.get('/account/:id', ProfileController.getProfilesByAccount);
 router.post('/', ProfileController.createProfile);
 router.put('/:id', ProfileController.updateProfile);
 
+// profile preferences
+// profile watchlist
+// profile watching
+
 module.exports = router;

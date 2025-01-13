@@ -29,14 +29,14 @@ class MovieController extends ControllerParent
 
     async createMovie(req, res) {
         const isXml = this.isXmlRequest(req);
-        const { age_classification, genre, quality_type, title, duration, description, view_count } = req.body;
+        const { age_classification, genre, quality_type, title, duration, description, view_count, movie_link } = req.body;
         const validQuality = ['HD', 'UHD', 'SD'];
 
         try {
             if (!validQuality.includes(quality_type))
                 return this.sendResponse(res, 400, 'valid quality types are HD, UHD, and SD.', null, isXml);
 
-            const result = await MovieModel.createMovie(age_classification, genre, quality_type, title, duration, description, view_count);
+            const result = await MovieModel.createMovie(age_classification, genre, quality_type, title, duration, description, view_count, movie_link);
             if (!result) return this.sendResponse(res, 500, 'Movie creation failed', null, isXml);
 
             this.sendResponse(res, 201, 'Movie created successfully', result, isXml);
@@ -48,14 +48,14 @@ class MovieController extends ControllerParent
     async updateMovie(req, res)
     {
         const isXml = this.isXmlRequest(req);
-        const { age_classification, genre, quality_type, title, duration, description, view_count } = req.body;
+        const { age_classification, genre, quality_type, title, duration, description, view_count, movie_link } = req.body;
         const validQuality = ['HD', 'UHD', 'SD'];
 
         try {
             if (quality_type && !validQuality.includes(quality_type))
                 return this.sendResponse(res, 400, 'valid quality types are HD, UHD, and SD.', null, isXml);
 
-            const result = await MovieModel.updateMovie(req.params.id, age_classification, genre, quality_type, title, duration, description, view_count);
+            const result = await MovieModel.updateMovie(req.params.id, age_classification, genre, quality_type, title, duration, description, view_count, movie_link);
             this.sendResponse(res, 201, 'Movie updated successfully', result, isXml);
         }
         catch (err){

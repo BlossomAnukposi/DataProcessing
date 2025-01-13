@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="../stylesheet/profileEdit.css">
+</head>
+<body>
+<div class="editProfileWrapper">
+    <nav class="editProfileNav">
+        <a href="#"><img src="../images/logo/logo.svg" alt="Netflix Logo"></a>
+    </nav>
+    <div class="editProfileContent">
+        <h1>Edit Profile</h1>
+        <form class="editProfileForm">
+            <div class="profileImageSection">
+                <img src="../images/profile/red.jpg" alt="Profile Picture" class="profileImage">
+                <button type="button" class="editImageButton" id="openImagePopup">+</button>
+            </div>
+            <div class="inputField">
+                <label for="profileName">Name</label>
+                <input type="text" id="profileName" name="profileName" placeholder="Enter name">
+            </div>
+            <div class="inputField">
+                <label for="language">Language:</label>
+                <select id="language" name="language">
+                    <option value="english">English</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="french">French</option>
+                </select>
+            </div>
+            <div class="inputField">
+                <label for="maturityLevels">Allowed TV shows and movies:</label>
+                <select id="maturityLevels" name="maturityLevels">
+                    <option value="all">All Maturity Levels</option>
+                    <option value="teens">Teens</option>
+                    <option value="kids">Kids</option>
+                </select>
+            </div>
+            <div class="buttonGroup">
+                <button type="submit" class="saveButton">Save</button>
+                <button type="button" class="cancelButton">Cancel</button>
+                <button type="button" class="deleteButton">Delete Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Image Selection Popup -->
+<div class="imagePopup" id="imagePopup">
+    <div class="popupContent">
+        <button class="closePopupButton" id="closeImagePopup">&times;</button>
+        <h2>Select Profile Image</h2>
+        <div class="imageGrid">
+            <img src="../images/profile/blue.jpg" alt="Profile 1" class="profileOption">
+            <img src="../images/profile/red.jpg" alt="Profile 2" class="profileOption">
+            <img src="../images/profile/darkGreen.jpg" alt="Profile 3" class="profileOption">
+            <img src="../images/profile/yellow.jpg" alt="Profile 4" class="profileOption">
+            <img src="../images/profile/wonderWoman.jpg" alt="Profile 5" class="profileOption">
+            <img src="../images/profile/chicken.jpg" alt="Profile 6" class="profileOption">
+            <img src="../images/profile/panda.jpg" alt="Profile 7" class="profileOption">
+            <img src="../images/profile/lightGreen.jpg" alt="Profile 8" class="profileOption">
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript for toggling the popup
+    const openPopupButton = document.getElementById('openImagePopup');
+    const closePopupButton = document.getElementById('closeImagePopup');
+    const imagePopup = document.getElementById('imagePopup');
+    const profileImage = document.querySelector('.profileImage');
+    const profileOptions = document.querySelectorAll('.profileOption');
+
+    openPopupButton.addEventListener('click', () => {
+        imagePopup.classList.add('active');
+    });
+
+    closePopupButton.addEventListener('click', () => {
+        imagePopup.classList.remove('active');
+    });
+
+    // Selecting an image
+    profileOptions.forEach((option) => {
+        option.addEventListener('click', () => {
+            profileImage.src = option.src;
+            imagePopup.classList.remove('active');
+        });
+    });
+</script>
+</body>
+</html>

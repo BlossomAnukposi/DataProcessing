@@ -8,4 +8,6 @@ router.delete('/:id', SeasonController.deleteEntryById);
 router.post('/', SeasonController.createSeason);
 router.put('/:id', SeasonController.updateSeason);
 
+// season episodes
+
 module.exports = router;

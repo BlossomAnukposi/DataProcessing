@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Watch List</title>
+    <title>TV Shows</title>
     <link rel="stylesheet" href="../stylesheet/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
 <div id="wrapper">
     <header class="nav watchlistNav">
@@ -31,7 +29,7 @@
         <section class="previewContainer">
             <div class="previewContent">
                 <div class="previewImage">
-                    <img src="" alt="Preview Movie">
+                    <img src="../images/movie/previewHero.jpg" alt="Preview Movie">
                 </div>
                 <div class="previewInfoContainers">
                     <div class="previewProgressContainer">
@@ -92,8 +90,18 @@
             </div>
         </section>
         <section class="category">
-            <h3>Movies</h3>
+            <h3>TV Shows</h3>
             <div class="row watchlistRow">
+                <img class="previewContainerTrigger" src="../images/movie/crashLandingOnYou.png" alt="Crash Landing on You">
+                <img class="previewContainerTrigger" src="../images/movie/trueBeauty.png" alt="True Beauty">
+                <img class="previewContainerTrigger" src="../images/movie/lifeOnOurPlanet.png" alt="Life on Our Planet Movie">
+                <img class="previewContainerTrigger" src="../images/movie/lostInSpace.png" alt="Lost in Space">
+                <img class="previewContainerTrigger" src="../images/movie/shettyPolishetty.png" alt="Shetty Polishetty">
+                <img class="previewContainerTrigger" src="../images/movie/mismatched.png" alt="Mismatched">
+                <img class="previewContainerTrigger" src="../images/movie/lucifer.png" alt="Lucifer">
+                <img class="previewContainerTrigger" src="../images/movie/skyscraper.png" alt="Skyscraper">
+                <img class="previewContainerTrigger" src="../images/movie/strongGirlNamSoon.png" alt="Strong Girl Nam-Soon">
+                <img class="previewContainerTrigger" src="../images/movie/sweetTooth.png" alt="Sweet Tooth">
             </div>
         </section>
     </main>
@@ -105,12 +113,11 @@
 <script>
     const previewContainer = document.getElementsByClassName('previewContainer')[0];
     const previewTriggers = document.getElementsByClassName('previewContainerTrigger');
-    const divToFade = document.getElementsByClassName('previewContainer')[0];
+    var divToFade = document.getElementsByClassName('previewContainer')[0];
 
     previewContainer.addEventListener('click', () => {
         divToFade.style.display = 'none';
     });
-
     for (let i = 0; i < previewTriggers.length; i++) {
         previewTriggers[i].addEventListener('click', () => {
             divToFade.style.display = 'block';
@@ -118,17 +125,17 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        const moviesContainer = document.querySelector('.watchlistRow');
-        if (!moviesContainer) {
+        const seriesContainer = document.querySelector('.watchlistRow');
+        if (!seriesContainer) {
             console.error("Error: watchlistRow container not found!");
             return;
         }
 
-        // Function to fetch movie data from the API
-        const fetchMovies = async () => {
+        // Function to fetch series data from the API
+        const fetchSeries = async () => {
             try {
-                console.log("Fetching movies from API...");
-                const response = await fetch('http://localhost:3000/movie');
+                console.log("Fetching series from API...");
+                const response = await fetch('http://localhost:3000/series');
 
                 console.log("Response Status:", response.status);
                 if (!response.ok) {
@@ -138,13 +145,13 @@
                 const contentType = response.headers.get('Content-Type');
                 console.log("Content-Type:", contentType);
 
-                let moviesData;
+                let seriesData;
                 if (contentType.includes('application/json')) {
                     const data = await response.json();
                     console.log("Parsed JSON Data:", data);
 
                     // Extract the `result` array
-                    moviesData = data.result;
+                    seriesData = data.result;
                 } else if (contentType.includes('application/xml')) {
                     const xmlData = await response.text();
                     console.log("Raw XML Data:", xmlData);
@@ -153,18 +160,18 @@
                     console.log("Converted XML to JSON:", parsedData);
 
                     // Extract the `result` array
-                    moviesData = parsedData.result;
+                    seriesData = parsedData.result;
                 }
 
-                if (!moviesData || !Array.isArray(moviesData)) {
-                    console.error('Invalid movies data format:', moviesData);
+                if (!seriesData || !Array.isArray(seriesData)) {
+                    console.error('Invalid series data format:', seriesData);
                     return;
                 }
 
-                populateMovies(moviesData);
+                populateSeries(seriesData);
 
             } catch (error) {
-                console.error('Error fetching movies:', error);
+                console.error('Error fetching series:', error);
             }
         };
 
@@ -173,120 +180,98 @@
         const parseXMLToJSON = (xmlString) => {
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(xmlString, 'application/xml');
-            const movies = Array.from(xmlDoc.getElementsByTagName('movie'));
+            const series = Array.from(xmlDoc.getElementsByTagName('series'));
 
-            return movies.map((movie) => ({
-                movieId: movie.getElementsByTagName('movie_id')[0]?.textContent,
-                ageClassification: movie.getElementsByTagName('age_classification')[0]?.textContent,
-                genre: movie.getElementsByTagName('genre')[0]?.textContent,
-                qualityType: movie.getElementsByTagName('quality_type')[0]?.textContent,
-                title: movie.getElementsByTagName('title')[0]?.textContent,
+            return series.map((series) => ({
+                seriesId: series.getElementsByTagName('series_id')[0]?.textContent,
+                ageClassification: series.getElementsByTagName('age_classification')[0]?.textContent,
+                genre: series.getElementsByTagName('genre')[0]?.textContent,
+                qualityType: series.getElementsByTagName('quality_type')[0]?.textContent,
+                title: series.getElementsByTagName('title')[0]?.textContent,
                 duration: {
-                    hours: movie.getElementsByTagName('hours')[0]?.textContent,
-                    minutes: movie.getElementsByTagName('minutes')[0]?.textContent,
-                    seconds: movie.getElementsByTagName('seconds')[0]?.textContent,
+                    hours: series.getElementsByTagName('hours')[0]?.textContent,
+                    minutes: series.getElementsByTagName('minutes')[0]?.textContent,
                 },
-                description: movie.getElementsByTagName('description')[0]?.textContent,
-                viewCount: movie.getElementsByTagName('view_count')[0]?.textContent,
+                description: series.getElementsByTagName('description')[0]?.textContent,
+                viewCount: series.getElementsByTagName('view_count')[0]?.textContent,
             }));
         };
 
-        // Function to populate movies on the page
-        const populateMovies = (movies) => {
-            if (!Array.isArray(movies)) {
-                console.error("Invalid movies data format:", movies);
+        // Function to populate series on the page
+        const populateSeries = (series) => {
+            if (!Array.isArray(series)) {
+                console.error("Invalid series data format:", series);
                 return;
             }
 
-            movies.forEach((movie) => {
-                const movieElement = createMovieElement(movie);
-                moviesContainer.appendChild(movieElement);
+            series.forEach((series) => {
+                const seriesElement = createSeriesElement(series);
+                seriesContainer.appendChild(seriesElement);
             });
         };
 
-        // Function to create movie elements dynamically
-        const createMovieElement = (movie) => {
-            const movieElement = document.createElement('img');
-            movieElement.classList.add('previewContainerTrigger');
-            movieElement.src = movie.movie_link; // Use the movie_link from the API
-            movieElement.alt = movie.title;
-            movieElement.title = movie.title;
+        // Function to create series elements dynamically
+        const createSeriesElement = (series) => {
+            const seriesElement = document.createElement('img');
+            seriesElement.classList.add('previewContainerTrigger');
+            seriesElement.src = series.series_url;
+            seriesElement.alt = series.title;
+            seriesElement.title = series.title;
 
             // Add click event to show the preview container and populate it
-            movieElement.addEventListener('click', () => {
-                console.log('Movie clicked:', movie.title);
-                showMoviePreview(movie);
+            seriesElement.addEventListener('click', () => {
+                console.log('series clicked:', series.title);
+                showSeriesPreview(series);
                 const previewContainer = document.querySelector('.previewContainer');
                 if (previewContainer) {
                     previewContainer.style.display = 'block'; // Make preview container visible
                 }
             });
 
-            return movieElement;
+            return seriesElement;
         };
 
-        // Function to show the movie preview
-        const showMoviePreview = (movie) => {
+        // Function to show the series preview
+        const showSeriesPreview = (series) => {
             const previewContainer = document.querySelector('.previewContainer');
             if (!previewContainer) {
                 console.error('Preview container not found!');
                 return;
             }
 
-            // Log the movie object to inspect its structure
-            console.log("Movie data:", movie);
-
             // Retrieve the necessary preview elements
             const previewTitle = previewContainer.querySelector('.previewTitle h1');
             const previewDescription = previewContainer.querySelector('.previewDescription p');
             const previewImage = previewContainer.querySelector('.previewImage img');
             const previewClassifications = previewContainer.querySelector('.previewClassifications p');
-            const totalTime = previewContainer.querySelector('.totalTime');
 
             // Check if the elements exist before trying to modify them
             if (previewTitle) {
-                previewTitle.textContent = movie.title || "Unknown Title";
+                previewTitle.textContent = series.title || "Unknown Title";
             }
             if (previewDescription) {
-                previewDescription.textContent = movie.description || "No Description Available";
+                previewDescription.textContent = series.description || "No Description Available";
             }
             if (previewImage) {
-                previewImage.src = movie.movie_link || ''; // Set the movie's preview image
+                previewImage.src = series.series_url || ''; // Set the series's preview image
             }
             if (previewClassifications) {
-                // Use the genre directly from the movie data
-                previewClassifications.textContent = movie.genre || "Unknown Genre";
+                // Use the genre directly from the series data
+                previewClassifications.textContent = series.genre || "Unknown Genre";
             }
 
-            // Check if duration exists in the movie object
-            if (movie.duration) {
-                console.log("Movie duration data:", movie.duration);
-
-                // Check if the previewDuration element exists
-                if (totalTime) {
-                    // Format the duration as HH:MM:SS
-                    totalTime.textContent = formatTime(movie.duration.hours || 0, movie.duration.minutes || 0, movie.duration.seconds || 0);
-                } else {
-                    console.error("previewDuration element not found!");
-                }
-            } else {
-                console.error("No duration data available for movie:", movie.title);
+            // Optionally, you can set the series's duration here as well
+            const previewDuration = previewContainer.querySelector('.previewDuration');
+            if (previewDuration) {
+                previewDuration.textContent = `${series.duration.hours || 0}:${series.duration.minutes || 0}`;
             }
 
             // Make the preview container visible
             previewContainer.style.display = 'block';
         };
 
-        const formatTime = (hours, minutes, seconds) => {
-            const formattedHours = String(hours).padStart(2, '0');
-            const formattedMinutes = String(minutes).padStart(2, '0');
-            const formattedSeconds = String(seconds).padStart(2, '0');
-            return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-        };
-
-        // Fetch movies when the page loads
-        fetchMovies();
+        // Fetch series when the page loads
+        fetchSeries();
     });
 </script>
-<!--<script src="../views/script/index.js"></script>-->
 </html>

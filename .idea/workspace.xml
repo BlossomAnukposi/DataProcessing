@@ -4,17 +4,77 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Finished movie player details, made movie player interactable, made movies and series pages">
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="updated gitignore">
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/stylesheet/profileEdit.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/views/profileCreate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/views/profileEdit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.nhlstenden/views/signUp.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/accountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/accountController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/movieController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/movieController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/profileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/profileController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/accountModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/accountModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/movieModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/movieModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/accountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/accountRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/genreRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/genreRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/movieRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/movieRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/profileRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/profileRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/seasonRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/seasonRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/seriesRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/seriesRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/subscriptionRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/subscriptionRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/age_rating.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/ageRating.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/back_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/back10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/full_screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/fullScreen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/more_info.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/moreInfo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/play_main.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/playMain.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/play_movie.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/playMovie.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/illustration/skip_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/illustration/skip10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/logo/logo_full.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/logo/logoFull.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/logo/logo_short.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/logo/logoShort.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/annabelle_creation.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/annabelleCreation.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/crash_landing_on_you.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/crashLandingOnYou.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/extraction_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/extraction2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/gemini_man.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/geminiMan.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/jurassic_world.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/jurassicWorld.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/jurrasic_world_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/jurrasicWorld2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/kaala_paani.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/kaalaPaani.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/kung_fu_panda.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/kungFuPanda.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/life_on_our_planet.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/lifeOnOurPlanet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/lost_in_space.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/lostInSpace.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/preview_hero.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/previewHero.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/shetty_polishetty.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/shettyPolishetty.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/spiderman_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/spiderman2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/squid_game.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/squidGame.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/strong_girl_nam-soon.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/strongGirlNamSoon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/sweet_tooth.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/sweetTooth.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/the_call.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/theCall.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/the_conjuring.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/theConjuring.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/the_night_agent.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/theNightAgent.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/true_beauty.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/trueBeauty.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/movie/we_have_a_ghost.png" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/movie/weHaveAGhost.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/profile/dark_green.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/profile/darkGreen.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/profile/light_green.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/profile/lightGreen.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/images/profile/wonder_woman.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/images/profile/wonderWoman.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/stylesheet/loginStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/stylesheet/loginStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/stylesheet/profileSelect.css" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/stylesheet/profileSelect.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/stylesheet/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/admin/analytics.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/admin/analytics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/admin/content-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/admin/content-management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/admin/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/admin/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/admin/genres.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/admin/genres.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/admin/subscriptions.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/admin/subscriptions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/admin/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/admin/users.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/movie_player.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/moviePlayer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/movies.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/profileSelect.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/profileSelect.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/tv_shows.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/tv_shows.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/tv_shows.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/tvShows.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/watchlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/watchlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +130,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#5 on backend&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/blossom/Desktop/DataProcessing/com.nhlstenden/images/illustration&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -90,11 +150,11 @@
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com.nhlstenden/views" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/video" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/profile" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/movie" />
-      <recent name="$PROJECT_DIR$/com.nhlstenden/images" />
     </key>
   </component>
   <component name="RunManager" selected="npm.build">
@@ -157,6 +217,8 @@
       <workItem from="1733478610239" duration="7601000" />
       <workItem from="1733752909433" duration="7494000" />
       <workItem from="1734458040529" duration="26000" />
+      <workItem from="1736706190918" duration="19000" />
+      <workItem from="1736706215094" duration="1944000" />
     </task>
     <task id="LOCAL-00001" summary="Changed start script for deployment">
       <option name="closed" value="true" />
