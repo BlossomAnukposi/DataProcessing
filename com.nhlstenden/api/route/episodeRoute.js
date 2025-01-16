@@ -1,14 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const EpisodeController = require('../controller/episodeController');
+const EpisodeController = require("../controller/episodeController");
+const { authenticateToken } = require("../../middleware/authMiddleware");
 
-router.get('/', EpisodeController.getAllEntries);
-router.get('/:id', EpisodeController.getEntryById);
-router.get('/season/:seasonId', EpisodeController.getEpisodesBySeason);
-router.delete('/:id', EpisodeController.deleteEntryById);
-router.post('/', EpisodeController.createEpisode);
-router.put('/:id', EpisodeController.updateEpisode);
-
-// episode subtitles
+// All routes are already protected by middleware in app.js
+router.get("/", EpisodeController.getAllEntries);
+router.get("/:id", EpisodeController.getEntryById);
+router.post("/", EpisodeController.createEpisode);
+router.patch("/:id", EpisodeController.updateEpisode);
+router.delete("/:id", EpisodeController.deleteEntryById);
 
 module.exports = router;

@@ -1,176 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Netflix</title>
-    <link rel="stylesheet" href="../stylesheet/styles.css">
-</head>
-<body>
-<header class="nav">
-    <div class="navbarChild">
-        <img src="../images/logo/logoFull.png" alt="Logo" width="90">
+    <link rel="stylesheet" href="../stylesheet/styles.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="navbarChild">
+        <img src="../images/logo/logoFull.png" alt="Logo" width="90" />
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="tvShows.html">TV Shows</a></li>
-                <li><a href="movies.html">Movies</a></li>
-                <li><a href="watchlist.html">My List</a></li>
-            </ul>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tvShows.html">TV Shows</a></li>
+            <li><a href="movies.html">Movies</a></li>
+            <li><a href="watchlist.html">My List</a></li>
+          </ul>
         </nav>
-    </div>
-    <div class="navbarChild">
-        <img src="../images/illustration/notification.png" alt="Notification" width="30">
-        <a href="profileSelect.html"><img src="../images/profile/chicken.jpg" alt="Profile" width="30"></a>
-    </div>
-</header>
-<main>
-    <section class="hero">
-        <img src="../images/movie/hero.jpg" alt="Featured Movie">
+      </div>
+      <div class="navbarChild">
+        <img
+          src="../images/illustration/notification.png"
+          alt="Notification"
+          width="30"
+        />
+        <a href="profileSelect.html"
+          ><img src="../images/profile/chicken.jpg" alt="Profile" width="30"
+        /></a>
+      </div>
+    </header>
+    <main>
+      <section class="hero">
+        <img src="../images/movie/hero.jpg" alt="Featured Movie" />
         <div class="heroInfo">
-            <img src="../images/illustration/hero.png" alt="Featured Movie">
-            <div class="buttons">
-                <button class="imageButtons">
-                    <a href="moviePlayer.html">
-                        <img src="../images/illustration/playMovie.png" alt="Play">
-                    </a>
-                </button>
-                <button id="moreInfoButton" class="previewContainerTrigger">
-                    <img src="../images/illustration/information.png" alt="Information" id="informationIcon">
-                    More Info
-                </button>
-            </div>
-            <div class="ageRating">
-                <div class="ageRatingDivider"></div>
-            </div>
+          <img src="../images/illustration/hero.png" alt="Featured Movie" />
+          <div class="buttons">
+            <button class="imageButtons">
+              <a href="moviePlayer.html">
+                <img src="../images/illustration/playMovie.png" alt="Play" />
+              </a>
+            </button>
+            <button id="moreInfoButton" class="previewContainerTrigger">
+              <img
+                src="../images/illustration/information.png"
+                alt="Information"
+                id="informationIcon"
+              />
+              More Info
+            </button>
+          </div>
+          <div class="ageRating">
+            <div class="ageRatingDivider"></div>
+          </div>
         </div>
-    </section>
-    <section class="previewContainer">
+      </section>
+      <section class="previewContainer">
         <div class="previewContent">
-            <div class="previewImage">
-                <img src="../images/movie/previewHero.jpg" alt="Preview Movie">
+          <div class="previewImage">
+            <img src="../images/movie/previewHero.jpg" alt="Preview Movie" />
+          </div>
+          <div class="previewInfoContainers">
+            <div class="previewProgressContainer">
+              <div class="previewProgressBar">
+                <div class="previewProgressFill"></div>
+              </div>
+              <div class="previewTimeContainer">
+                <span class="currentTime">00:20:13</span>
+                <span class="totalTime">2:43:50</span>
+              </div>
             </div>
-            <div class="previewInfoContainers">
-                <div class="previewProgressContainer">
-                    <div class="previewProgressBar">
-                        <div class="previewProgressFill"></div>
-                    </div>
-                    <div class="previewTimeContainer">
-                        <span class="currentTime">00:20:13</span>
-                        <span class="totalTime">2:43:50</span>
-                    </div>
-                </div>
-                <div class="previewControlsContainer">
-                    <button class="imageButtons">
-                        <a href="moviePlayer.html">
-                            <img src="../images/illustration/playMovie.png" alt="Play" width="110px">
-                        </a>
-                    </button>
-                    <button class="imageButtons">
-                        <a href="#">
-                            <img src="../images/illustration/add.png" alt="Add" width="60px">
-                        </a>
-                    </button>
-                    <button class="imageButtons">
-                        <a href="#">
-                            <img src="../images/illustration/like.png" alt="Like" width="53px">
-                        </a>
-                    </button>
-                    <div></div>
-                    <button class="imageButtons">
-                        <a href="#">
-                            <img src="../images/illustration/mute.png" alt="Mute" width="53px">
-                        </a>
-                    </button>
-                </div>
-                <div class="previewInformationContainer">
-                    <div class="previewClassifications">
-                        <p>Thriller, Action, Thriller</p>
-                    </div>
-                    <div class="previewTitle"><h1>Title</h1></div>
-                    <div class="previewDescription"><p>Some description</p></div>
-                </div>
-                <div class="previewRecommendationsContainer">
-                    <h3>Similar Titles</h3>
-                    <div class="row previewRow">
-                        <img src="../images/movie/jawan.png" alt="Jawan">
-                        <img src="../images/movie/bro.png" alt="Bro">
-                        <img src="../images/movie/malayam.png" alt="Malayalam Movie">
-                        <img src="../images/movie/shankai.png" alt="Shankai">
-                        <img src="../images/movie/shettyPolishetty.png" alt="Shetty Polishetty">
-                        <img src="../images/movie/mismatched.png" alt="Mismatched">
-                        <img src="../images/movie/kungFuPanda.png" alt="Kung Fu Panda">
-                        <img src="../images/movie/lostInSpace.png" alt="Lost in Space">
-                        <img src="../images/movie/strongGirlNamSoon.png" alt="Strong Girl Nam-Soon">
-                        <img src="../images/movie/lucifer.png" alt="Lucifer">
-                    </div>
-                </div>
+            <div class="previewControlsContainer">
+              <button class="imageButtons">
+                <a href="moviePlayer.html">
+                  <img
+                    src="../images/illustration/playMovie.png"
+                    alt="Play"
+                    width="110px"
+                  />
+                </a>
+              </button>
+              <button class="imageButtons">
+                <a href="#">
+                  <img
+                    src="../images/illustration/add.png"
+                    alt="Add"
+                    width="60px"
+                  />
+                </a>
+              </button>
+              <button class="imageButtons">
+                <a href="#">
+                  <img
+                    src="../images/illustration/like.png"
+                    alt="Like"
+                    width="53px"
+                  />
+                </a>
+              </button>
+              <div></div>
+              <button class="imageButtons">
+                <a href="#">
+                  <img
+                    src="../images/illustration/mute.png"
+                    alt="Mute"
+                    width="53px"
+                  />
+                </a>
+              </button>
             </div>
+            <div class="previewInformationContainer">
+              <div class="previewClassifications">
+                <p>Thriller, Action, Thriller</p>
+              </div>
+              <div class="previewTitle"><h1>Title</h1></div>
+              <div class="previewDescription"><p>Some description</p></div>
+            </div>
+            <div class="previewRecommendationsContainer">
+              <h3>Similar Titles</h3>
+              <div class="row previewRow">
+                <img src="../images/movie/jawan.png" alt="Jawan" />
+                <img src="../images/movie/bro.png" alt="Bro" />
+                <img src="../images/movie/malayam.png" alt="Malayalam Movie" />
+                <img src="../images/movie/shankai.png" alt="Shankai" />
+                <img
+                  src="../images/movie/shettyPolishetty.png"
+                  alt="Shetty Polishetty"
+                />
+                <img src="../images/movie/mismatched.png" alt="Mismatched" />
+                <img
+                  src="../images/movie/kungFuPanda.png"
+                  alt="Kung Fu Panda"
+                />
+                <img
+                  src="../images/movie/lostInSpace.png"
+                  alt="Lost in Space"
+                />
+                <img
+                  src="../images/movie/strongGirlNamSoon.png"
+                  alt="Strong Girl Nam-Soon"
+                />
+                <img src="../images/movie/lucifer.png" alt="Lucifer" />
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
-    <section class="category">
+      </section>
+      <section class="category">
         <h3>For You</h3>
         <div class="row">
-            <img class="previewContainerTrigger" src="../images/movie/jawan.png" alt="Jawan">
-            <img class="previewContainerTrigger" src="../images/movie/bro.png" alt="Bro">
-            <img class="previewContainerTrigger" src="../images/movie/malayam.png" alt="Malayalam Movie">
-            <img class="previewContainerTrigger" src="../images/movie/shankai.png" alt="Shankai">
-            <img class="previewContainerTrigger" src="../images/movie/shettyPolishetty.png" alt="Shetty Polishetty">
-            <img class="previewContainerTrigger" src="../images/movie/mismatched.png" alt="Mismatched">
-            <img class="previewContainerTrigger" src="../images/movie/kungFuPanda.png" alt="Kung Fu Panda">
-            <img class="previewContainerTrigger" src="../images/movie/lostInSpace.png" alt="Lost in Space">
-            <img class="previewContainerTrigger" src="../images/movie/strongGirlNamSoon.png" alt="Strong Girl Nam-Soon">
-            <img class="previewContainerTrigger" src="../images/movie/lucifer.png" alt="Lucifer">
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/jawan.png"
+            alt="Jawan"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/bro.png"
+            alt="Bro"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/malayam.png"
+            alt="Malayalam Movie"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/shankai.png"
+            alt="Shankai"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/shettyPolishetty.png"
+            alt="Shetty Polishetty"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/mismatched.png"
+            alt="Mismatched"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/kungFuPanda.png"
+            alt="Kung Fu Panda"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/lostInSpace.png"
+            alt="Lost in Space"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/strongGirlNamSoon.png"
+            alt="Strong Girl Nam-Soon"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/lucifer.png"
+            alt="Lucifer"
+          />
         </div>
-    </section>
-    <section class="category">
+      </section>
+      <section class="category">
         <h3>Trending Now</h3>
         <div class="row">
-            <img class="previewContainerTrigger" src="../images/movie/mad.png" alt="Mad">
-            <img class="previewContainerTrigger" src="../images/movie/shettyPolishetty.png" alt="Shetty Polishetty">
-            <img class="previewContainerTrigger" src="../images/movie/malayam.png" alt="Malayalam Movie">
-            <img class="previewContainerTrigger" src="../images/movie/mismatched.png" alt="Mismatched">
-            <img class="previewContainerTrigger" src="../images/movie/shankai.png" alt="Shankai">
-            <img class="previewContainerTrigger" src="../images/movie/squidGame.png" alt="Squid Game">
-            <img class="previewContainerTrigger" src="../images/movie/sweetTooth.png" alt="Sweet Tooth">
-            <img class="previewContainerTrigger" src="../images/movie/spiderman2.png" alt="Spiderman 2">
-            <img class="previewContainerTrigger" src="../images/movie/kaalaPaani.png" alt="Kaala Paani">
-            <img class="previewContainerTrigger" src="../images/movie/geminiMan.png" alt="Gemini Man">
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/mad.png"
+            alt="Mad"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/shettyPolishetty.png"
+            alt="Shetty Polishetty"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/malayam.png"
+            alt="Malayalam Movie"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/mismatched.png"
+            alt="Mismatched"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/shankai.png"
+            alt="Shankai"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/squidGame.png"
+            alt="Squid Game"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/sweetTooth.png"
+            alt="Sweet Tooth"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/spiderman2.png"
+            alt="Spiderman 2"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/kaalaPaani.png"
+            alt="Kaala Paani"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/geminiMan.png"
+            alt="Gemini Man"
+          />
         </div>
-    </section>
+      </section>
 
-    <section class="category">
+      <section class="category">
         <h3>Critically Acclaimed TV Shows</h3>
         <div class="row">
-            <img class="previewContainerTrigger" src="../images/movie/lifeOnOurPlanet.png" alt="Life on Our Planet">
-            <img class="previewContainerTrigger" src="../images/movie/lostInSpace.png" alt="Lost in Space">
-            <img class="previewContainerTrigger" src="../images/movie/shankai.png" alt="Shankai">
-            <img class="previewContainerTrigger" src="../images/movie/sweetTooth.png" alt="Sweet Tooth">
-            <img class="previewContainerTrigger" src="../images/movie/theCall.png" alt="The Call">
-            <img class="previewContainerTrigger" src="../images/movie/theConjuring.png" alt="The Conjuring">
-            <img class="previewContainerTrigger" src="../images/movie/theNightAgent.png" alt="The Night Agent">
-            <img class="previewContainerTrigger" src="../images/movie/trueBeauty.png" alt="True Beauty">
-            <img class="previewContainerTrigger" src="../images/movie/weHaveAGhost.png" alt="We Have a Ghost">
-            <img class="previewContainerTrigger" src="../images/movie/strongGirlNamSoon.png" alt="Strong Girl Nam-Soon">
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/lifeOnOurPlanet.png"
+            alt="Life on Our Planet"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/lostInSpace.png"
+            alt="Lost in Space"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/shankai.png"
+            alt="Shankai"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/sweetTooth.png"
+            alt="Sweet Tooth"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/theCall.png"
+            alt="The Call"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/theConjuring.png"
+            alt="The Conjuring"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/theNightAgent.png"
+            alt="The Night Agent"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/trueBeauty.png"
+            alt="True Beauty"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/weHaveAGhost.png"
+            alt="We Have a Ghost"
+          />
+          <img
+            class="previewContainerTrigger"
+            src="../images/movie/strongGirlNamSoon.png"
+            alt="Strong Girl Nam-Soon"
+          />
         </div>
-    </section>
-</main>
-<footer>
-    <img src="../images/illustration/footer.png" alt="Footer" width="100%">
-</footer>
-</body>
+      </section>
+    </main>
+    <footer>
+      <img src="../images/illustration/footer.png" alt="Footer" width="100%" />
+    </footer>
+  </body>
 </html>
 <script>
-    const previewContainer = document.getElementsByClassName('previewContainer')[0];
-    const previewTriggers = document.getElementsByClassName('previewContainerTrigger');
-    const divToFade = document.getElementsByClassName('previewContainer')[0];
+  const previewContainer =
+    document.getElementsByClassName("previewContainer")[0];
+  const previewTriggers = document.getElementsByClassName(
+    "previewContainerTrigger"
+  );
+  const divToFade = document.getElementsByClassName("previewContainer")[0];
 
-    previewContainer.addEventListener('click', () => {
-        divToFade.style.display = 'none';
+  previewContainer.addEventListener("click", () => {
+    divToFade.style.display = "none";
+  });
+  for (let i = 0; i < previewTriggers.length; i++) {
+    previewTriggers[i].addEventListener("click", () => {
+      divToFade.style.display = "block";
     });
-    for (let i = 0; i < previewTriggers.length; i++) {
-        previewTriggers[i].addEventListener('click', () => {
-            divToFade.style.display = 'block';
-        });
+  }
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Check if user is authenticated
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "login.html";
+      return;
     }
+
+    // Add logout functionality
+    const logoutButton = document.getElementById("logoutButton");
+    if (logoutButton) {
+      logoutButton.addEventListener("click", () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.location.href = "login.html";
+      });
+    }
+  });
+</script>
+<script src="../public/js/auth.js"></script>
+<script src="../public/js/api.js"></script>
+<script>
+  // Check authentication on page load
+  if (!checkAuthStatus()) {
+    window.location.href = "login.html";
+  }
+
+  // Example of making an authenticated request
+  async function loadUserData() {
+    try {
+      const response = await authenticatedFetch(
+        "http://localhost:3000/account"
+      );
+      const data = await response.json();
+      // Handle the data...
+    } catch (error) {
+      console.error("Error loading user data:", error);
+    }
+  }
 </script>
