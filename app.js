@@ -1,28 +1,34 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cors = require("cors");
+const {
+  authenticateToken,
+} = require("./com.nhlstenden/middleware/authMiddleware");
 
 // Add body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// CORS handling middleware (if needed)
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    );
+// CORS handling middleware
+app.use(
+  cors({
+    origin: "*", // Allow all origins for testing
+    credentials: true,
+    allowedHeaders: [
+      "Origin",
+      "X-Requested-With",
+      "Content-Type",
+      "Accept",
+      "Authorization",
+    ],
+  })
+);
 
-    if (req.method === "OPTIONS")
-    {
-        res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-        return res.status(200).json({});
-    }
+// Morgan for logging
+app.use(morgan("dev"));
 
-    next();
-});
-
+// Import routes
 const accountRoutes = require("./com.nhlstenden/api/route/accountRoute");
 const episodeRoutes = require("./com.nhlstenden/api/route/episodeRoute");
 const genreRoutes = require("./com.nhlstenden/api/route/genreRoute");
@@ -34,40 +40,36 @@ const seasonRoutes = require("./com.nhlstenden/api/route/seasonRoute");
 const seriesRoutes = require("./com.nhlstenden/api/route/seriesRoute");
 const subscriptionRoutes = require("./com.nhlstenden/api/route/subscriptionRoute");
 const subtitleRoutes = require("./com.nhlstenden/api/route/subtitleRoute");
-// const watchedMediaListRoutes = require("./com.nhlstenden/api/route/watchedMediaListRoute");
-// const watchlistRoutes = require("./com.nhlstenden/api/route/watchlistRoute");
 
-//use morgan for terminal tracking of requests
-app.use(morgan("dev"));
-
-//only requests with the path /<route> can use this route...
+// Public routes
 app.use("/account", accountRoutes);
-app.use("/episode", episodeRoutes);
-app.use("/genre", genreRoutes);
-app.use("/movie", movieRoutes);
-app.use("/preference", preferenceRoutes);
-app.use("/profile", profileRoutes);
-app.use("/referralDiscount", referralRoutes);
-app.use("/season", seasonRoutes);
-app.use("/series", seriesRoutes);
-app.use("/subscription", subscriptionRoutes);
-app.use("/subtitle", subtitleRoutes);
-// app.use("/watchedMediaList", watchedMediaListRoutes);
-// app.use("/watchlist", watchlistRoutes);
 
+// Protected routes - require authentication
+app.use("/episode", authenticateToken, episodeRoutes);
+app.use("/genre", authenticateToken, genreRoutes);
+app.use("/movie", authenticateToken, movieRoutes);
+app.use("/preference", authenticateToken, preferenceRoutes);
+app.use("/profile", authenticateToken, profileRoutes);
+app.use("/referralDiscount", authenticateToken, referralRoutes);
+app.use("/season", authenticateToken, seasonRoutes);
+app.use("/series", authenticateToken, seriesRoutes);
+app.use("/subscription", authenticateToken, subscriptionRoutes);
+app.use("/subtitle", authenticateToken, subtitleRoutes);
+
+// Error handling
 app.use((req, res, next) => {
-    const error = new Error("Not Found");
-    error.status = 404;
-    next(error);
+  const error = new Error("Not Found");
+  error.status = 404;
+  next(error);
 });
 
 app.use((error, req, res, next) => {
-    res.status(error.status || 500);
-    res.json({
-        error: {
-            message: error.message,
-        },
-    });
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message,
+    },
+  });
 });
 
 module.exports = app;
