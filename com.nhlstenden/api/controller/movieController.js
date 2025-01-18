@@ -7,7 +7,7 @@ class MovieController extends ControllerParent
     {
         super(MovieModel);
 
-        ['createMovie', 'updateMovie'].forEach(
+        ['createMovie', 'updateMovie', 'getAllMedia'].forEach(
             method => this[method] = this[method].bind(this)
         );
     }
@@ -59,6 +59,21 @@ class MovieController extends ControllerParent
             this.sendResponse(res, 201, 'Movie updated successfully', result, isXml);
         }
         catch (err){
+            this.handleError(err, res, isXml);
+        }
+    }
+
+    async getAllMedia(req, res) {
+        const isXml = this.isXmlRequest(req);
+
+        try {
+            const result = await MovieModel.getAllMedia();
+
+            if (!result)
+                return this.sendResponse(res, 404, 'No media found', null, isXml);
+
+            this.sendResponse(res, 200, 'Media fetched successfully', result, isXml);
+        } catch (err) {
             this.handleError(err, res, isXml);
         }
     }

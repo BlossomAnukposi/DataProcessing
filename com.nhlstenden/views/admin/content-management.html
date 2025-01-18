@@ -1,454 +1,454 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <title>Content Management - Netflix Admin</title>
     <link rel="stylesheet" href="../../stylesheet/admin.css" />
     <link rel="stylesheet" href="../../stylesheet/content-management.css" />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-  </head>
-  <body>
-    <div class="admin-container">
-      <!-- Sidebar Navigation -->
-      <nav class="admin-sidebar">
+</head>
+<body>
+<div class="admin-container">
+    <!-- Sidebar Navigation -->
+    <nav class="admin-sidebar">
         <div class="logo">
-          <img
-            src="../../images/logo/logoShort.png"
-            alt="Netflix Logo"
-            width="50"
-          />
+            <img
+                    src="../../images/logo/logoShort.png"
+                    alt="Netflix Logo"
+                    width="50"
+            />
         </div>
         <ul class="nav-links">
-          <li>
-            <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
-          </li>
-          <li>
-            <a href="content-management.html" class="active"
-              ><i class="fas fa-film"></i> Content Management</a
-            >
-          </li>
-          <li>
-            <a href="users.html"><i class="fas fa-users"></i> Users</a>
-          </li>
-          <li>
-            <a href="genres.html"><i class="fas fa-tags"></i> Genres</a>
-          </li>
-          <li>
-            <a href="subscriptions.html"
-              ><i class="fas fa-credit-card"></i> Subscriptions</a
-            >
-          </li>
-          <li>
-            <a href="analytics.html"
-              ><i class="fas fa-chart-bar"></i> Analytics</a
-            >
-          </li>
+            <li>
+                <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="content-management.html" class="active"
+                ><i class="fas fa-film"></i> Content Management</a
+                >
+            </li>
+            <li>
+                <a href="users.html"><i class="fas fa-users"></i> Users</a>
+            </li>
+            <li>
+                <a href="genres.html"><i class="fas fa-tags"></i> Genres</a>
+            </li>
+            <li>
+                <a href="subscriptions.html"
+                ><i class="fas fa-credit-card"></i> Subscriptions</a
+                >
+            </li>
+            <li>
+                <a href="analytics.html"
+                ><i class="fas fa-chart-bar"></i> Analytics</a
+                >
+            </li>
         </ul>
-      </nav>
+    </nav>
 
-      <!-- Main Content Area -->
-      <main class="main-content">
+    <!-- Main Content Area -->
+    <main class="main-content">
         <header class="admin-header">
-          <h1>Content Management</h1>
-          <button class="add-content-btn">
-            <i class="fas fa-plus"></i> Add New Content
-          </button>
+            <h1>Content Management</h1>
+            <button class="add-content-btn">
+                <i class="fas fa-plus"></i> Add New Content
+            </button>
         </header>
 
         <!-- Search and Filter Section -->
         <div class="search-filter-section">
-          <div class="search-box">
-            <input type="text" placeholder="Search content..." />
-            <i class="fas fa-search"></i>
-          </div>
-          <div class="filters">
-            <select>
-              <option value="">Content Type</option>
-              <option value="movie">Movie</option>
-              <option value="series">TV Series</option>
-            </select>
-            <select>
-              <option value="">Genre</option>
-              <option value="action">Action</option>
-              <option value="comedy">Comedy</option>
-              <option value="drama">Drama</option>
-            </select>
-            <select>
-              <option value="">Status</option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-              <option value="upcoming">Upcoming</option>
-            </select>
-          </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search content..." />
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="filters">
+                <select>
+                    <option value="">Content Type</option>
+                    <option value="movie">Movie</option>
+                    <option value="series">TV Series</option>
+                </select>
+                <select>
+                    <option value="">Genre</option>
+                    <option value="action">Action</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="drama">Drama</option>
+                </select>
+                <select>
+                    <option value="">Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="upcoming">Upcoming</option>
+                </select>
+            </div>
         </div>
 
         <!-- Content List -->
         <div class="content-list">
-          <!-- Content Item -->
-          <div class="content-item">
-            <img
-              src="../../images/movie/lostInSpace.png"
-              alt="Lost in Space"
-            />
-            <div class="content-details">
-              <h3>Lost in Space</h3>
-              <p class="type">TV Series • 3 Seasons</p>
-              <p class="genre">Sci-Fi, Adventure</p>
+            <!-- Content Item -->
+            <div class="content-item">
+                <img
+                        src="../../images/movie/lostInSpace.png"
+                        alt="Lost in Space"
+                />
+                <div class="content-details">
+                    <h3>Lost in Space</h3>
+                    <p class="type">TV Series • 3 Seasons</p>
+                    <p class="genre">Sci-Fi, Adventure</p>
+                </div>
+                <div class="content-status active">Active</div>
+                <div class="content-actions">
+                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                    <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                </div>
             </div>
-            <div class="content-status active">Active</div>
-            <div class="content-actions">
-              <button class="edit-btn"><i class="fas fa-edit"></i></button>
-              <button class="delete-btn"><i class="fas fa-trash"></i></button>
-            </div>
-          </div>
 
-          <div class="content-item">
-            <img src="../../images/movie/skyscraper.png" alt="Skyscraper" />
-            <div class="content-details">
-              <h3>Skyscraper</h3>
-              <p class="type">Movie • 2h 15m</p>
-              <p class="genre">Action, Thriller</p>
+            <div class="content-item">
+                <img src="../../images/movie/skyscraper.png" alt="Skyscraper" />
+                <div class="content-details">
+                    <h3>Skyscraper</h3>
+                    <p class="type">Movie • 2h 15m</p>
+                    <p class="genre">Action, Thriller</p>
+                </div>
+                <div class="content-status active">Active</div>
+                <div class="content-actions">
+                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                    <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                </div>
             </div>
-            <div class="content-status active">Active</div>
-            <div class="content-actions">
-              <button class="edit-btn"><i class="fas fa-edit"></i></button>
-              <button class="delete-btn"><i class="fas fa-trash"></i></button>
-            </div>
-          </div>
 
-          <div class="content-item">
-            <img
-              src="../../images/movie/kungFuPanda.png"
-              alt="Kung Fu Panda"
-            />
-            <div class="content-details">
-              <h3>Kung Fu Panda</h3>
-              <p class="type">Movie • 1h 32m</p>
-              <p class="genre">Animation, Action</p>
+            <div class="content-item">
+                <img
+                        src="../../images/movie/kungFuPanda.png"
+                        alt="Kung Fu Panda"
+                />
+                <div class="content-details">
+                    <h3>Kung Fu Panda</h3>
+                    <p class="type">Movie • 1h 32m</p>
+                    <p class="genre">Animation, Action</p>
+                </div>
+                <div class="content-status upcoming">Upcoming</div>
+                <div class="content-actions">
+                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                    <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                </div>
             </div>
-            <div class="content-status upcoming">Upcoming</div>
-            <div class="content-actions">
-              <button class="edit-btn"><i class="fas fa-edit"></i></button>
-              <button class="delete-btn"><i class="fas fa-trash"></i></button>
-            </div>
-          </div>
         </div>
 
         <!-- Pagination -->
         <div class="pagination">
-          <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
-          <div class="page-numbers">
-            <button class="active">1</button>
-            <button>2</button>
-            <button>3</button>
-            <span>...</span>
-            <button>10</button>
-          </div>
-          <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <div class="page-numbers">
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <span>...</span>
+                <button>10</button>
+            </div>
+            <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
         </div>
-      </main>
-    </div>
+    </main>
+</div>
 
-    <!-- Add Content Modal -->
-    <div id="addContentModal" class="modal">
-      <div class="modal-content">
+<!-- Add Content Modal -->
+<div id="addContentModal" class="modal">
+    <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Add New Content</h2>
         <form id="addContentForm">
-          <!-- Basic Information -->
-          <div class="form-group">
-            <label for="title">Title *</label>
-            <input type="text" id="title" name="title" required />
-          </div>
+            <!-- Basic Information -->
+            <div class="form-group">
+                <label for="title">Title *</label>
+                <input type="text" id="title" name="title" required />
+            </div>
 
-          <div class="form-group">
-            <label for="contentType">Content Type *</label>
-            <select id="contentType" name="contentType" required>
-              <option value="">Select Type</option>
-              <option value="movie">Movie</option>
-              <option value="series">TV Series</option>
-            </select>
-          </div>
+            <div class="form-group">
+                <label for="contentType">Content Type *</label>
+                <select id="contentType" name="contentType" required>
+                    <option value="">Select Type</option>
+                    <option value="movie">Movie</option>
+                    <option value="series">TV Series</option>
+                </select>
+            </div>
 
-          <!-- Duration/Seasons (will toggle based on content type) -->
-          <div class="form-group movie-field">
-            <label for="duration">Duration (minutes) *</label>
-            <input type="number" id="duration" name="duration" min="1" />
-          </div>
+            <!-- Duration/Seasons (will toggle based on content type) -->
+            <div class="form-group movie-field">
+                <label for="duration">Duration (minutes) *</label>
+                <input type="number" id="duration" name="duration" min="1" />
+            </div>
 
-          <div class="form-group series-field" style="display: none">
-            <label for="seasons">Number of Seasons *</label>
-            <input type="number" id="seasons" name="seasons" min="1" />
-          </div>
+            <div class="form-group series-field" style="display: none">
+                <label for="seasons">Number of Seasons *</label>
+                <input type="number" id="seasons" name="seasons" min="1" />
+            </div>
 
-          <!-- Genre Selection -->
-          <div class="form-group">
-            <label for="genres">Genres *</label>
-            <select id="genres" name="genres" multiple required>
-              <option value="action">Action</option>
-              <option value="comedy">Comedy</option>
-              <option value="drama">Drama</option>
-              <option value="horror">Horror</option>
-              <option value="scifi">Sci-Fi</option>
-              <option value="thriller">Thriller</option>
-              <option value="animation">Animation</option>
-              <option value="documentary">Documentary</option>
-            </select>
-            <small>Hold Ctrl/Cmd to select multiple genres</small>
-          </div>
+            <!-- Genre Selection -->
+            <div class="form-group">
+                <label for="genres">Genres *</label>
+                <select id="genres" name="genres" multiple required>
+                    <option value="action">Action</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="drama">Drama</option>
+                    <option value="horror">Horror</option>
+                    <option value="scifi">Sci-Fi</option>
+                    <option value="thriller">Thriller</option>
+                    <option value="animation">Animation</option>
+                    <option value="documentary">Documentary</option>
+                </select>
+                <small>Hold Ctrl/Cmd to select multiple genres</small>
+            </div>
 
-          <!-- Release Information -->
-          <div class="form-group">
-            <label for="releaseDate">Release Date *</label>
-            <input type="date" id="releaseDate" name="releaseDate" required />
-          </div>
+            <!-- Release Information -->
+            <div class="form-group">
+                <label for="releaseDate">Release Date *</label>
+                <input type="date" id="releaseDate" name="releaseDate" required />
+            </div>
 
-          <div class="form-group">
-            <label for="status">Status *</label>
-            <select id="status" name="status" required>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-              <option value="upcoming">Upcoming</option>
-            </select>
-          </div>
+            <div class="form-group">
+                <label for="status">Status *</label>
+                <select id="status" name="status" required>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="upcoming">Upcoming</option>
+                </select>
+            </div>
 
-          <!-- Media -->
-          <div class="form-group">
-            <label for="thumbnail">Thumbnail Image *</label>
-            <input
-              type="file"
-              id="thumbnail"
-              name="thumbnail"
-              accept="image/*"
-              required
-            />
-          </div>
+            <!-- Media -->
+            <div class="form-group">
+                <label for="thumbnail">Thumbnail Image *</label>
+                <input
+                        type="file"
+                        id="thumbnail"
+                        name="thumbnail"
+                        accept="image/*"
+                        required
+                />
+            </div>
 
-          <!-- Description -->
-          <div class="form-group">
-            <label for="description">Description *</label>
-            <textarea
-              id="description"
-              name="description"
-              rows="4"
-              required
-            ></textarea>
-          </div>
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description">Description *</label>
+                <textarea
+                        id="description"
+                        name="description"
+                        rows="4"
+                        required
+                ></textarea>
+            </div>
 
-          <!-- Additional Information -->
-          <div class="form-group">
-            <label for="cast">Cast (comma-separated)</label>
-            <input
-              type="text"
-              id="cast"
-              name="cast"
-              placeholder="Actor 1, Actor 2, Actor 3"
-            />
-          </div>
+            <!-- Additional Information -->
+            <div class="form-group">
+                <label for="cast">Cast (comma-separated)</label>
+                <input
+                        type="text"
+                        id="cast"
+                        name="cast"
+                        placeholder="Actor 1, Actor 2, Actor 3"
+                />
+            </div>
 
-          <div class="form-group">
-            <label for="director">Director</label>
-            <input type="text" id="director" name="director" />
-          </div>
+            <div class="form-group">
+                <label for="director">Director</label>
+                <input type="text" id="director" name="director" />
+            </div>
 
-          <div class="form-group">
-            <label for="rating">Rating</label>
-            <select id="rating" name="rating">
-              <option value="">Select Rating</option>
-              <option value="G">G</option>
-              <option value="PG">PG</option>
-              <option value="PG-13">PG-13</option>
-              <option value="R">R</option>
-              <option value="NC-17">NC-17</option>
-            </select>
-          </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <select id="rating" name="rating">
+                    <option value="">Select Rating</option>
+                    <option value="G">G</option>
+                    <option value="PG">PG</option>
+                    <option value="PG-13">PG-13</option>
+                    <option value="R">R</option>
+                    <option value="NC-17">NC-17</option>
+                </select>
+            </div>
 
-          <button type="submit" class="submit-btn">Add Content</button>
+            <button type="submit" class="submit-btn">Add Content</button>
         </form>
-      </div>
     </div>
+</div>
 
-    <script>
-      // Get modal elements
-      const modal = document.getElementById("addContentModal");
-      const addBtn = document.querySelector(".add-content-btn");
-      const closeBtn = document.querySelector(".close");
-      const form = document.getElementById("addContentForm");
+<script>
+    // Get modal elements
+    const modal = document.getElementById("addContentModal");
+    const addBtn = document.querySelector(".add-content-btn");
+    const closeBtn = document.querySelector(".close");
+    const form = document.getElementById("addContentForm");
 
-      // Open modal
-      addBtn.onclick = function () {
+    // Open modal
+    addBtn.onclick = function () {
         modal.style.display = "block";
-      };
+    };
 
-      // Close modal
-      closeBtn.onclick = function () {
+    // Close modal
+    closeBtn.onclick = function () {
         modal.style.display = "none";
-      };
+    };
 
-      // Close modal when clicking outside
-      window.onclick = function (event) {
+    // Close modal when clicking outside
+    window.onclick = function (event) {
         if (event.target == modal) {
-          modal.style.display = "none";
+            modal.style.display = "none";
         }
-      };
+    };
 
-      // Handle form submission
-      form.onsubmit = function (e) {
+    // Handle form submission
+    form.onsubmit = function (e) {
         e.preventDefault();
         // Add your form submission logic here
         console.log("Form submitted");
         modal.style.display = "none";
-      };
+    };
 
-      // Add this after your existing modal scripts
-      const contentTypeSelect = document.getElementById("contentType");
-      const movieField = document.querySelector(".movie-field");
-      const seriesField = document.querySelector(".series-field");
+    // Add this after your existing modal scripts
+    const contentTypeSelect = document.getElementById("contentType");
+    const movieField = document.querySelector(".movie-field");
+    const seriesField = document.querySelector(".series-field");
 
-      contentTypeSelect.addEventListener("change", function () {
+    contentTypeSelect.addEventListener("change", function () {
         if (this.value === "movie") {
-          movieField.style.display = "block";
-          seriesField.style.display = "none";
-          document.getElementById("duration").required = true;
-          document.getElementById("seasons").required = false;
+            movieField.style.display = "block";
+            seriesField.style.display = "none";
+            document.getElementById("duration").required = true;
+            document.getElementById("seasons").required = false;
         } else if (this.value === "series") {
-          movieField.style.display = "none";
-          seriesField.style.display = "block";
-          document.getElementById("duration").required = false;
-          document.getElementById("seasons").required = true;
+            movieField.style.display = "none";
+            seriesField.style.display = "block";
+            document.getElementById("duration").required = false;
+            document.getElementById("seasons").required = true;
         } else {
-          movieField.style.display = "none";
-          seriesField.style.display = "none";
-          document.getElementById("duration").required = false;
-          document.getElementById("seasons").required = false;
+            movieField.style.display = "none";
+            seriesField.style.display = "none";
+            document.getElementById("duration").required = false;
+            document.getElementById("seasons").required = false;
         }
-      });
+    });
 
-      // Add event listeners to all edit and delete buttons
-      document.querySelectorAll('.edit-btn').forEach(button => {
-          button.addEventListener('click', function(e) {
-              const contentItem = this.closest('.content-item');
-              const title = contentItem.querySelector('h3').textContent;
-              const type = contentItem.querySelector('.type').textContent;
-              const genre = contentItem.querySelector('.genre').textContent;
-              const status = contentItem.querySelector('.content-status').textContent;
-              
-              // Open the modal and change title
-              modal.style.display = "block";
-              modal.querySelector('h2').textContent = "Edit Content"; // Change modal title
-              isEditing = true;
-              editingElement = contentItem;
-              
-              // Pre-fill the form with existing content data
-              document.getElementById('title').value = title;
-              
-              // Set content type
-              if (type.includes('Movie')) {
-                  contentTypeSelect.value = 'movie';
-                  movieField.style.display = 'block';
-                  seriesField.style.display = 'none';
-                  // Extract duration from type (e.g., "Movie • 2h 15m")
-                  const duration = type.match(/(\d+)h\s*(\d+)m/);
-                  if (duration) {
-                      const hours = parseInt(duration[1]);
-                      const minutes = parseInt(duration[2]);
-                      document.getElementById('duration').value = hours * 60 + minutes;
-                  }
-              } else if (type.includes('Series')) {
-                  contentTypeSelect.value = 'series';
-                  movieField.style.display = 'none';
-                  seriesField.style.display = 'block';
-                  // Extract seasons from type (e.g., "TV Series • 3 Seasons")
-                  const seasons = type.match(/(\d+)\s*Seasons/);
-                  if (seasons) {
-                      document.getElementById('seasons').value = seasons[1];
-                  }
-              }
-              
-              // Set genres
-              const genres = genre.split(', ');
-              Array.from(document.getElementById('genres').options).forEach(option => {
-                  option.selected = genres.includes(option.text);
-              });
-              
-              // Set status
-              document.getElementById('status').value = status.toLowerCase();
-          });
-      });
+    // Add event listeners to all edit and delete buttons
+    document.querySelectorAll('.edit-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const contentItem = this.closest('.content-item');
+            const title = contentItem.querySelector('h3').textContent;
+            const type = contentItem.querySelector('.type').textContent;
+            const genre = contentItem.querySelector('.genre').textContent;
+            const status = contentItem.querySelector('.content-status').textContent;
 
-      document.querySelectorAll('.delete-btn').forEach(button => {
-          button.addEventListener('click', function(e) {
-              const contentItem = this.closest('.content-item');
-              const title = contentItem.querySelector('h3').textContent;
-              
-              if (confirm(`Are you sure you want to delete "${title}"?`)) {
-                  // Add animation for smooth removal
-                  contentItem.style.animation = 'fadeOut 0.3s ease';
-                  setTimeout(() => {
-                      contentItem.remove();
-                  }, 300);
-                  
-                  // Here you would typically make an API call to delete the content
-                  console.log(`Deleted content: ${title}`);
-              }
-          });
-      });
+            // Open the modal and change title
+            modal.style.display = "block";
+            modal.querySelector('h2').textContent = "Edit Content"; // Change modal title
+            isEditing = true;
+            editingElement = contentItem;
 
-      // Add this CSS for the fade out animation
-      const style = document.createElement('style');
-      style.textContent = `
+            // Pre-fill the form with existing content data
+            document.getElementById('title').value = title;
+
+            // Set content type
+            if (type.includes('Movie')) {
+                contentTypeSelect.value = 'movie';
+                movieField.style.display = 'block';
+                seriesField.style.display = 'none';
+                // Extract duration from type (e.g., "Movie • 2h 15m")
+                const duration = type.match(/(\d+)h\s*(\d+)m/);
+                if (duration) {
+                    const hours = parseInt(duration[1]);
+                    const minutes = parseInt(duration[2]);
+                    document.getElementById('duration').value = hours * 60 + minutes;
+                }
+            } else if (type.includes('Series')) {
+                contentTypeSelect.value = 'series';
+                movieField.style.display = 'none';
+                seriesField.style.display = 'block';
+                // Extract seasons from type (e.g., "TV Series • 3 Seasons")
+                const seasons = type.match(/(\d+)\s*Seasons/);
+                if (seasons) {
+                    document.getElementById('seasons').value = seasons[1];
+                }
+            }
+
+            // Set genres
+            const genres = genre.split(', ');
+            Array.from(document.getElementById('genres').options).forEach(option => {
+                option.selected = genres.includes(option.text);
+            });
+
+            // Set status
+            document.getElementById('status').value = status.toLowerCase();
+        });
+    });
+
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const contentItem = this.closest('.content-item');
+            const title = contentItem.querySelector('h3').textContent;
+
+            if (confirm(`Are you sure you want to delete "${title}"?`)) {
+                // Add animation for smooth removal
+                contentItem.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    contentItem.remove();
+                }, 300);
+
+                // Here you would typically make an API call to delete the content
+                console.log(`Deleted content: ${title}`);
+            }
+        });
+    });
+
+    // Add this CSS for the fade out animation
+    const style = document.createElement('style');
+    style.textContent = `
           @keyframes fadeOut {
               from { opacity: 1; }
               to { opacity: 0; }
           }
       `;
-      document.head.appendChild(style);
+    document.head.appendChild(style);
 
-      // Modify the form submission handler to handle both add and edit cases
-      let isEditing = false;
-      let editingElement = null;
+    // Modify the form submission handler to handle both add and edit cases
+    let isEditing = false;
+    let editingElement = null;
 
-      form.onsubmit = function (e) {
-          e.preventDefault();
-          
-          const formData = new FormData(form);
-          const contentData = {
-              title: formData.get('title'),
-              type: formData.get('contentType'),
-              duration: formData.get('duration'),
-              seasons: formData.get('seasons'),
-              genres: Array.from(document.getElementById('genres').selectedOptions).map(opt => opt.text).join(', '),
-              status: formData.get('status')
-          };
+    form.onsubmit = function (e) {
+        e.preventDefault();
 
-          if (isEditing && editingElement) {
-              // Update existing content
-              updateContentItem(editingElement, contentData);
-              isEditing = false;
-              editingElement = null;
-          } else {
-              // Create new content item
-              createNewContentItem(contentData);
-          }
+        const formData = new FormData(form);
+        const contentData = {
+            title: formData.get('title'),
+            type: formData.get('contentType'),
+            duration: formData.get('duration'),
+            seasons: formData.get('seasons'),
+            genres: Array.from(document.getElementById('genres').selectedOptions).map(opt => opt.text).join(', '),
+            status: formData.get('status')
+        };
 
-          // Reset form and close modal
-          form.reset();
-          modal.style.display = "none";
-      };
+        if (isEditing && editingElement) {
+            // Update existing content
+            updateContentItem(editingElement, contentData);
+            isEditing = false;
+            editingElement = null;
+        } else {
+            // Create new content item
+            createNewContentItem(contentData);
+        }
 
-      function createNewContentItem(data) {
-          const newItem = document.createElement('div');
-          newItem.className = 'content-item';
-          newItem.innerHTML = `
+        // Reset form and close modal
+        form.reset();
+        modal.style.display = "none";
+    };
+
+    function createNewContentItem(data) {
+        const newItem = document.createElement('div');
+        newItem.className = 'content-item';
+        newItem.innerHTML = `
               <img src="../../images/movie/placeholder.png" alt="${data.title}">
               <div class="content-details">
                   <h3>${data.title}</h3>
-                  <p class="type">${data.type === 'movie' ? 
-                      `Movie • ${Math.floor(data.duration/60)}h ${data.duration%60}m` : 
-                      `TV Series • ${data.seasons} Seasons`}</p>
+                  <p class="type">${data.type === 'movie' ?
+            `Movie • ${Math.floor(data.duration/60)}h ${data.duration%60}m` :
+            `TV Series • ${data.seasons} Seasons`}</p>
                   <p class="genre">${data.genres}</p>
               </div>
               <div class="content-status ${data.status}">${data.status}</div>
@@ -457,31 +457,283 @@
                   <button class="delete-btn"><i class="fas fa-trash"></i></button>
               </div>
           `;
-          
-          // Add event listeners to new buttons
-          newItem.querySelector('.edit-btn').addEventListener('click', editButtonHandler);
-          newItem.querySelector('.delete-btn').addEventListener('click', deleteButtonHandler);
-          
-          document.querySelector('.content-list').appendChild(newItem);
-      }
 
-      function updateContentItem(element, data) {
-          element.querySelector('h3').textContent = data.title;
-          element.querySelector('.type').textContent = data.type === 'movie' ? 
-              `Movie • ${Math.floor(data.duration/60)}h ${data.duration%60}m` : 
-              `TV Series • ${data.seasons} Seasons`;
-          element.querySelector('.genre').textContent = data.genres;
-          element.querySelector('.content-status').textContent = data.status;
-          element.querySelector('.content-status').className = `content-status ${data.status}`;
-      }
+        // Add event listeners to new buttons
+        newItem.querySelector('.edit-btn').addEventListener('click', editButtonHandler);
+        newItem.querySelector('.delete-btn').addEventListener('click', deleteButtonHandler);
 
-      // Clear form when adding new content
-      addBtn.addEventListener('click', function() {
-          isEditing = false;
-          editingElement = null;
-          form.reset();
-          modal.querySelector('h2').textContent = "Add New Content"; // Reset modal title
-      });
-    </script>
-  </body>
+        document.querySelector('.content-list').appendChild(newItem);
+    }
+
+    function updateContentItem(element, data) {
+        element.querySelector('h3').textContent = data.title;
+        element.querySelector('.type').textContent = data.type === 'movie' ?
+            `Movie • ${Math.floor(data.duration/60)}h ${data.duration%60}m` :
+            `TV Series • ${data.seasons} Seasons`;
+        element.querySelector('.genre').textContent = data.genres;
+        element.querySelector('.content-status').textContent = data.status;
+        element.querySelector('.content-status').className = `content-status ${data.status}`;
+    }
+
+    // Clear form when adding new content
+    addBtn.addEventListener('click', function() {
+        isEditing = false;
+        editingElement = null;
+        form.reset();
+        modal.querySelector('h2').textContent = "Add New Content"; // Reset modal title
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        // Check if user is authenticated
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "login.html";
+            return;
+        }
+    });
+</script>
+<script src="../../public/js/auth.js"></script>
+<script src="../../public/js/api.js"></script>
+<script>
+    // Constants
+    const token = localStorage.getItem("token");
+    const ITEMS_PER_PAGE = 6;
+    const API_BASE_URL = 'http://localhost:3000';
+
+    // State management
+    let allMedia = [];
+    let currentPage = 1;
+    let seriesSeasons = {};
+
+    // DOM Elements
+    const contentList = document.querySelector('.content-list');
+    const searchInput = document.querySelector('.search-box input');
+    const typeFilter = document.querySelector('.filters select:nth-child(1)');
+    const statusFilter = document.querySelector('.filters select:nth-child(3)');
+    const paginationDiv = document.querySelector('.pagination');
+
+    // Fetch all media from the API
+    function getRandomStatus() {
+        const statuses = ['Active', 'Upcoming', 'Discontinued'];
+        return statuses[Math.floor(Math.random() * statuses.length)];
+    }
+
+    async function fetchMedia() {
+        try {
+            console.log('Fetching from:', `${API_BASE_URL}/movie/media`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const response = await fetch(`${API_BASE_URL}/movie/media`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            console.log('Response status:', response.status);
+
+            if (!response.ok) throw new Error('Failed to fetch media');
+
+            const rawData = await response.json();
+            console.log('Raw API response:', rawData);
+
+            // Check if result is an array
+            if (!Array.isArray(rawData.result)) {
+                throw new Error('API response format is incorrect: result is not an array');
+            }
+
+            // Assign a random status to each media item
+            allMedia = rawData.result.map(item => ({
+                ...item,
+                status: getRandomStatus() // Add a random status if missing
+            }));
+
+            console.log('Processed media data:', allMedia);
+
+            renderMedia();
+        } catch (err) {
+            console.error('Error in fetchMedia:', err);
+            allMedia = [];
+            contentList.innerHTML = `<p class="error">Error loading content: ${err.message}</p>`;
+        }
+    }
+
+    function getStatusClass(status) {
+        switch (status.toLowerCase()) {
+            case 'active':
+                return 'active';
+            case 'upcoming':
+                return 'upcoming';
+            case 'discontinued':
+                return 'inactive';
+            default:
+                return '';
+        }
+    }
+
+    function formatDuration(duration) {
+        if (!duration) return '';
+        const hours = Math.floor(duration.hours || 0);
+        const minutes = duration.minutes || 0;
+        return `${hours}h ${minutes}m`;
+    }
+
+    // Render media items
+    function renderMedia() {
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+
+        const filteredMedia = filterMedia();
+        const paginatedMedia = filteredMedia.slice(startIndex, endIndex);
+
+        contentList.innerHTML = paginatedMedia.map(item => `
+        <div class="content-item" data-id="${item.media_id}" data-type="${item.media_type}">
+            <img src="${item.media_link || '../../images/movie/placeholder.png'}"
+                 alt="${item.title}"
+                 onerror="this.src='../../images/movie/placeholder.png'">
+            <div class="content-details">
+                <h3>${item.title}</h3>
+                <p class="type">${item.media_type} • ${
+            item.media_type === 'Movie'
+                ? formatDuration(item.duration)
+                : `${seriesSeasons[item.media_id] || 0} Seasons`
+        }</p>
+                <p class="genre">Genre ID: ${item.genre}</p>
+            </div>
+            <div class="content-status ${getStatusClass(item.status)}">${item.status}</div>
+            <div class="content-actions">
+                <button class="edit-btn" onclick="handleEdit(${item.media_id}, '${item.media_type}')">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="delete-btn" onclick="handleDelete(${item.media_id}, '${item.media_type}')">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+
+        setupPagination();
+    }
+
+    // Filter media based on search and filters
+    function filterMedia() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const typeValue = typeFilter.value;
+        const statusValue = statusFilter.value;
+
+        return allMedia.filter(item => {
+            const matchesSearch = item.title.toLowerCase().includes(searchTerm);
+            const matchesType = !typeValue || item.media_type === typeValue;
+            const matchesStatus = !statusValue || item.status.toLowerCase() === statusValue.toLowerCase();
+            return matchesSearch && matchesType && matchesStatus;
+        });
+    }
+
+    // Setup pagination
+    function setupPagination() {
+        const filteredMedia = filterMedia();
+        const totalPages = Math.ceil(filteredMedia.length / ITEMS_PER_PAGE);
+
+        const pageNumbers = document.querySelector('.page-numbers');
+        pageNumbers.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button');
+            button.textContent = i;
+            button.className = i === currentPage ? 'active' : '';
+            button.onclick = () => {
+                currentPage = i;
+                renderMedia();
+            };
+            pageNumbers.appendChild(button);
+        }
+
+        // Update prev/next buttons
+        document.querySelector('.prev-btn').disabled = currentPage === 1;
+        document.querySelector('.next-btn').disabled = currentPage === totalPages;
+    }
+
+    // Handle delete
+    async function handleDelete(id, type) {
+        if (!confirm('Are you sure you want to delete this content?')) return;
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/${type.toLowerCase()}/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!response.ok) throw new Error('Failed to delete content');
+
+            // Remove from local array and re-render
+            allMedia = allMedia.filter(item => item.media_id !== id);
+            renderMedia();
+        } catch (err) {
+            console.error('Error:', err);
+            alert('Failed to delete content');
+        }
+    }
+
+    // Handle edit (opens modal with pre-filled data)
+    function handleEdit(id, type) {
+        const item = allMedia.find(m => m.media_id === id);
+        if (!item) return;
+
+        const modal = document.getElementById('addContentModal');
+        const form = document.getElementById('addContentForm');
+
+        // Pre-fill form fields
+        form.title.value = item.title;
+        form.contentType.value = type.toLowerCase();
+        if (type === 'Movie' && item.duration) {
+            form.duration.value = (item.duration.hours * 60) + item.duration.minutes;
+        }
+        form.description.value = item.description || '';
+        form.status.value = item.status.toLowerCase();
+
+        // Show modal
+        modal.style.display = 'block';
+        modal.querySelector('h2').textContent = 'Edit Content';
+    }
+
+    // Event Listeners
+    searchInput.addEventListener('input', () => {
+        currentPage = 1;
+        renderMedia();
+    });
+
+    typeFilter.addEventListener('change', () => {
+        currentPage = 1;
+        renderMedia();
+    });
+
+    statusFilter.addEventListener('change', () => {
+        currentPage = 1;
+        renderMedia();
+    });
+
+    document.querySelector('.prev-btn').addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderMedia();
+        }
+    });
+
+    document.querySelector('.next-btn').addEventListener('click', () => {
+        const totalPages = Math.ceil(filterMedia().length / ITEMS_PER_PAGE);
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderMedia();
+        }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', fetchMedia);
+</script>
+</body>
 </html>

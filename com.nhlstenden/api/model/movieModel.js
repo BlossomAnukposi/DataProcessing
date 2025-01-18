@@ -43,6 +43,19 @@ class MovieModel extends ModelParent
             this.handleError('updating movie', err);
         }
     }
+
+    async getAllMedia() {
+        try {
+            const result = await database.query('SELECT * FROM public.all_media');
+            if (!result) {
+                throw new Error('Fetching all movies failed');
+            }
+
+            return result;
+        } catch (err) {
+            this.handleError('fetching all movies', err);
+        }
+    }
 }
 
 module.exports = new MovieModel();
