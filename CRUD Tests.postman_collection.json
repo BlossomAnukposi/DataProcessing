@@ -1,0 +1,2848 @@
+{
+  "info": {
+    "_postman_id": "2d3805ef-07d6-4295-b789-4bc231922560",
+    "name": "CRUD Tests",
+    "description": "# ⛓️ Get started here\n\nPostman allows you to test your APIs using simple Javascript code. You can evaluate your response body, headers, cookies, and more using the [ChaiJS BDD](https://www.chaijs.com/api/bdd/) syntax.\n\nThis template guides you through the process of setting up an integration test to ensure that all individual components of an API function together seamlessly.\n\nThe API under test in this collection includes three endpoints for registering and receiving a token, accessing your unique generated name, and unregistering a token:\n\n- POST `/register`\n- POST `/unregister`\n- GET `/my-name`\n    \n\nBy setting up requests in the order of the operation, we can test the flow of data to and from the endpoints and ensure they work together as expected. We also verify that the data persists between requests on the back end.\n\n## 🔖 **How to use this template**\n\n**Step 1:** Check out the requests' documentation to learn more about -\n\n- what each request is meant to do.\n- the tests we've added against each one.\n    \n\n**Step 2:** Run this collection by clicking on \"Run\".\n\n<img src=\"https://content.pstmn.io/84019b0f-69c8-4c5f-98b9-2c90a6f9a0b1/Y29sbGVjdGlvbi1ydW5uZXItYnV0dG9uLmpwZWc=\" alt=\"\" height=\"103\" width=\"266\">\n\n**Step 3:** To customize this template, replace the request URLs with your API endpoints and add or edit the tests if needed.\n\n## ℹ️ Resources\n\n[Scripting in Postman](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)\n\n[Test script examples](https://learning.postman.com/docs/writing-scripts/script-references/test-examples/)\n\n[Postman Sandbox API reference](https://learning.postman.com/docs/sending-requests/grpc/postman-sandbox-api/#writing-assertions)\n\n[Using the Collection Runner](https://learning.postman.com/docs/collections/running-collections/intro-to-collection-runs/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40175269"
+  },
+  "item": [
+    {
+      "name": "POST",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"An access token is returned\", () => {",
+                  "    pm.expect(pm.response.json()).to.have.property('token')",
+                  "    pm.expect(pm.response.json().token).to.be.a('string')",
+                  "    // Set the collection-scope \"token\" variable to the token received from the API",
+                  "    // This lets us use it in other requests",
+                  "    pm.collectionVariables.set('token', pm.response.json().token)",
+                  "})",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["register"]
+            },
+            "description": "This returns a `token` that you can use to retrieve information later on.\n\nWe have included a test to confirm if a token is returned. We have also added test scripts to copy the token to the `token` collection variable. This makes it easy for us to reuse this token in other requests in the collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Unregister",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Returns 200 OK status\", () => {",
+                  "    pm.response.to.have.status(200)",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"token\": \"{{token}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/unregister",
+              "host": ["{{baseUrl}}"],
+              "path": ["unregister"]
+            },
+            "description": "This request un-registers a token by using the token collection variable in the POST body.\n\nWe also added a test to ensure the response has a 200 OK status code."
+          },
+          "response": []
+        },
+        {
+          "name": "add movie",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function () {",
+                  "  pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Validate the result array\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.result).to.be.an('array').that.is.not.empty;",
+                  "  responseData.result.forEach(function(movie) {",
+                  "    pm.expect(movie).to.have.property('movie_id').that.is.a('number');",
+                  "    pm.expect(movie).to.have.property('age_classification').that.is.a('number');",
+                  "    pm.expect(movie).to.have.property('genre').that.is.a('number');",
+                  "    pm.expect(movie).to.have.property('quality_type').that.is.a('string');",
+                  "    pm.expect(movie).to.have.property('title').that.is.a('string');",
+                  "    pm.expect(movie).to.have.property('duration').to.be.an('object');",
+                  "    pm.expect(movie.duration).to.have.property('hours').that.is.a('number');",
+                  "    pm.expect(movie.duration).to.have.property('minutes').that.is.a('number');",
+                  "    pm.expect(movie.duration).to.have.property('seconds').that.is.a('number');",
+                  "    pm.expect(movie).to.have.property('description').that.is.a('string');",
+                  "    pm.expect(movie).to.have.property('view_count').that.is.a('number');",
+                  "    pm.expect(movie).to.have.property('movie_link').that.is.a('string');",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Title is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  responseData.result.forEach(function(movie) {",
+                  "    pm.expect(movie.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Duration is in the expected format - hours, minutes, and seconds\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.duration).to.exist;",
+                  "  pm.expect(responseData.duration).to.be.an('object');",
+                  "  pm.expect(responseData.duration.hours).to.be.a('number');",
+                  "  pm.expect(responseData.duration.minutes).to.be.a('number');",
+                  "  pm.expect(responseData.duration.seconds).to.be.a('number');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"age_classification\": 1,\n    \"genre\": 3,\n    \"quality_type\": \"UHD\",\n    \"title\": \"Test Movie\",\n    \"duration\": \"3:01:23\",\n    \"description\": \"This movie has been created as a part of an automated test session. If you see this in the database, it means the delete movie route could use an update.\",\n    \"view_count\": \"0\",\n    \"movie_link\": \"https://m.media-amazon.com/images/M/MV5BNTVkZTE5MmEtNjU1Yi00YjhlLTgyMGUtNWVlNGI4NDU3ZmQzXkEyXkFqcGc@._V1_.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/movie",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["movie"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add preference to a profile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 404\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(404);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type header is application/json\", function () {",
+                  "  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Error message is present in the response\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.error.message).to.exist;",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Error message is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.error.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Error message should not be empty\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Error response has the expected structure\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.error).to.exist.and.to.be.an('object');",
+                  "  pm.expect(responseData.error.message).to.exist.and.to.be.a('string');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/preference/profile/2",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["preference", "profile", "2"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add an account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 400\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(400);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required Content-Type header with value application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message field is present in the response\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.message).to.exist;",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message field is a non-empty string\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Message should not be empty\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Verify that the response does not contain any sensitive information\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "",
+                  "    pm.expect(responseData).to.not.have.property('password');",
+                  "    pm.expect(responseData).to.not.have.property('creditCardNumber');",
+                  "    pm.expect(responseData).to.not.have.property('socialSecurityNumber');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"user9@example.com\",\n    \"account_status\": \"inactive\",\n    \"join_date\": \"2023-12-31T23:00:00.000Z\",\n    \"invited_by_account_id\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/account",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["account"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create series",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.result).to.have.property('series_id');",
+                  "    pm.expect(responseData.result).to.have.property('title');",
+                  "    pm.expect(responseData.result).to.have.property('age_classification');",
+                  "    pm.expect(responseData.result).to.have.property('genre');",
+                  "    pm.expect(responseData.result).to.have.property('description');",
+                  "    pm.expect(responseData.result).to.have.property('quality');",
+                  "    pm.expect(responseData.result).to.have.property('series_url');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Test Series\",\n    \"age_classification\": 1,\n    \"genre\": 3,\n    \"description\": \"A test series\",\n    \"quality\": \"HD\",\n    \"series_url\": \"https://example.com/series\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/series",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["series"]
+            }
+          }
+        },
+        {
+          "name": "create subtitle",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.result).to.have.property('subtitle_id');",
+                  "    pm.expect(responseData.result).to.have.property('language');",
+                  "    pm.expect(responseData.result).to.have.property('content');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"language\": \"English\",\n    \"content\": \"Test subtitle content\",\n    \"movieId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/subtitle",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["subtitle"]
+            }
+          }
+        },
+        {
+          "name": "create watchlist entry",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.result).to.have.property('watchlist_id');",
+                  "    pm.expect(responseData.result).to.have.property('profile_id');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 1,\n    \"movieId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/watchlist",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["watchlist"]
+            }
+          }
+        },
+        {
+          "name": "create watched media entry",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.result).to.have.property('watched_media_id');",
+                  "    pm.expect(responseData.result).to.have.property('profile_id');",
+                  "    pm.expect(responseData.result).to.have.property('watch_date');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 1,\n    \"movieId\": 1,\n    \"watchDate\": \"2024-03-19\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/watchedMediaList",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["watchedMediaList"]
+            }
+          }
+        },
+        {
+          "name": "create season",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.result).to.have.property('season_id');",
+                  "    pm.expect(responseData.result).to.have.property('series_id');",
+                  "    pm.expect(responseData.result).to.have.property('season_number');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"seriesId\": 1,\n    \"seasonNumber\": 1,\n    \"seasonUrl\": \"https://example.com/season1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/season",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["season"]
+            }
+          }
+        },
+        {
+          "name": "create profile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.result).to.have.property('profile_id');",
+                  "    pm.expect(responseData.result).to.have.property('account_id');",
+                  "    pm.expect(responseData.result).to.have.property('profile_name');",
+                  "    pm.expect(responseData.result).to.have.property('date_of_birth');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountId\": 1,\n    \"profileName\": \"Test Profile\",\n    \"dateOfBirth\": \"2000-01-01\",\n    \"profileLanguage\": \"English\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/profile",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["profile"]
+            }
+          }
+        },
+        {
+          "name": "sign in",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has auth token\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.result).to.have.property('token');",
+                  "    pm.collectionVariables.set('authToken', responseData.result.token);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/account/signin",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["account", "signin"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET",
+      "item": [
+        {
+          "name": "get all accounts",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.be.an('array').and.to.have.lengthOf.at.least(1);",
+                  "    ",
+                  "    responseData.result.forEach(function(item){",
+                  "        pm.expect(item).to.have.property('account_id');",
+                  "        pm.expect(item).to.have.property('email');",
+                  "        pm.expect(item).to.have.property('account_status');",
+                  "        pm.expect(item).to.have.property('join_date');",
+                  "        pm.expect(item).to.have.property('invited_by_account_id');",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Email is in a valid format\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "    responseData.result.forEach(function(account) {",
+                  "        pm.expect(account.email).to.be.a('string').and.to.match(/^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/);",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Join date is in a valid date format\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    responseData.result.forEach(function(account) {",
+                  "        pm.expect(account.join_date).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result array is present and contains expected number of elements\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "    pm.expect(responseData.result.length).to.equal(1);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"movie_link\": \"https://unitedpalace.boletosexpress.com/events/770/77086.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/account",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["account"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all series",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "    ",
+                  "    responseData.result.forEach(function(series) {",
+                  "        pm.expect(series).to.have.property('series_id');",
+                  "        pm.expect(series).to.have.property('title');",
+                  "        pm.expect(series).to.have.property('age_classification');",
+                  "        pm.expect(series).to.have.property('genre');",
+                  "        pm.expect(series).to.have.property('description');",
+                  "        pm.expect(series).to.have.property('quality');",
+                  "        pm.expect(series).to.have.property('series_url');",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Title is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  ",
+                  "  responseData.result.forEach(function(series) {",
+                  "    pm.expect(series.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Age_classification and genre are non-negative integers\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.result).to.be.an('array').that.is.not.empty;",
+                  "    ",
+                  "    responseData.result.forEach(function(series) {",
+                  "        pm.expect(series.age_classification).to.be.a('number').that.is.not.below(0);",
+                  "        pm.expect(series.genre).to.be.a('number').that.is.not.below(0);",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Quality is in a valid format\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "    ",
+                  "    responseData.result.forEach(function(series) {",
+                  "        pm.expect(series.quality).to.be.a('string').and.to.not.be.empty;",
+                  "    });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"movie_link\": \"https://unitedpalace.boletosexpress.com/events/770/77086.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/series",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["series"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all movies",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "",
+                  "    responseData.result.forEach(function(movie) {",
+                  "        pm.expect(movie).to.include.all.keys('movie_id', 'age_classification', 'genre', 'quality_type', 'title', 'duration', 'description', 'view_count', 'movie_link');",
+                  "        pm.expect(movie.duration).to.be.an('object');",
+                  "        pm.expect(movie.duration.hours).to.be.a('number');",
+                  "        pm.expect(movie.duration.minutes).to.be.a('number');",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Duration is a valid object with hours and minutes\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.duration).to.be.an('object');",
+                  "  pm.expect(responseData.duration.hours).to.exist.and.to.be.a('number');",
+                  "  pm.expect(responseData.duration.minutes).to.exist.and.to.be.a('number');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"View count is a non-negative integer\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "    responseData.result.forEach(function(movie) {",
+                  "        pm.expect(movie.view_count).to.be.a('number').and.to.be.at.least(0);",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Movie link is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  responseData.result.forEach(function(movie) {",
+                  "    pm.expect(movie.movie_link).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Movie link should not be empty\");",
+                  "  });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"movie_link\": \"https://unitedpalace.boletosexpress.com/events/770/77086.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/movie",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["movie"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get movie by id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type header is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result object has all the required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "",
+                  "    pm.expect(responseData.result).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.have.property('movie_id');",
+                  "    pm.expect(responseData.result).to.have.property('age_classification');",
+                  "    pm.expect(responseData.result).to.have.property('genre');",
+                  "    pm.expect(responseData.result).to.have.property('quality_type');",
+                  "    pm.expect(responseData.result).to.have.property('title');",
+                  "    pm.expect(responseData.result).to.have.property('duration');",
+                  "    pm.expect(responseData.result).to.have.property('description');",
+                  "    pm.expect(responseData.result).to.have.property('view_count');",
+                  "    pm.expect(responseData.result).to.have.property('movie_link');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Duration object has valid hours and minutes\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.duration).to.exist;",
+                  "  pm.expect(responseData.duration.hours).to.be.a('number');",
+                  "  pm.expect(responseData.duration.minutes).to.be.a('number');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message field should be empty\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.message).to.equal(\"\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"age_classification\": 1,\n    \"genre\": 3,\n    \"quality_type\": \"UHD\",\n    \"title\": \"Everybody loves Jenifa\",\n    \"duration\": \"3:01:23\",\n    \"description\": \"Jenifa's popularity fades when a shady new neighbor, Lobster, outshines her charity work. In Ghana, Jenifa and friends face a deadly drug baron after a bag of drugs is mistakenly left in their rental.\",\n    \"view_count\": \"3000\",\n    \"movie_link\": \"https://technext24.com/wp-content/uploads/2024/12/everybody-loves-jenifa.jpeg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/movie/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["movie", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all entries in watchlist",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/watchlist",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["watchlist"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all subtitles",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    responseData.result.forEach(function(subtitle) {",
+                  "        pm.expect(subtitle.subtitle_id).to.exist;",
+                  "        pm.expect(subtitle.language).to.exist;",
+                  "        pm.expect(subtitle.content).to.exist;",
+                  "        pm.expect(subtitle.episode_id).to.exist;",
+                  "        pm.expect(subtitle.episode_title).to.exist;",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result array is present and contains expected number of elements\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.exist.and.to.be.an('array');",
+                  "  pm.expect(responseData.result).to.have.lengthOf(1);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type header is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Subtitle response properties validation\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    ",
+                  "    responseData.result.forEach(function(subtitle) {",
+                  "        pm.expect(subtitle.subtitle_id).to.be.a('number').and.to.be.at.least(0, \"Subtitle ID should be a non-negative integer\");",
+                  "        pm.expect(subtitle.language).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Language should not be empty\");",
+                  "        pm.expect(subtitle.content).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Content should not be empty\");",
+                  "    });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/subtitle",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["subtitle"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get entries in watched media list",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/watchedMediaList",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["watchedMediaList"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get a series by id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response has the required fields\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  ",
+                  "  responseData.result.forEach(function(series) {",
+                  "    pm.expect(series).to.have.property('series_id');",
+                  "    pm.expect(series).to.have.property('title');",
+                  "    pm.expect(series).to.have.property('age_classification');",
+                  "    pm.expect(series).to.have.property('genre');",
+                  "    pm.expect(series).to.have.property('description');",
+                  "    pm.expect(series).to.have.property('quality');",
+                  "    pm.expect(series).to.have.property('series_url');",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Title is a non-empty string\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "",
+                  "    responseData.result.forEach(function (series) {",
+                  "        pm.expect(series.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Age_classification and genre are non-negative integers\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "    ",
+                  "    responseData.result.forEach(function(series) {",
+                  "        pm.expect(series.age_classification).to.be.a('number').and.to.satisfy((val) => val >= 0, \"Age_classification should be a non-negative integer\");",
+                  "        pm.expect(series.genre).to.be.a('number').and.to.satisfy((val) => val >= 0, \"Genre should be a non-negative integer\");",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Description is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  ",
+                  "  responseData.result.forEach(function(item) {",
+                  "    pm.expect(item.description).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Description should not be empty\");",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Series_url is in a valid URL format\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  responseData.result.forEach(function(series) {",
+                  "      pm.expect(series.series_url).to.match(/^http(s)?:\\/\\/.+/);",
+                  "  });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/series/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["series", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all referral discounts",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    responseData.result.forEach(function(item) {",
+                  "        pm.expect(item.referral_discount_id).to.exist;",
+                  "        pm.expect(item.account_id).to.exist;",
+                  "        pm.expect(item.number_of_referral_uses).to.exist;",
+                  "        pm.expect(item.referral_link).to.exist;",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result array is present and contains expected number of elements\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.exist.and.to.be.an('array');",
+                  "    pm.expect(responseData.result).to.have.lengthOf(1);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message field is empty\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.message).to.equal(\"\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Number of referral uses is a non-negative integer\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "    ",
+                  "    responseData.result.forEach(function(referral) {",
+                  "        pm.expect(referral.number_of_referral_uses).to.be.a('number');",
+                  "        pm.expect(referral.number_of_referral_uses).to.be.at.least(0);",
+                  "    });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/referralDiscount",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["referralDiscount"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all preferences",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type header is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result array in the response should exist and be an array\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.exist.and.to.be.an('array');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"All preference IDs, movie IDs, series IDs, age classifications, genres, and profile IDs are non-negative integers\", function () {",
+                  "    const responseData = pm.response.json().result;",
+                  "",
+                  "    responseData.forEach(preference => {",
+                  "        pm.expect(preference.preference_id).to.be.a('number').and.to.be.at.least(0);",
+                  "        pm.expect(preference.movie_id).to.be.a('number').and.to.be.at.least(0);",
+                  "        pm.expect(preference.series_id).to.be.a('number').and.to.be.at.least(0);",
+                  "        pm.expect(preference.age_classification).to.be.a('number').and.to.be.at.least(0);",
+                  "        pm.expect(preference.genre).to.be.a('number').and.to.be.at.least(0);",
+                  "        pm.expect(preference.profile_id).to.be.a('number').and.to.be.at.least(0);",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message field should be empty or null\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.message).to.be.oneOf(['', null]);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/preference",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["preference"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all episodes",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields - episode_id, season_id, title, number, description, and duration\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "    ",
+                  "    responseData.result.forEach(function(episode) {",
+                  "        pm.expect(episode).to.have.property('episode_id');",
+                  "        pm.expect(episode).to.have.property('season_id');",
+                  "        pm.expect(episode).to.have.property('title');",
+                  "        pm.expect(episode).to.have.property('number');",
+                  "        pm.expect(episode).to.have.property('description');",
+                  "        pm.expect(episode).to.have.property('duration');",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result array is present and contains expected number of elements\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.exist.and.to.be.an('array');",
+                  "  pm.expect(responseData.result).to.have.lengthOf(1);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Episode_id and season_id are non-negative integers\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  ",
+                  "  responseData.result.forEach(function(episode) {",
+                  "    pm.expect(episode.episode_id).to.be.a('number').and.to.be.at.least(0, \"Episode_id should be a non-negative integer\");",
+                  "    pm.expect(episode.season_id).to.be.a('number').and.to.be.at.least(0, \"Season_id should be a non-negative integer\");",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Title and description must be non-empty strings\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  ",
+                  "  responseData.result.forEach(function(episode) {",
+                  "    pm.expect(episode.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+                  "    pm.expect(episode.description).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Description should not be empty\");",
+                  "  });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/episode",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["episode"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all preferences of a profile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "    ",
+                  "    responseData.result.forEach(function(item) {",
+                  "        pm.expect(item.preference_id).to.exist;",
+                  "        pm.expect(item.movie_id).to.exist;",
+                  "        pm.expect(item.series_id).to.exist;",
+                  "        pm.expect(item.age_classification).to.exist;",
+                  "        pm.expect(item.genre).to.exist;",
+                  "        pm.expect(item.profile_id).to.exist;",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result array is present and contains expected number of elements\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.exist.and.to.be.an('array');",
+                  "  pm.expect(responseData.result).to.have.lengthOf(1);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Age_classification and genre are within the expected range\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "",
+                  "    pm.expect(responseData.result).to.be.an('array').that.is.not.empty;",
+                  "    ",
+                  "    responseData.result.forEach(function(item) {",
+                  "        pm.expect(item.age_classification).to.be.within(0, 100);",
+                  "        pm.expect(item.genre).to.be.within(0, 10);",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/preference/profile/2",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["preference", "profile", "2"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all age classifications",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 404\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(404);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required Content-Type header with value 'application/json'\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Error message is not empty\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.error.message).to.exist.and.to.not.be.empty;",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Error object is present in the response\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.error).to.exist;",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message field is a non-empty string\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.error.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/age_classification",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["age_classification"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all profiles",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  const requiredFields = [\"profile_id\", \"account_id\", \"profile_name\", \"date_of_birth\", \"profile_picture\", \"profile_language\"];",
+                  "  requiredFields.forEach(function(field) {",
+                  "    pm.expect(responseData).to.have.property(field);",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Date of birth is in a valid date format\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  responseData.result.forEach(function(profile) {",
+                  "    pm.expect(profile.date_of_birth).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Profile picture is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  responseData.result.forEach(function(profile) {",
+                  "    pm.expect(profile.profile_picture).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Profile picture should not be empty\");",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content type is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileName\": \"Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/profile",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["profile"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all preferences",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  ",
+                  "  responseData.result.forEach(function(item) {",
+                  "    pm.expect(item).to.have.property('preference_id');",
+                  "    pm.expect(item).to.have.property('movie_id');",
+                  "    pm.expect(item).to.have.property('series_id');",
+                  "    pm.expect(item).to.have.property('age_classification');",
+                  "    pm.expect(item).to.have.property('genre');",
+                  "    pm.expect(item).to.have.property('profile_id');",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result array is present and contains expected number of elements\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.exist.and.to.be.an('array');",
+                  "    pm.expect(responseData.result.length).to.equal(1);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Age classification is within a valid range\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  responseData.result.forEach(function(item) {",
+                  "    pm.expect(item.age_classification).to.be.a('number').within(0, 100);",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Genre is a non-negative integer\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  ",
+                  "  responseData.result.forEach(function(item) {",
+                  "    pm.expect(item.genre).to.be.a('number').and.to.be.at.least(0);",
+                  "  });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountId\": 2,\n    \"numberOfReferralUses\": 0,\n    \"referralLink\": \"nfkjn.doih28\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/preference",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["preference"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all genres",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content type is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields - genre_id, name, and description\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.be.an('array').that.is.not.empty;",
+                  "",
+                  "    responseData.result.forEach(function(item) {",
+                  "        pm.expect(item).to.have.property('genre_id');",
+                  "        pm.expect(item).to.have.property('name');",
+                  "        pm.expect(item).to.have.property('description');",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result array is present and has expected number of elements\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.exist.and.to.be.an('array');",
+                  "    pm.expect(responseData.result).to.have.lengthOf.at.least(1);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Name and description are non-empty strings\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  ",
+                  "  responseData.result.forEach(function(item) {",
+                  "    pm.expect(item.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Name should not be empty\");",
+                  "    pm.expect(item.description).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Description should not be empty\");",
+                  "  });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/genre",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["genre"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all seasons",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type header is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result array should exist and be an array\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "",
+                  "    pm.expect(responseData.result).to.exist;",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Validate season_id, series_name, and season_number fields in each element of the result array\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.result).to.be.an('array').that.is.not.empty;",
+                  "    ",
+                  "    responseData.result.forEach(function(element) {",
+                  "        pm.expect(element).to.have.property('season_id').that.is.a('number');",
+                  "        pm.expect(element).to.have.property('series_name').that.is.a('string');",
+                  "        pm.expect(element).to.have.property('season_number').that.is.a('number');",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Season URL is either null or a valid URL\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  responseData.result.forEach(function(season) {",
+                  "    if(season.season_url !== null) {",
+                  "      pm.expect(season.season_url).to.match(/^http(s)?:\\/\\//);",
+                  "    }",
+                  "  });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/season",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["season"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all subscriptions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response Content-Type is application/json\", function () {",
+                  "  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result array should exist and be an array\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.result).to.exist;",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Subscription price is a non-negative integer\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.result).to.be.an('array');",
+                  "    responseData.result.forEach(function(subscription) {",
+                  "        pm.expect(subscription.subscription_price).to.be.a('number').and.to.be.at.least(0);",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Subscription type is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  ",
+                  "  responseData.result.forEach(function(subscription) {",
+                  "    pm.expect(subscription.subscription_type).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Subscription type should not be empty\");",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message field should be empty\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.message).to.equal(\"\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            },
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/subscription",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["subscription"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "DELETE",
+      "item": [
+        {
+          "name": "delete a series",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": 2,\n    \"movieId\": 5,\n    \"genre\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/series/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["series", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete a genre",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 500\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(500);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.message).to.exist;",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message field is not empty\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.message).to.exist.and.to.have.lengthOf.at.least(1, \"Message field should not be empty\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type header is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Verify request is made to the correct endpoint\", function () {",
+                  "    pm.expect(pm.request.url).to.equal(\"http://localhost:3000/genre/29\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Muted Action\",\n    \"description\": \"A genre that uses different means to communicate action themes\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/genre/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["genre", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete an account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 500\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(500);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Message should not be empty\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"user5@example.com\",\n    \"account_status\": \"inactive\",\n    \"join_date\": \"2024-02-14T23:00:00.000Z\",\n    \"invited_by_account_id\": \"1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/account/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["account", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete an episode",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 500\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(500);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type header is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message field is present in the response\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.message).to.exist;",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message field is not empty\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.message).to.exist.and.to.have.lengthOf.at.least(1, \"Message should not be empty\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Validate that the request is a DELETE method\", function () {",
+                  "    pm.expect(pm.request.method).to.equal('DELETE');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"age_classification\": 1,\n    \"genre\": 5,\n    \"quality_type\": \"HD\",\n    \"title\": \"Avatar\",\n    \"duration\": \"2:21:00\",\n    \"description\": \"Random blue people doing random things you've likely never seen before.\",\n    \"view_count\": 1500\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/episode/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["episode", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete a movie",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/movie/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["movie", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PUT/PATCH",
+      "item": [
+        {
+          "name": "update an account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields - account_id, email, account_status, and join_date\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.exist.and.to.be.an('object');",
+                  "    pm.expect(responseData.result).to.have.property('account_id');",
+                  "    pm.expect(responseData.result).to.have.property('email');",
+                  "    pm.expect(responseData.result).to.have.property('account_status');",
+                  "    pm.expect(responseData.result).to.have.property('join_date');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Email is in a valid format\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result.email).to.be.a('string').and.to.match(/^.+@.+\\..+$/);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Result object is present in the response\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.have.property('result');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Join date is in a valid date format\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.result.join_date).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"ublossom@example.com\",\n    \"password\": \"passsssssss\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/account/2",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["account", "2"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update a movie",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function () {",
+                  "  pm.expect(pm.response.to.have.status(201));",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content type is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Validate the result object\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.exist.and.to.be.an('array');",
+                  "  ",
+                  "  responseData.result.forEach(function(movie) {",
+                  "    pm.expect(movie).to.be.an('object');",
+                  "    pm.expect(movie.movie_id).to.exist.and.to.be.a('number');",
+                  "    pm.expect(movie.age_classification).to.exist.and.to.be.a('number');",
+                  "    pm.expect(movie.genre).to.exist.and.to.be.a('number');",
+                  "    pm.expect(movie.quality_type).to.exist.and.to.be.a('string');",
+                  "    pm.expect(movie.title).to.exist.and.to.be.a('string');",
+                  "    pm.expect(movie.duration).to.exist.and.to.be.an('object');",
+                  "    pm.expect(movie.duration.hours).to.exist.and.to.be.a('number');",
+                  "    pm.expect(movie.duration.minutes).to.exist.and.to.be.a('number');",
+                  "    pm.expect(movie.description).to.exist.and.to.be.a('string');",
+                  "    pm.expect(movie.view_count).to.exist.and.to.be.a('number');",
+                  "    pm.expect(movie.movie_link).to.exist.and.to.be.a('string');",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Title is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.be.an('array');",
+                  "  responseData.result.forEach(function(movie) {",
+                  "    pm.expect(movie.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Duration contains hours and minutes properties\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.duration).to.exist.and.to.be.an('object');",
+                  "  pm.expect(responseData.duration).to.have.property('hours');",
+                  "  pm.expect(responseData.duration).to.have.property('minutes');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"movie_link\": \"https://unitedpalace.boletosexpress.com/events/770/77086.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/movie/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["movie", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update an episode",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type header is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Validate the result object\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result).to.exist.and.to.be.an('object');",
+                  "    pm.expect(responseData.result.episode_id).to.exist.and.to.be.a('number');",
+                  "    pm.expect(responseData.result.season_id).to.exist.and.to.be.a('number');",
+                  "    pm.expect(responseData.result.title).to.exist.and.to.be.a('string');",
+                  "    pm.expect(responseData.result.number).to.exist.and.to.be.a('number');",
+                  "    pm.expect(responseData.result.description).to.exist.and.to.be.a('string');",
+                  "    pm.expect(responseData.result.episode_url).to.be.null;",
+                  "    pm.expect(responseData.result.duration).to.exist.and.to.be.an('object');",
+                  "    pm.expect(responseData.result.duration.hours).to.exist.and.to.be.a('number');",
+                  "    pm.expect(responseData.result.duration.minutes).to.exist.and.to.be.a('number');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Title is a non-empty string\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Episode ID, season ID, and number are non-negative integers\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData.result.episode_id).to.be.a('number').and.to.be.at.least(0);",
+                  "    pm.expect(responseData.result.season_id).to.be.a('number').and.to.be.at.least(0);",
+                  "    pm.expect(responseData.result.number).to.be.a('number').and.to.be.at.least(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"duration\": \"01:30:00\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/episode/2",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["episode", "2"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update a profile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Message is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Message should not be empty\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Validate the result object\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.result).to.exist.and.to.be.an('object');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Date of birth is in a valid format\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData.result).to.be.an('object');",
+                  "  pm.expect(responseData.result.date_of_birth).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileName\": \"Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/profile/3",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["profile", "3"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update series",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated Series Title\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/series/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["series", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://postman-integration-testing.glitch.me/"
+    },
+    {
+      "key": "authToken",
+      "value": ""
+    }
+  ]
+}
