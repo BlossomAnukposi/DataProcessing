@@ -99,18 +99,22 @@
         </section>
     </main>
 </div>
-
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "../../views/index.html";
+            return;
+        }
+    });
+</script>
+<script src="../../public/js/auth.js"></script>
+<script src="../../public/js/api.js"></script>
 <script>
     const token = localStorage.getItem("token");
     document.addEventListener("DOMContentLoaded", () => {
         // Function to randomize revenue between a range
         function getRandomRevenue() {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                window.location.href = "login.html";
-                return;
-            }
-
             const min = 100000;
             const max = 1000000;
             return (Math.random() * (max - min) + min).toFixed(2);
@@ -127,7 +131,7 @@
                     }
                 });
                 const usersData = await usersResponse.json();
-                document.getElementById("totalUsers").innerText = usersData.length; // Assuming usersData is an array
+                document.getElementById("totalUsers").innerText = usersData.result.length; // Assuming usersData is an array
 
                 // Get active subscriptions
                 const subscriptionsResponse = await fetch("http://localhost:3000/subscription/active",
@@ -137,7 +141,7 @@
                     }
                 });
                 const subscriptionsData = await subscriptionsResponse.json();
-                document.getElementById("activeSubscriptions").innerText = subscriptionsData.length; // Assuming subscriptionsData is an array
+                document.getElementById("activeSubscriptions").innerText = subscriptionsData.result.length; // Assuming subscriptionsData is an array
 
                 // Get total content
                 const episodesResponse = await fetch("http://localhost:3000/episode",
@@ -154,7 +158,7 @@
                     }
                 }  );
                 const moviesData = await moviesResponse.json();
-                const totalContent = episodesData.length + moviesData.length;
+                const totalContent = episodesData.result.length + moviesData.result.length;
                 document.getElementById("totalContent").innerText = totalContent;
 
                 // Randomize revenue
