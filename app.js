@@ -39,6 +39,7 @@ const seriesRoutes = require("./com.nhlstenden/api/route/seriesRoute");
 const subscriptionRoutes = require("./com.nhlstenden/api/route/subscriptionRoute");
 const subtitleRoutes = require("./com.nhlstenden/api/route/subtitleRoute");
 const watchlistRoutes = require("./com.nhlstenden/api/route/watchlistRoute");
+const watchedMediaListRoutes = require("./com.nhlstenden/api/route/watchedMediaListRoute");
 
 // Public routes
 app.use("/account", accountRoutes);
@@ -55,6 +56,7 @@ app.use("/series", authenticateToken, seriesRoutes);
 app.use("/subscription", authenticateToken, subscriptionRoutes);
 app.use("/subtitle", authenticateToken, subtitleRoutes);
 app.use("/watchlist", authenticateToken, watchlistRoutes);
+app.use("/watchedMediaList", authenticateToken, watchedMediaListRoutes);
 
 // Error handling
 app.use((req, res, next) => {
