@@ -2,9 +2,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
-const {
-  authenticateToken,
-} = require("./com.nhlstenden/middleware/authMiddleware");
+const { authenticateToken,} = require("./com.nhlstenden/middleware/authMiddleware");
 
 // Add body parser middleware
 app.use(express.json());

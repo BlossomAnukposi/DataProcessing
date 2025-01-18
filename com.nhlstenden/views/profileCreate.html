@@ -29,9 +29,9 @@
                     <div class="inputField">
                         <label for="language">Language:</label>
                         <select id="language" name="language" required>
-                            <option value="english">English</option>
-                            <option value="spanish">Spanish</option>
-                            <option value="french">French</option>
+                            <option value="English">English</option>
+                            <option value="Dutch">Dutch</option>
+                            <option value="Pitjantjatjara">Pitjantjatjara</option>
                         </select>
                     </div>
                     <div class="inputField">
@@ -81,9 +81,27 @@
         </form>
     </div>
 </div>
-
+<script src="../public/js/auth.js"></script>
+<script src="../public/js/api.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if user is authenticated
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "login.html";
+            return;
+        }
+    });
+
+    const token = localStorage.getItem("token");
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "login.html";
+            return;
+        }
+
         const form = document.getElementById('createProfileForm');
         const profileImage = document.getElementById('selectedProfileImage');
         const customImageUrlInput = document.getElementById('customImageUrl');
@@ -127,7 +145,6 @@
 
             const profileName = document.getElementById('profileName').value.trim();
             const language = document.getElementById('language').value;
-            const maturityLevel = document.getElementById('maturityLevels').value;
             const dateOfBirth = document.getElementById('date').value;
             const profilePicture = profileImage.src; // Use selected or custom image
 
@@ -137,15 +154,30 @@
                 return;
             }
 
+            // Ensure user is correctly retrieved from localStorage
+            const userStr = localStorage.getItem("user");
+            if (!userStr) {
+                alert("User not found in localStorage.");
+                return;
+            }
+            const user = JSON.parse(userStr);
+            console.log("User data:", user);  // Debugging log
+
+            if (!user || !user.id) {
+                alert("User ID is not found.");
+                return;
+            }
+
             // Prepare payload
             const payload = {
-                account_id: 1, // Replace with actual account_id from session or storage
-                profile_name: profileName,
-                date_of_birth: dateOfBirth,
-                profile_picture: profilePicture,
-                profile_language: language,
-                maturity_level: maturityLevel,
+                accountId: user.id, // Ensure this is correctly retrieved from the user object
+                profileName: profileName,
+                dateOfBirth: dateOfBirth,
+                profilePicture: profilePicture,
+                profileLanguage: language,
             };
+
+            console.log("Payload:", JSON.stringify(payload));  // Debugging log
 
             try {
                 // POST request to create profile
@@ -153,14 +185,15 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
                     },
                     body: JSON.stringify(payload),
                 });
 
                 if (response.ok) {
                     alert('Profile created successfully!');
-                    // Redirect or update UI
-                    window.location.href = 'profileSelect.html';
+                    localStorage.setItem("profile", JSON.stringify(payload))
+                    window.location.href = 'index.html';
                 } else {
                     const errorData = await response.json();
                     alert(`Error: ${errorData.message}`);

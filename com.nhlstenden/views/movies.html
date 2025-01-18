@@ -102,10 +102,22 @@
     </footer>
 </div>
 </body>
+<script src="../public/js/auth.js"></script>
+<script src="../public/js/api.js"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if user is authenticated
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "login.html";
+            return;
+        }
+    });
+
     const previewContainer = document.getElementsByClassName('previewContainer')[0];
     const previewTriggers = document.getElementsByClassName('previewContainerTrigger');
     const divToFade = document.getElementsByClassName('previewContainer')[0];
+    const token = localStorage.getItem('token');
 
     previewContainer.addEventListener('click', () => {
         divToFade.style.display = 'none';
@@ -128,7 +140,14 @@
         const fetchMovies = async () => {
             try {
                 console.log("Fetching movies from API...");
-                const response = await fetch('http://localhost:3000/movie');
+                const response = await fetch(
+                    'http://localhost:3000/movie',
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
 
                 console.log("Response Status:", response.status);
                 if (!response.ok) {
@@ -288,5 +307,5 @@
         fetchMovies();
     });
 </script>
-<!--<script src="../views/script/index.js"></script>-->
+<!--<script src="../views/index.html"></script>-->
 </html>

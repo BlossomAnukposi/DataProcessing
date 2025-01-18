@@ -110,10 +110,22 @@
     </footer>
 </div>
 </body>
+<script src="../public/js/auth.js"></script>
+<script src="../public/js/api.js"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if user is authenticated
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "login.html";
+            return;
+        }
+    });
+
     const previewContainer = document.getElementsByClassName('previewContainer')[0];
     const previewTriggers = document.getElementsByClassName('previewContainerTrigger');
     var divToFade = document.getElementsByClassName('previewContainer')[0];
+    const token = localStorage.getItem('token');
 
     previewContainer.addEventListener('click', () => {
         divToFade.style.display = 'none';
@@ -135,7 +147,13 @@
         const fetchSeries = async () => {
             try {
                 console.log("Fetching series from API...");
-                const response = await fetch('http://localhost:3000/series');
+                const response = await fetch('http://localhost:3000/series',
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+                );
 
                 console.log("Response Status:", response.status);
                 if (!response.ok) {

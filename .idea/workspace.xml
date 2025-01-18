@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="connected frontend to backend" />
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="connected frontend to backend">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/accountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/accountController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/episodeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/episodeController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/accountModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/accountModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/accountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/accountRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/public/js/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/public/js/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/utils/tokenUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/utils/tokenUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/movies.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/profileCreate.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/profileCreate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/profileEdit.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/profileEdit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/profileSelect.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/profileSelect.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/tvShows.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/tvShows.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,12 +50,13 @@
     &quot;assignee&quot;: &quot;BlossomAnukposi&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:BlossomAnukposi/DataProcessing.git&quot;,
-    &quot;accountId&quot;: &quot;a99c55a8-fe57-46fb-a15b-a25455c44df1&quot;
-  }
-}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:BlossomAnukposi/DataProcessing.git",
+    "accountId": "a99c55a8-fe57-46fb-a15b-a25455c44df1"
+  },
+  "reviewCommentPreferred": false
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -80,11 +97,11 @@
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com.nhlstenden" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/views" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/video" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/profile" />
       <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
-      <recent name="$PROJECT_DIR$/com.nhlstenden/images/movie" />
     </key>
   </component>
   <component name="RunManager" selected="npm.build">

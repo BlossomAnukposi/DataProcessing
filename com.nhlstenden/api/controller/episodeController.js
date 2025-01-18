@@ -32,13 +32,15 @@ class EpisodeController extends ControllerParent
         const isXml = this.isXmlRequest(req);
 
         try {
-            const { seasonId } = req.params;
+            const { id } = req.params;
 
-            if (!seasonId) {
+            if (!id) {
                 return this.sendResponse(res, 400, "Season ID is required", null, isXml);
             }
 
-            const episodes = await EpisodeModel.getEpisodesBySeason(seasonId);
+            // if (!await SeasonModel.getEntryById(id)) return this.sendResponse(res, 404, "Season not found", null, isXml);
+
+            const episodes = await EpisodeModel.getEpisodesBySeason(id);
 
             if (!episodes) {
                 return this.sendResponse(res, 404, "No episodes found for the specified season ID", null, isXml);

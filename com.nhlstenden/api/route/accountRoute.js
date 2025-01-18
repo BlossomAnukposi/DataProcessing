@@ -16,25 +16,25 @@ router.patch("/:id", authenticateToken, AccountController.updateAccount);
 
 // Add this route for testing
 router.get("/test-token", async (req, res) => {
-  try {
-    const testUser = {
-      id: 1,
-      email: "test@test.com",
-      account_status: "active",
-    };
+    try {
+        const testUser = {
+            id: 1,
+            email: "test@test.com",
+            account_status: "active",
+        };
 
-    const token = TokenUtils.generateToken(testUser);
-    res.json({
-      success: true,
-      token,
-      decoded: TokenUtils.verifyToken(token),
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
-  }
+        const token = TokenUtils.generateToken(testUser);
+        res.json({
+            success: true,
+            token,
+            decoded: TokenUtils.verifyToken(token),
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
 });
 
 module.exports = router;
