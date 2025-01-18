@@ -82,24 +82,30 @@ class SeriesModel extends ModelParent {
 
   async updateSeries(id, seriesData) {
     try {
+      // Validate id is a number
+      const seriesId = parseInt(id, 10);
+      if (isNaN(seriesId)) {
+        throw new Error("Invalid series ID");
+      }
+
       const result = await database.query(
-        "SELECT * FROM public.update_series($1, $2, $3, $4, $5, $6, $7)",
+        `SELECT * FROM public.update_series($1, $2, $3, $4, $5, $6::quality_type, $7)`,
         [
-          id,
+          seriesId,
           seriesData.title,
-          seriesData.age_classification,
-          seriesData.genre,
+          parseInt(seriesData.age_classification, 10),
+          parseInt(seriesData.genre, 10),
           seriesData.description,
           seriesData.quality,
           seriesData.series_url,
         ]
       );
 
-      if (!result) {
+      if (!result || result.length === 0) {
         throw new Error("Series update failed");
       }
 
-      return result;
+      return result[0];
     } catch (err) {
       this.handleError("updating", err);
     }
