@@ -9,9 +9,9 @@
 
 <body>
 <nav>
-    <a href="index.html"
-    ><img src="../images/logo/logoFull.png" alt="Netflix Logo"
-    /></a>
+    <a href="index.html">
+        <img src="../images/logo/logoFull.png" alt="Netflix Logo" />
+    </a>
 </nav>
 <div class="formWrapper">
     <h2>Log In</h2>
@@ -40,6 +40,7 @@
     </small>
 </div>
 </body>
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const loginForm = document.getElementById("loginForm");
@@ -71,7 +72,12 @@
                     localStorage.setItem("token", data.result.token);
                     localStorage.setItem("user", JSON.stringify(data.result.user));
 
-                    window.location.href = "index.html";
+                    // Check if the email contains "@netflix"
+                    if (email.includes('@netflix')) {
+                        window.location.href = "admin/dashboard.html"; // Redirect to admin dashboard
+                    } else {
+                        window.location.href = "index.html"; // Regular user redirect
+                    }
                 } else {
                     console.error("Login failed:", data.message);
                     alert(
@@ -85,4 +91,5 @@
         });
     });
 </script>
+
 </html>

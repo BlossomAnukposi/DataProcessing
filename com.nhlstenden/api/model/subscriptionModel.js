@@ -53,43 +53,23 @@ class SubscriptionModel extends ModelParent
         }
     }
 
-    async getSubscriptionById(subscriptionId)
-    {
+    //THIS IS A VIEW
+    async getActiveSubscriptions() {
         try {
             const result = await database.query(
-                'SELECT * FROM public.get_subscription_by_id($1)',
-                [subscriptionId]
+                'SELECT * FROM public.active_subscriptions'
             );
 
-            if (!result?.length) {
-                console.log(`No subscription found with ID ${subscriptionId}.`);
+            if (!result) {
+                console.log('No active subscriptions found.');
                 return null;
             }
 
-            return result[0];
+            return result;
         }
-        catch (err) {
-            this.handleError('retrieving', err);
-        }
-    }
-
-    async deleteSubscriptionById(subscriptionId)
-    {
-        try {
-            const result = await database.query(
-                'SELECT * FROM public.delete_subscription_by_id($1)',
-                [subscriptionId]
-            );
-
-            if (!result?.length) {
-                console.log(`No subscription found with ID ${subscriptionId}.`);
-                return null;
-            }
-
-            return result[0];
-        }
-        catch (err) {
-            this.handleError('deleting', err);
+        catch (error) {
+            console.error('Error fetching active subscriptions:', error);
+            this.handleError('getting active subscriptions', error);
         }
     }
 }

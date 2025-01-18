@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="watchlist all endpoints done">
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="watched media list all endpoints done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/watchedMediaListController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/watchedMediaListController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/watchedMediaListModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/watchedMediaListModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/watchedMediaListRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/watchedMediaListRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/subscriptionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/subscriptionController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/subscriptionModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/subscriptionModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/subscriptionRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/subscriptionRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/admin/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/admin/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/views/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/views/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +262,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737206317680</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="watched media list all endpoints done">
+      <option name="closed" value="true" />
+      <created>1737209843305</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1737209843305</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,6 +301,7 @@
     <MESSAGE value="connected frontend to backend" />
     <MESSAGE value="profile connected to frontend" />
     <MESSAGE value="watchlist all endpoints done" />
-    <option name="LAST_COMMIT_MESSAGE" value="watchlist all endpoints done" />
+    <MESSAGE value="watched media list all endpoints done" />
+    <option name="LAST_COMMIT_MESSAGE" value="watched media list all endpoints done" />
   </component>
 </project>

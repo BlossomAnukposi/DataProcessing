@@ -7,7 +7,7 @@ class SubscriptionController extends ControllerParent
     {
         super(SubscriptionModel);
 
-        ['createSubscription', 'updateSubscription'].forEach(
+        ['createSubscription', 'updateSubscription', 'getActiveSubscriptions'].forEach(
             method => this[method] = this[method].bind(this)
         );
     }
@@ -67,6 +67,26 @@ class SubscriptionController extends ControllerParent
 
             const subscription = await SubscriptionModel.updateSubscription(req.params.id, subscriptionType, subscriptionPrice);
             this.sendResponse(res, 200, 'Subscription updated successfully.', subscription, isXml);
+        }
+        catch (err)
+        {
+            this.handleError(err, res, isXml);
+        }
+    }
+
+    async getActiveSubscriptions(req, res)
+    {
+        const isXml = this.isXmlRequest(req);
+        console.log("getActiveSubscriptions method called"); // Add this line for debugging
+    
+        try
+        {
+            const subscriptions = await SubscriptionModel.getActiveSubscriptions();
+    
+            if (!subscriptions || subscriptions.length === 0)
+                return this.sendResponse(res, 404, 'No active subscriptions found', null, isXml);
+    
+            this.sendResponse(res, 200, 'Active subscriptions retrieved successfully', subscriptions, isXml);
         }
         catch (err)
         {
