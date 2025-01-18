@@ -24,7 +24,9 @@
         </div>
         <div class="navbarChild">
             <img src="../images/illustration/notification.png" alt="Notification" width="30">
-            <img src="../images/profile/chicken.jpg" alt="Profile" width="30">
+            <a href="profileSelect.html">
+                <img id ="profileImage" src="../images/profile/chicken.jpg" alt="Profile" width="30">
+            </a>
         </div>
     </header>
     <main class="watchlistMain">
@@ -111,6 +113,15 @@
         if (!token) {
             window.location.href = "login.html";
             return;
+        }
+
+        const profile = JSON.parse(localStorage.getItem("profile"));
+        const profilePicture = profile.profile_picture;
+
+        // If a profile picture exists in local storage, update the image element
+        if (profilePicture) {
+            const profileImageElement = document.getElementById("profileImage");
+            profileImageElement.src = profilePicture;
         }
     });
 

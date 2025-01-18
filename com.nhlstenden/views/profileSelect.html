@@ -11,15 +11,15 @@
     <h1 class="heading">Who's watching?</h1>
     <div class="profilesWrapper" id="profilesWrapper">
         <!-- Dynamically generated profiles will be inserted here -->
+        <a href="../views/profileCreate.html" style="text-decoration: none">
+            <div class="profile addProfile" id="createProfileButton">
+                <div class="addProfileIcon">+</div>
+            </div>
+        </a>
     </div>
     <!-- Edit Button (Initially hidden) -->
     <button id="editButton" style="display:none;">Edit</button>
     <!-- Create Profile Button (Initially visible) -->
-    <a href="../views/profileCreate.html" style="text-decoration: none">
-        <div class="profile addProfile" id="createProfileButton">
-            <div class="addProfileIcon">+</div>
-        </div>
-    </a>
 </div>
 
 <script src="../public/js/auth.js"></script>
