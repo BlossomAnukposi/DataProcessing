@@ -7,7 +7,9 @@ class GenreController extends ControllerParent
     {
         super(GenreModel);
 
-        this.createGenre = this.createGenre.bind(this);
+        ['createGenre', 'getMoviesByGenre', 'getSeriesByGenre'].forEach(
+            method => this[method] = this[method].bind(this)
+        );
     }
 
     async getAllEntries(req, res, method)
@@ -36,6 +38,40 @@ class GenreController extends ControllerParent
             const genre = await GenreModel.createGenre(name, description);
 
             this.sendResponse(res, 201, "Genre created successfully", genre, isXml);
+        } catch (err) {
+            this.handleError(err, res, isXml);
+        }
+    }
+
+    async getMoviesByGenre(req, res) {
+        const isXml = this.isXmlRequest(req);
+        const genreId = req.params.id;
+
+        try {
+            const movies = await GenreModel.getMoviesByGenre(genreId);
+
+            if (!movies) {
+                return this.sendResponse(res, 404, "No movies found in this genre", null, isXml);
+            }
+
+            this.sendResponse(res, 200, "Movies in this genre", movies, isXml);
+        } catch (err) {
+            this.handleError(err, res, isXml);
+        }
+    }
+
+    async getSeriesByGenre(req, res) {
+        const isXml = this.isXmlRequest(req);
+        const genreId = req.params.id;
+
+        try {
+            const series = await GenreModel.getSeriesByGenre(genreId);
+
+            if (!series) {
+                return this.sendResponse(res, 404, "No series found in this genre", null, isXml);
+            }
+
+            this.sendResponse(res, 200, "Series in this genre", series, isXml);
         } catch (err) {
             this.handleError(err, res, isXml);
         }

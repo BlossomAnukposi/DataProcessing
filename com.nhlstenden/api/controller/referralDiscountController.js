@@ -8,6 +8,7 @@ class ReferralDiscountController extends ControllerParent
         super(ReferralDiscountModel);
 
         this.createReferralDiscount = this.createReferralDiscount.bind(this)
+        this.getAllReferralStatuses = this.getAllReferralStatuses.bind(this)
     }
 
     async getAllEntries(req, res, method)
@@ -43,6 +44,20 @@ class ReferralDiscountController extends ControllerParent
         catch (err) {
             console.error('Error creating referral discount:', err);
             this.handleError(err, res, isXml);
+        }
+    }
+
+    async getAllReferralStatuses(req, res){
+        try{
+            const statuses = await ReferralDiscountModel.getAllReferralStatuses();
+
+            if(!statuses)
+                return this.sendResponse(res, 404, 'No referral discount statuses found', null, this.isXmlRequest(req));
+
+            this.sendResponse(res, 200, "Referral discount statuses retrieved successfully", statuses, this.isXmlRequest(req));
+        } catch (err){
+            console.error('Error retrieving referral discount statuses:', err);
+            this.handleError(err, res, this.isXmlRequest(req));
         }
     }
 }

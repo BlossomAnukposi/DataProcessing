@@ -27,6 +27,7 @@ class WatchedMediaListModel extends ModelParent {
         }
     }
 
+    //THIS IS A VIEW
     async getWatchedMediaListByProfile(profileId) {
         try {
             const result = await database.query(

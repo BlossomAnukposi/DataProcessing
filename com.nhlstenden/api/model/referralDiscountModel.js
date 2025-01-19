@@ -27,6 +27,20 @@ class ReferralDiscountModel extends ModelParent
             this.handleError('creating referral discount', err);
         }
     }
+
+    //THIS IS A VIEW
+    async getAllReferralStatuses(){
+        try {
+            const result = await database.query('SELECT * FROM public.referral_stats');
+            if (!result) {
+                throw new Error('Fetching referral statuses failed');
+            }
+            return result;
+        } catch (err) {
+            console.error('Error fetching referral statuses:', err);
+            this.handleError('fetching referral statuses', err);
+        }
+    }
 }
 
 module.exports = new ReferralDiscountModel();

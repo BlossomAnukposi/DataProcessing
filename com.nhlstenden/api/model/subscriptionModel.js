@@ -72,6 +72,25 @@ class SubscriptionModel extends ModelParent
             this.handleError('getting active subscriptions', error);
         }
     }
+
+    async getAccountSubscriptions(){
+        try {
+            const result = await database.query(
+                'SELECT * FROM public.account_subscriptions'
+            );
+
+            if (!result) {
+                console.log('No subscriptions found for this account.');
+                return null;
+            }
+
+            return result;
+        }
+        catch (error) {
+            console.error('Error fetching account subscriptions:', error);
+            this.handleError('getting account subscriptions', error);
+        }
+    }
 }
 
 module.exports = new SubscriptionModel();

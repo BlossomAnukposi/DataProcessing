@@ -3,10 +3,15 @@ const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
 const { authenticateToken,} = require("./com.nhlstenden/middleware/authMiddleware");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./com.nhlstenden/config/swaggerConfig");
 
 // Add body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Swagger documentation
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // CORS handling middleware
 app.use(

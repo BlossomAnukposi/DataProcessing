@@ -1,6 +1,7 @@
 const SeasonModel = require("../model/seasonModel");
 const ControllerParent = require("../../api/controller/controllerParent");
 const EpisodeModel = require("../model/episodeModel");
+const SeriesModel = require("../model/seriesModel");
 
 class EpisodeController extends ControllerParent
 {
@@ -8,7 +9,7 @@ class EpisodeController extends ControllerParent
     {
         super(EpisodeModel);
 
-        ['getEpisodesBySeason', 'updateEpisode', 'createEpisode'].forEach(
+        ['getEpisodesBySeason', 'getEpisodesBySeries', 'updateEpisode', 'createEpisode'].forEach(
             method => this[method] = this[method].bind(this)
         );
     }
@@ -28,25 +29,41 @@ class EpisodeController extends ControllerParent
         await super.deleteEntryById(req, res, 'deleteEpisodeByIdQuery');
     }
 
+    async getEpisodesBySeries(req, res) {
+        const isXml = this.isXmlRequest(req);
+
+        try {
+            const series = await SeriesModel.getEntryById(req.params.id);
+            if (!series) {
+                return this.sendResponse(res, 404, 'Series not found', null, isXml);
+            }
+
+            const episodes = await EpisodeModel.getEpisodesBySeries(req.params.id);
+            if (!episodes) {
+                return this.sendResponse(res, 404, 'No episodes found in this series', null, isXml);
+            }
+
+            this.sendResponse(res, 200, 'Episodes retrieved successfully', episodes, isXml);
+        } catch (err) {
+            this.handleError(err, res, isXml);
+        }
+    }
+
     async getEpisodesBySeason(req, res) {
         const isXml = this.isXmlRequest(req);
 
         try {
-            const { id } = req.params;
-
-            if (!id) {
-                return this.sendResponse(res, 400, "Season ID is required", null, isXml);
+            const season = await SeasonModel.getEntryById(req.params.id, 'getSeasonByIdQuery');
+            if (!season) {
+                return this.sendResponse(res, 404, 'Series not found', null, isXml);
             }
 
-            // if (!await SeasonModel.getEntryById(id)) return this.sendResponse(res, 404, "Season not found", null, isXml);
-
-            const episodes = await EpisodeModel.getEpisodesBySeason(id);
-
+            const episodes = await EpisodeModel.getEpisodesBySeason(req.params.id);
             if (!episodes) {
-                return this.sendResponse(res, 404, "No episodes found for the specified season ID", null, isXml);
+                return this.sendResponse(res, 404, 'No episodes found in this season', null, isXml);
             }
 
-            this.sendResponse(res, 200, "Episodes retrieved successfully", episodes, isXml);
+            this.sendResponse(res, 200, 'Episodes retrieved successfully', episodes, isXml);
         } catch (err) {
             this.handleError(err, res, isXml);
         }

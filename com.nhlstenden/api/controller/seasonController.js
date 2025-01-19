@@ -5,7 +5,7 @@ class SeasonController extends ControllerParent {
     constructor() {
         super(SeasonModel);
 
-        ['createSeason', 'updateSeason'].forEach(
+        ['createSeason', 'updateSeason', 'getSeasonsBySeries'].forEach(
             method => this[method] = this[method].bind(this)
         );
     }
@@ -24,37 +24,34 @@ class SeasonController extends ControllerParent {
     }
 
     // Create a new season
-    // Create a new season
-async createSeason(req, res) {
-    const isXml = this.isXmlRequest(req);
+    async createSeason(req, res) {
+        const isXml = this.isXmlRequest(req);
 
-    try {
-        // Adjusting for the correct body keys, matching the incoming request
-        const { seriesId, seasonNumber, seasonUrl } = req.body;
+        try {
+            // Adjusting for the correct body keys, matching the incoming request
+            const { seriesId, seasonNumber, seasonUrl } = req.body;
 
-        // Check if seasonNumber and seriesId are present
-        if (!seasonNumber) {
-            return this.sendResponse(res, 400, 'Season number is required', null, isXml);
+            // Check if seasonNumber and seriesId are present
+            if (!seasonNumber) {
+                return this.sendResponse(res, 400, 'Season number is required', null, isXml);
+            }
+
+            if (!seriesId) {
+                return this.sendResponse(res, 400, 'Series ID is required', null, isXml);
+            }
+
+            // Adjust this check to ensure seasonUrl can be null or empty
+            if (seasonUrl === null || seasonUrl === "") {
+                return this.sendResponse(res, 400, 'Season URL is required', null, isXml);
+            }
+
+            // Proceed with the season creation if all checks pass
+            const newSeason = await SeasonModel.createSeason(seriesId, seasonNumber, seasonUrl);
+            this.sendResponse(res, 200, 'Season created successfully.', newSeason, isXml);
+        } catch (err) {
+            this.handleError(err, res, isXml);
         }
-
-        if (!seriesId) {
-            return this.sendResponse(res, 400, 'Series ID is required', null, isXml);
-        }
-
-        // Adjust this check to ensure seasonUrl can be null or empty
-        if (seasonUrl === null || seasonUrl === "") {
-            return this.sendResponse(res, 400, 'Season URL is required', null, isXml);
-        }
-
-        // Proceed with the season creation if all checks pass
-        const newSeason = await SeasonModel.createSeason(seriesId, seasonNumber, seasonUrl);
-        this.sendResponse(res, 200, 'Season created successfully.', newSeason, isXml);
-    } catch (err) {
-        this.handleError(err, res, isXml);
     }
-}
-
-
 
     // Update an existing season by ID
     async updateSeason(req, res) {
@@ -69,6 +66,22 @@ async createSeason(req, res) {
 
             const updatedSeason = await SeasonModel.updateSeasonById(req.params.id, seriesId, seasonNumber, seasonUrl);
             this.sendResponse(res, 200, 'Season updated successfully.', updatedSeason, isXml);
+        } catch (err) {
+            this.handleError(err, res, isXml);
+        }
+    }
+
+    async getSeasonsBySeries(req, res) {
+        const isXml = this.isXmlRequest(req);
+
+        try {
+            const seasons = await SeasonModel.getSeasonsBySeries(req.params.id);
+
+            if (!seasons) {
+                return this.sendResponse(res, 404, 'No seasons found for this series', null, isXml);
+            }
+
+            this.sendResponse(res, 200, 'Seasons retrieved successfully', seasons, isXml);
         } catch (err) {
             this.handleError(err, res, isXml);
         }

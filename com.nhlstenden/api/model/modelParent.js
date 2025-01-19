@@ -53,6 +53,12 @@ class ModelParent {
         throw new Error(`${baseError}${operation === 'fetching' ? 's' : ''}: ${err.message}`);
     }
 
+    handleErrorWithCode(message, statusCode = 404) {
+        const error = new Error(`${message}`);
+        error.statusCode = statusCode;
+        throw error;
+    }
+
     // Generic query executor
     async executeQuery(queryName, params = null) {
         const queryFunc = this.queries[queryName];

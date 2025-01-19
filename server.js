@@ -29,4 +29,5 @@ server.on("error", (error) => {
 
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+  console.log("API docs available at http://localhost:3000/api-docs");
 });

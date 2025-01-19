@@ -47,6 +47,24 @@ class SeasonModel extends ModelParent {
             throw error;
         }
     }
+
+    async getSeasonsBySeries(seriesId) {
+        try {
+            const result = await database.query(
+                'SELECT * FROM public.series_seasons WHERE series_id = $1',
+                [seriesId]
+            );
+
+            if (!result || result.length === 0) {
+                this.handleErrorWithCode("No seasons found for series", 404);
+            }
+
+            return result;
+        } catch (error) {
+            console.error('Model Error:', error.message);
+            throw error;
+        }
+    }
 }
 
 module.exports = new SeasonModel();
