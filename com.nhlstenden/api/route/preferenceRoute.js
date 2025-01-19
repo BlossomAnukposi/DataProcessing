@@ -4,7 +4,7 @@ const PreferenceController = require('../controller/preferenceController');
 
 /**
  * @swagger
- * /preferences:
+ * /preference:
  *   get:
  *     tags:
  *       - Preference
@@ -59,7 +59,7 @@ router.get('/', PreferenceController.getAllEntries);
 
 /**
  * @swagger
- * /preferences/{id}:
+ * /preference/{id}:
  *   get:
  *     tags:
  *       - Preference
@@ -119,7 +119,7 @@ router.get('/:id', PreferenceController.getEntryById);
 
 /**
  * @swagger
- * /preferences/{id}:
+ * /preference/{id}:
  *   delete:
  *     tags:
  *       - Preference
@@ -146,7 +146,7 @@ router.delete('/:id', PreferenceController.deleteEntryById);
 
 /**
  * @swagger
- * /preferences/profile/{id}:
+ * /preference/profile/{id}:
  *   get:
  *     tags:
  *       - Preference
@@ -211,7 +211,7 @@ router.get('/profile/:id', PreferenceController.getPreferencesByProfile);
 
 /**
  * @swagger
- * /preferences:
+ * /preference:
  *   post:
  *     tags:
  *       - Preference

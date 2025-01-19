@@ -4,7 +4,7 @@ const MovieController = require('../controller/movieController');
 
 /**
  * @swagger
- * /movies/media:
+ * /movie/media:
  *   get:
  *     tags:
  *       - Movie
@@ -50,7 +50,7 @@ router.get('/media/', MovieController.getAllMedia);
 
 /**
  * @swagger
- * /movies:
+ * /movie:
  *   get:
  *     tags:
  *       - Movie
@@ -119,7 +119,7 @@ router.get('/', MovieController.getAllEntries);
 
 /**
  * @swagger
- * /movies/{id}:
+ * /movie/{id}:
  *   get:
  *     tags:
  *       - Movie
@@ -193,7 +193,7 @@ router.get('/:id', MovieController.getEntryById);
 
 /**
  * @swagger
- * /movies/{id}:
+ * /movie/{id}:
  *   delete:
  *     tags:
  *       - Movie
@@ -220,7 +220,7 @@ router.delete('/:id', MovieController.deleteEntryById);
 
 /**
  * @swagger
- * /movies:
+ * /movie:
  *   post:
  *     tags:
  *       - Movie
@@ -287,7 +287,7 @@ router.post('/', MovieController.createMovie);
 
 /**
  * @swagger
- * /movies/{id}:
+ * /movie/{id}:
  *   put:
  *     tags:
  *       - Movie

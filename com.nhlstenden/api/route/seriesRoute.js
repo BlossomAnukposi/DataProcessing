@@ -11,7 +11,7 @@ const SeriesController = require("../controller/seriesController");
  *     summary: Get all series entries
  *     description: Retrieves all series from the database.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all series entries.
@@ -35,7 +35,7 @@ router.get("/", SeriesController.getAllEntries);
  *     summary: Get series by ID
  *     description: Retrieves a specific series entry by its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -66,7 +66,7 @@ router.get("/:id", SeriesController.getEntryById);
  *     summary: Delete a series by ID
  *     description: Deletes a specific series entry by its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -93,7 +93,7 @@ router.delete("/:id", SeriesController.deleteEntryById);
  *     summary: Create a new series
  *     description: Creates a new series entry in the database.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -142,7 +142,7 @@ router.post("/", SeriesController.createSeries);
  *     summary: Update series by ID
  *     description: Updates the details of an existing series by its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

@@ -11,7 +11,7 @@ const WatchlistController = require("../controller/watchlistController");
  *     summary: Get all watchlist entries
  *     description: Retrieves all watchlist entries from the database.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all watchlist entries.
@@ -35,7 +35,7 @@ router.get("/", WatchlistController.getAllEntries);
  *     summary: Get a watchlist entry by ID
  *     description: Retrieves a specific watchlist entry by its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -66,7 +66,7 @@ router.get("/:id", WatchlistController.getEntryById);
  *     summary: Delete a watchlist entry by ID
  *     description: Deletes a specific watchlist entry by its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -93,7 +93,7 @@ router.delete("/:id", WatchlistController.deleteEntryById);
  *     summary: Create a new watchlist entry
  *     description: Creates a new entry in the watchlist with the provided details.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -132,7 +132,7 @@ router.post("/", WatchlistController.createWatchlist);
  *     summary: Get watchlist by profile
  *     description: Retrieves the watchlist entries associated with a specific profile.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

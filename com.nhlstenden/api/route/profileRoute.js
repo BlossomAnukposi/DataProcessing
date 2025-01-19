@@ -4,14 +4,14 @@ const ProfileController = require('../controller/profileController');
 
 /**
  * @swagger
- * /profiles:
+ * /profile:
  *   get:
  *     tags:
  *       - Profile
  *     summary: Get all profiles
  *     description: Fetches all profiles from the database.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all profiles.
@@ -28,14 +28,14 @@ router.get('/', ProfileController.getAllEntries);
 
 /**
  * @swagger
- * /profiles/{id}:
+ * /profile/{id}:
  *   get:
  *     tags:
  *       - Profile
  *     summary: Get profile by ID
  *     description: Fetches a specific profile by its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -59,14 +59,14 @@ router.get('/:id', ProfileController.getEntryById);
 
 /**
  * @swagger
- * /profiles/{id}:
+ * /profile/{id}:
  *   delete:
  *     tags:
  *       - Profile
  *     summary: Delete a profile
  *     description: Deletes a specific profile by its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -86,7 +86,7 @@ router.delete('/:id', ProfileController.deleteEntryById);
 
 /**
  * @swagger
- * /profiles/account/{id}:
+ * /profile/account/{id}:
  *   get:
  *     tags:
  *       - Profile
@@ -94,7 +94,7 @@ router.delete('/:id', ProfileController.deleteEntryById);
  *     summary: Get profiles by account
  *     description: Fetches all profiles associated with a specific account ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -120,14 +120,14 @@ router.get('/account/:id', ProfileController.getProfilesByAccount);
 
 /**
  * @swagger
- * /profiles:
+ * /profile:
  *   post:
  *     tags:
  *       - Profile
  *     summary: Create a new profile
  *     description: Creates a new profile. If no `profilePicture` is provided, a default cat picture is used.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -167,14 +167,14 @@ router.post('/', ProfileController.createProfile);
 
 /**
  * @swagger
- * /profiles/{id}:
+ * /profile/{id}:
  *   put:
  *     tags:
  *       - Profile
  *     summary: Update a profile
  *     description: Updates details of an existing profile by its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

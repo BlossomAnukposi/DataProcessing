@@ -38,10 +38,12 @@ const TokenUtils = require("../../utils/tokenUtils");
  *     description: Operations related to the watchlist
  * components:
  *   securitySchemes:
- *     BearerAuth:
+ *     bearerAuth:
  *       type: http
  *       scheme: bearer
  *       bearerFormat: JWT
+ *   security:
+ *   - bearerAuth: []
  *   schemas:
  *     Profile:
  *       type: object

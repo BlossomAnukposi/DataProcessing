@@ -11,7 +11,7 @@ const ReferralDiscountController = require('../controller/referralDiscountContro
  *     summary: Get all referral discount statuses
  *     description: Fetches all available statuses for referral discounts.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: List of all referral discount statuses.
@@ -41,7 +41,7 @@ router.get('/status', ReferralDiscountController.getAllReferralStatuses);
  *     summary: Get all referral discounts
  *     description: Fetches all referral discounts from the database.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all referral discounts.
@@ -65,7 +65,7 @@ router.get('/', ReferralDiscountController.getAllEntries);
  *     summary: Get a referral discount by ID
  *     description: Fetches a specific referral discount using its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -96,7 +96,7 @@ router.get('/:id', ReferralDiscountController.getEntryById);
  *     summary: Delete a referral discount
  *     description: Deletes a specific referral discount by its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -123,7 +123,7 @@ router.delete('/:id', ReferralDiscountController.deleteEntryById);
  *     summary: Create a new referral discount
  *     description: Creates a new referral discount with the given account ID, referral link, and number of uses.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:

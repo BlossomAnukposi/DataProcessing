@@ -4,14 +4,14 @@ const SubscriptionController = require("../controller/subscriptionController");
 
 /**
  * @swagger
- * /subscriptions:
+ * /subscription:
  *   get:
  *     tags:
  *       - Subscription
  *     summary: Get all subscriptions
  *     description: Retrieves all subscriptions from the database.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all subscriptions.
@@ -28,7 +28,7 @@ router.get('/', SubscriptionController.getAllEntries);
 
 /**
  * @swagger
- * /subscriptions/account:
+ * /subscription/account:
  *   get:
  *     tags:
  *       - Subscription
@@ -36,7 +36,7 @@ router.get('/', SubscriptionController.getAllEntries);
  *     summary: Get subscriptions by account
  *     description: Retrieves subscriptions associated with a specific account.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of subscriptions for the account.
@@ -55,7 +55,7 @@ router.get('/account', SubscriptionController.getAccountSubscriptions);
 
 /**
  * @swagger
- * /subscriptions/active:
+ * /subscription/active:
  *   get:
  *     tags:
  *       - Subscription
@@ -63,7 +63,7 @@ router.get('/account', SubscriptionController.getAccountSubscriptions);
  *     summary: Get active subscriptions
  *     description: Retrieves active subscriptions from the database.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of active subscriptions.
@@ -82,14 +82,14 @@ router.get('/active', SubscriptionController.getActiveSubscriptions);
 
 /**
  * @swagger
- * /subscriptions/{id}:
+ * /subscription/{id}:
  *   get:
  *     tags:
  *       - Subscription
  *     summary: Get a subscription by ID
  *     description: Retrieves a specific subscription based on its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -113,14 +113,14 @@ router.get('/:id', SubscriptionController.getEntryById);
 
 /**
  * @swagger
- * /subscriptions/{id}:
+ * /subscription/{id}:
  *   delete:
  *     tags:
  *       - Subscription
  *     summary: Delete a subscription by ID
  *     description: Deletes a specific subscription based on its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -140,14 +140,14 @@ router.delete('/:id', SubscriptionController.deleteEntryById);
 
 /**
  * @swagger
- * /subscriptions:
+ * /subscription:
  *   post:
  *     tags:
  *       - Subscription
  *     summary: Create a new subscription
  *     description: Creates a new subscription with the provided details.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -179,14 +179,14 @@ router.post('/', SubscriptionController.createSubscription);
 
 /**
  * @swagger
- * /subscriptions/{id}:
+ * /subscription/{id}:
  *   patch:
  *     tags:
  *       - Subscription
  *     summary: Update an existing subscription
  *     description: Updates a subscription with the given details.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

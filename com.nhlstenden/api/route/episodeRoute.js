@@ -370,7 +370,7 @@ router.delete("/:id", EpisodeController.deleteEntryById);
  *     summary: Get episodes by season ID
  *     description: Fetches all episodes associated with a specific season by its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -421,7 +421,7 @@ router.get("/season/:id", EpisodeController.getEpisodesBySeason);
  *     summary: Get episodes by series ID
  *     description: Fetches all episodes associated with a specific series by its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

@@ -4,14 +4,14 @@ const SubtitleController = require("../controller/subtitleController");
 
 /**
  * @swagger
- * /subtitles:
+ * /subtitle:
  *   get:
  *     tags:
  *       - Subtitle
  *     summary: Get all subtitles
  *     description: Retrieves all subtitles from the database.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all subtitles.
@@ -28,14 +28,14 @@ router.get('/', SubtitleController.getAllEntries);
 
 /**
  * @swagger
- * /subtitles/{id}:
+ * /subtitle/{id}:
  *   get:
  *     tags:
  *       - Subtitle
  *     summary: Get a subtitle by ID
  *     description: Retrieves a specific subtitle based on its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -59,14 +59,14 @@ router.get('/:id', SubtitleController.getEntryById);
 
 /**
  * @swagger
- * /subtitles/{id}:
+ * /subtitle/{id}:
  *   delete:
  *     tags:
  *       - Subtitle
  *     summary: Delete a subtitle by ID
  *     description: Deletes a specific subtitle based on its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -86,14 +86,14 @@ router.delete('/:id', SubtitleController.deleteEntryById);
 
 /**
  * @swagger
- * /subtitles:
+ * /subtitle:
  *   post:
  *     tags:
  *       - Subtitle
  *     summary: Add a new subtitle
  *     description: Adds a new subtitle with the provided details.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -130,14 +130,14 @@ router.post('/', SubtitleController.addSubtitle);
 
 /**
  * @swagger
- * /subtitles/{id}:
+ * /subtitle/{id}:
  *   patch:
  *     tags:
  *       - Subtitle
  *     summary: Update a subtitle by ID
  *     description: Updates an existing subtitle with the provided details.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

@@ -11,7 +11,7 @@ const WatchedMediaListController = require("../controller/watchedMediaListContro
  *     summary: Get all watched media list entries
  *     description: Retrieves all watched media list entries from the database.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all watched media entries.
@@ -35,7 +35,7 @@ router.get("/", WatchedMediaListController.getAllEntries);
  *     summary: Get a watched media list entry by ID
  *     description: Retrieves a specific watched media list entry based on its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -66,7 +66,7 @@ router.get("/:id", WatchedMediaListController.getEntryById);
  *     summary: Delete a watched media list entry by ID
  *     description: Deletes a specific watched media list entry based on its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -93,7 +93,7 @@ router.delete("/:id", WatchedMediaListController.deleteEntryById);
  *     summary: Create a new watched media list entry
  *     description: Creates a new entry in the watched media list with the provided details.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -140,7 +140,7 @@ router.post("/", WatchedMediaListController.createWatchedMediaList);
  *     summary: Get watched media list by profile
  *     description: Retrieves the watched media list entries associated with a specific profile.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

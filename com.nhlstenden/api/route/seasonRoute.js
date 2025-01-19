@@ -4,14 +4,14 @@ const SeasonController = require("../controller/seasonController");
 
 /**
  * @swagger
- * /seasons:
+ * /season:
  *   get:
  *     tags:
  *       - Season
  *     summary: Get all seasons
  *     description: Retrieves all seasons from the database.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all seasons.
@@ -37,14 +37,14 @@ router.get('/', SeasonController.getAllEntries);
 
 /**
  * @swagger
- * /seasons/{id}:
+ * /season/{id}:
  *   get:
  *     tags:
  *       - Season
  *     summary: Get a season by ID
  *     description: Retrieves a specific season based on its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -77,14 +77,14 @@ router.get('/:id', SeasonController.getEntryById);
 
 /**
  * @swagger
- * /seasons/{id}:
+ * /season/{id}:
  *   delete:
  *     tags:
  *       - Season
  *     summary: Delete a season by ID
  *     description: Deletes a specific season based on its ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -104,14 +104,14 @@ router.delete('/:id', SeasonController.deleteEntryById);
 
 /**
  * @swagger
- * /seasons:
+ * /season:
  *   post:
  *     tags:
  *       - Season
  *     summary: Create a new season
  *     description: Creates a new season with the provided details.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -154,14 +154,14 @@ router.post('/', SeasonController.createSeason);
 
 /**
  * @swagger
- * /seasons/{id}:
+ * /season/{id}:
  *   put:
  *     tags:
  *       - Season
  *     summary: Update an existing season
  *     description: Updates a season with the given details.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -213,7 +213,7 @@ router.put('/:id', SeasonController.updateSeason);
 
 /**
  * @swagger
- * /seasons/series/{id}:
+ * /season/series/{id}:
  *   get:
  *     tags:
  *       - Season
@@ -221,7 +221,7 @@ router.put('/:id', SeasonController.updateSeason);
  *     summary: Get seasons by series ID
  *     description: Fetches all seasons associated with a specific series ID.
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

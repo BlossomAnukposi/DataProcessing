@@ -5,28 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="movie endpoints">
-      <change afterPath="$PROJECT_DIR$/com.nhlstenden/config/swaggerConfig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/episodeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/episodeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/genreController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/genreController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/preferenceController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/preferenceController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/referralDiscountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/referralDiscountController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/seasonController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/seasonController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/seriesController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/seriesController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/subscriptionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/subscriptionController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/episodeModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/genreModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/genreModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/modelParent.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/modelParent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/preferenceModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/preferenceModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/referralDiscountModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/referralDiscountModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/seasonModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/seasonModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/seriesModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/seriesModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/subscriptionModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/subscriptionModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/model/watchedMediaListModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/model/watchedMediaListModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/accountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/accountRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/episodeRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/genreRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/genreRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/movieRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/movieRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/preferenceRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/preferenceRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/profileRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/profileRoute.js" afterDir="false" />
@@ -37,9 +18,6 @@
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/subtitleRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/subtitleRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/watchedMediaListRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/watchedMediaListRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/route/watchlistRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/route/watchlistRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,13 +48,13 @@
     &quot;assignee&quot;: &quot;BlossomAnukposi&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:BlossomAnukposi/DataProcessing.git",
-    "accountId": "a99c55a8-fe57-46fb-a15b-a25455c44df1"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:BlossomAnukposi/DataProcessing.git&quot;,
+    &quot;accountId&quot;: &quot;a99c55a8-fe57-46fb-a15b-a25455c44df1&quot;
   },
-  "reviewCommentPreferred": false
-}]]></component>
+  &quot;reviewCommentPreferred&quot;: false
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
