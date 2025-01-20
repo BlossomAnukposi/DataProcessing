@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Management - Netflix Admin</title>
+    <link rel="stylesheet" href="../../stylesheet/admin.css" />
+    <link rel="stylesheet" href="../../stylesheet/users.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- Sidebar Navigation -->
+      <nav class="admin-sidebar">
+        <div class="logo">
+          <img
+            src="../../images/logo/logoShort.png"
+            alt="Netflix Logo"
+            width="50"
+          />
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+          </li>
+          <li>
+            <a href="content-management.html"
+              ><i class="fas fa-film"></i> Content Management</a
+            >
+          </li>
+          <li>
+            <a href="users.html" class="active"
+              ><i class="fas fa-users"></i> Users</a
+            >
+          </li>
+          <li>
+            <a href="genres.html"><i class="fas fa-tags"></i> Genres</a>
+          </li>
+          <li>
+            <a href="subscriptions.html"
+              ><i class="fas fa-credit-card"></i> Subscriptions</a
+            >
+          </li>
+          <li>
+            <a href="analytics.html"
+              ><i class="fas fa-chart-bar"></i> Analytics</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <header class="admin-header">
+          <h1>User Management</h1>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+          <div class="search-box">
+            <input type="text" placeholder="Search users..." />
+            <i class="fas fa-search"></i>
+          </div>
+          <div class="filters">
+            <select>
+              <option value="">Subscription Type</option>
+              <option value="basic">Basic</option>
+              <option value="standard">Standard</option>
+              <option value="premium">Premium</option>
+            </select>
+            <select>
+              <option value="">Status</option>
+              <option value="active">Active</option>
+              <option value="suspended">Suspended</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+            <select>
+              <option value="">Join Date</option>
+              <option value="last-7">Last 7 days</option>
+              <option value="last-30">Last 30 days</option>
+              <option value="last-90">Last 90 days</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="users-table-container">
+          <table class="users-table">
+            <thead>
+              <tr>
+                <th>
+                  <input type="checkbox" class="select-all-checkbox" />
+                </th>
+                <th>User</th>
+                <th>Email</th>
+                <th>Subscription</th>
+                <th>Join Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <input type="checkbox" class="user-checkbox" />
+                </td>
+                <td class="user-info">
+                  <img
+                    src="../../images/profile-placeholder.png"
+                    alt="User Avatar"
+                  />
+                  <div>
+                    <span class="user-name">John Doe</span>
+                    <span class="user-id">#12345</span>
+                  </div>
+                </td>
+                <td>john.doe@example.com</td>
+                <td>Premium</td>
+                <td>2024-01-15</td>
+                <td><span class="status-badge active">Active</span></td>
+                <td class="actions">
+                  <button class="edit-btn" title="Edit">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="suspend-btn" title="Suspend">
+                    <i class="fas fa-ban"></i>
+                  </button>
+                  <button class="delete-btn" title="Delete">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="checkbox" class="user-checkbox" />
+                </td>
+                <td class="user-info">
+                  <img
+                    src="../../images/profile-placeholder.png"
+                    alt="User Avatar"
+                  />
+                  <div>
+                    <span class="user-name">Jane Smith</span>
+                    <span class="user-id">#12346</span>
+                  </div>
+                </td>
+                <td>jane.smith@example.com</td>
+                <td>Standard</td>
+                <td>2024-02-01</td>
+                <td><span class="status-badge suspended">Suspended</span></td>
+                <td class="actions">
+                  <button class="edit-btn" title="Edit">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="activate-btn" title="Activate">
+                    <i class="fas fa-check"></i>
+                  </button>
+                  <button class="delete-btn" title="Delete">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="prev-btn" aria-label="Previous page">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="page-numbers">
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <span>...</span>
+            <button>10</button>
+          </div>
+          <button class="next-btn" aria-label="Next page">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </main>
+    </div>
+
+    <!-- Add this script before the closing body tag -->
+    <script>
+      // Edit, Delete, Suspend/Activate functionality
+      document.querySelectorAll('.edit-btn').forEach(button => {
+          button.addEventListener('click', function(e) {
+              const userRow = this.closest('tr');
+              const userName = userRow.querySelector('.user-name').textContent;
+              const userEmail = userRow.querySelector('td:nth-child(3)').textContent;
+              const subscription = userRow.querySelector('td:nth-child(4)').textContent;
+              const status = userRow.querySelector('.status-badge').textContent;
+
+              // Here you would typically open a modal with a form
+              // For now, we'll use a simple prompt
+              const newEmail = prompt('Edit user email:', userEmail);
+              if (newEmail !== null) {
+                  userRow.querySelector('td:nth-child(3)').textContent = newEmail;
+                  // Here you would typically make an API call to update the user
+                  console.log(`Updated user ${userName}'s email to ${newEmail}`);
+              }
+          });
+      });
+
+      document.querySelectorAll('.delete-btn').forEach(button => {
+          button.addEventListener('click', function(e) {
+              const userRow = this.closest('tr');
+              const userName = userRow.querySelector('.user-name').textContent;
+              
+              if (confirm(`Are you sure you want to delete user "${userName}"?`)) {
+                  // Add animation for smooth removal
+                  userRow.style.animation = 'fadeOut 0.3s ease';
+                  setTimeout(() => {
+                      userRow.remove();
+                  }, 300);
+                  
+                  // Here you would typically make an API call to delete the user
+                  console.log(`Deleted user: ${userName}`);
+              }
+          });
+      });
+
+      document.querySelectorAll('.suspend-btn, .activate-btn').forEach(button => {
+          button.addEventListener('click', function(e) {
+              const userRow = this.closest('tr');
+              const userName = userRow.querySelector('.user-name').textContent;
+              const statusBadge = userRow.querySelector('.status-badge');
+              const actionsCell = userRow.querySelector('.actions');
+              
+              if (statusBadge.classList.contains('active')) {
+                  // Suspend user
+                  statusBadge.classList.remove('active');
+                  statusBadge.classList.add('suspended');
+                  statusBadge.textContent = 'Suspended';
+                  
+                  // Update button
+                  this.innerHTML = '<i class="fas fa-check"></i>';
+                  this.classList.remove('suspend-btn');
+                  this.classList.add('activate-btn');
+                  this.title = 'Activate';
+                  
+                  console.log(`Suspended user: ${userName}`);
+              } else {
+                  // Activate user
+                  statusBadge.classList.remove('suspended');
+                  statusBadge.classList.add('active');
+                  statusBadge.textContent = 'Active';
+                  
+                  // Update button
+                  this.innerHTML = '<i class="fas fa-ban"></i>';
+                  this.classList.remove('activate-btn');
+                  this.classList.add('suspend-btn');
+                  this.title = 'Suspend';
+                  
+                  console.log(`Activated user: ${userName}`);
+              }
+          });
+      });
+
+      // Pagination functionality
+      function updatePagination(totalPages) {
+          const paginationDiv = document.querySelector('.page-numbers');
+          paginationDiv.innerHTML = '';
+          
+          // Calculate range of pages to show
+          let startPage = Math.max(1, currentPage - 2);
+          let endPage = Math.min(totalPages, currentPage + 2);
+          
+          // Adjust range if at the edges
+          if (currentPage <= 3) {
+              endPage = Math.min(5, totalPages);
+          }
+          if (currentPage >= totalPages - 2) {
+              startPage = Math.max(1, totalPages - 4);
+          }
+          
+          // First page
+          if (startPage > 1) {
+              const firstBtn = document.createElement('button');
+              firstBtn.textContent = '1';
+              firstBtn.addEventListener('click', () => goToPage(1));
+              paginationDiv.appendChild(firstBtn);
+              
+              if (startPage > 2) {
+                  const ellipsis = document.createElement('span');
+                  ellipsis.textContent = '...';
+                  paginationDiv.appendChild(ellipsis);
+              }
+          }
+          
+          // Page numbers
+          for (let i = startPage; i <= endPage; i++) {
+              const pageBtn = document.createElement('button');
+              pageBtn.textContent = i;
+              if (i === currentPage) {
+                  pageBtn.classList.add('active');
+              }
+              pageBtn.addEventListener('click', () => goToPage(i));
+              paginationDiv.appendChild(pageBtn);
+          }
+          
+          // Last page
+          if (endPage < totalPages) {
+              if (endPage < totalPages - 1) {
+                  const ellipsis = document.createElement('span');
+                  ellipsis.textContent = '...';
+                  paginationDiv.appendChild(ellipsis);
+              }
+              
+              const lastBtn = document.createElement('button');
+              lastBtn.textContent = totalPages;
+              lastBtn.addEventListener('click', () => goToPage(totalPages));
+              paginationDiv.appendChild(lastBtn);
+          }
+      }
+
+      // Update the prev/next button states
+      function updateNavigationButtons() {
+          const prevBtn = document.querySelector('.prev-btn');
+          const nextBtn = document.querySelector('.next-btn');
+          
+          prevBtn.disabled = currentPage === 1;
+          nextBtn.disabled = currentPage === totalPages;
+          
+          prevBtn.style.opacity = currentPage === 1 ? '0.5' : '1';
+          nextBtn.style.opacity = currentPage === totalPages ? '0.5' : '1';
+      }
+
+      function goToPage(page) {
+          currentPage = page;
+          updatePagination(totalPages);
+          updateNavigationButtons();
+          // Here you would typically fetch new data for the page
+      }
+
+      // Initialize variables
+      const totalPages = 10; // Set this to your actual total pages
+      let currentPage = 1;
+
+      // Initial setup
+      updatePagination(totalPages);
+      updateNavigationButtons();
+
+      // Select all checkbox functionality
+      const selectAllCheckbox = document.querySelector('.select-all-checkbox');
+      const userCheckboxes = document.querySelectorAll('.user-checkbox');
+
+      selectAllCheckbox.addEventListener('change', function() {
+          userCheckboxes.forEach(checkbox => {
+              checkbox.checked = this.checked;
+          });
+      });
+
+      // Add fade out animation style
+      const style = document.createElement('style');
+      style.textContent = `
+          @keyframes fadeOut {
+              from { opacity: 1; }
+              to { opacity: 0; }
+          }
+      `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>

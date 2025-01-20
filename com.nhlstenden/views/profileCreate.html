@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile</title>
+    <link rel="stylesheet" href="../stylesheet/profileEdit.css">
+</head>
+<body>
+<div class="editProfileWrapper">
+    <nav class="editProfileNav">
+        <a href="#"><img src="../images/logo/logo.svg" alt="Netflix Logo"></a>
+    </nav>
+    <div class="editProfileContent">
+        <h1>Create Profile</h1>
+        <form id="createProfileForm">
+            <section class="editProfileForm">
+                <section class="left">
+                    <div class="profileImageSection">
+                        <img src="../images/profile/red.jpg" alt="Profile Picture" class="profileImage" id="selectedProfileImage">
+                        <button type="button" class="editImageButton" id="openImagePopup">+</button>
+                    </div>
+                </section>
+                <section class="right">
+                    <div class="inputField">
+                        <label for="profileName">Name</label>
+                        <input type="text" id="profileName" name="profileName" placeholder="Enter name" required>
+                    </div>
+                    <div class="inputField">
+                        <label for="language">Language:</label>
+                        <select id="language" name="language" required>
+                            <option value="English">English</option>
+                            <option value="Dutch">Dutch</option>
+                            <option value="Pitjantjatjara">Pitjantjatjara</option>
+                        </select>
+                    </div>
+                    <div class="inputField">
+                        <label for="maturityLevels">Allowed TV shows and movies:</label>
+                        <select id="maturityLevels" name="maturityLevels" required>
+                            <option value="all">All Maturity Levels</option>
+                            <option value="teens">Teens</option>
+                            <option value="kids">Kids</option>
+                        </select>
+                    </div>
+                    <div class="inputField">
+                        <label for="date">Date of Birth:</label>
+                        <input id="date" type="date" name="date" required>
+                    </div>
+                </section>
+            </section>
+            <div class="buttonGroup">
+                <button type="submit" class="saveButton">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Image Selection Popup -->
+<div class="imagePopup" id="imagePopup">
+    <div class="popupContent">
+        <button class="closePopupButton" id="closeImagePopup">&times;</button>
+        <h2>Select Profile Image</h2>
+        <div class="imageGrid">
+            <img src="../images/profile/blue.jpg" alt="Profile 1" class="profileOption">
+            <img src="../images/profile/red.jpg" alt="Profile 2" class="profileOption">
+            <img src="../images/profile/darkGreen.jpg" alt="Profile 3" class="profileOption">
+            <img src="../images/profile/yellow.jpg" alt="Profile 4" class="profileOption">
+            <img src="../images/profile/wonderWoman.jpg" alt="Profile 5" class="profileOption">
+            <img src="../images/profile/chicken.jpg" alt="Profile 6" class="profileOption">
+            <img src="../images/profile/panda.jpg" alt="Profile 7" class="profileOption">
+            <img src="../images/profile/lightGreen.jpg" alt="Profile 8" class="profileOption">
+        </div>
+        <label for="customImageUrl">Custom Image URL:</label>
+        <form style="padding: 20px 0" class="editProfileForm">
+            <div class="inputField" style="width: 780px">
+                <input type="url" id="customImageUrl" placeholder="Paste image URL">
+            </div>
+            <div class="inputField">
+                <button type="button" class="applyButton" id="applyCustomButton">Apply</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="../public/js/auth.js"></script>
+<script src="../public/js/api.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if user is authenticated
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "login.html";
+            return;
+        }
+    });
+
+    const token = localStorage.getItem("token");
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        const form = document.getElementById('createProfileForm');
+        const profileImage = document.getElementById('selectedProfileImage');
+        const customImageUrlInput = document.getElementById('customImageUrl');
+        const applyCustomImageButton = document.getElementById('applyCustomButton');  // Fixed ID here
+        const profileOptions = document.querySelectorAll('.profileOption');
+
+        // Image Selection Popup Logic
+        const openPopupButton = document.getElementById('openImagePopup');
+        const closePopupButton = document.getElementById('closeImagePopup');
+        const imagePopup = document.getElementById('imagePopup');
+
+        openPopupButton.addEventListener('click', () => {
+            imagePopup.classList.add('active');
+        });
+
+        closePopupButton.addEventListener('click', () => {
+            imagePopup.classList.remove('active');
+        });
+
+        // Selecting an image
+        profileOptions.forEach((option) => {
+            option.addEventListener('click', () => {
+                profileImage.src = option.src;
+                imagePopup.classList.remove('active');
+            });
+        });
+
+        // Apply Custom Image URL
+        applyCustomImageButton.addEventListener('click', () => {
+            const customImageUrl = customImageUrlInput.value.trim();
+            if (customImageUrl) {
+                profileImage.src = customImageUrl;
+            } else {
+                alert('Please enter a valid URL.');
+            }
+        });
+
+        // Submit the Form
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission behavior
+
+            const profileName = document.getElementById('profileName').value.trim();
+            const language = document.getElementById('language').value;
+            const dateOfBirth = document.getElementById('date').value;
+            const profilePicture = profileImage.src; // Use selected or custom image
+
+            // Validate required fields
+            if (!profileName || !dateOfBirth) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Ensure user is correctly retrieved from localStorage
+            const userStr = localStorage.getItem("user");
+            if (!userStr) {
+                alert("User not found in localStorage.");
+                return;
+            }
+            const user = JSON.parse(userStr);
+            console.log("User data:", user);  // Debugging log
+
+            if (!user || !user.id) {
+                alert("User ID is not found.");
+                return;
+            }
+
+            // Prepare payload
+            const payload = {
+                accountId: user.id, // Ensure this is correctly retrieved from the user object
+                profileName: profileName,
+                dateOfBirth: dateOfBirth,
+                profilePicture: profilePicture,
+                profileLanguage: language,
+            };
+
+            console.log("Payload:", JSON.stringify(payload));  // Debugging log
+
+            try {
+                // POST request to create profile
+                const response = await fetch('http://localhost:3000/profile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                if (response.ok) {
+                    alert('Profile created successfully!');
+                    localStorage.setItem("profile", JSON.stringify(payload))
+                    window.location.href = 'index.html';
+                } else {
+                    const errorData = await response.json();
+                    alert(`Error: ${errorData.message}`);
+                }
+            } catch (error) {
+                console.error('Error creating profile:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    });
+</script>
+</body>
+</html>

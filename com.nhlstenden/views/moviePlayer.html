@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Name Placeholder</title>
+    <link rel="stylesheet" href="../stylesheet/styles.css">
+    <script defer>
+        let video, playButton, seekBar, timePlayedText, totalTimeText, loader;
+
+        function initializePlayer() {
+            // Object references
+            video = document.getElementById('movieVideo');
+            playButton = document.getElementById('playPauseButton');
+            seekBar = document.getElementById('seekBar');
+            timePlayedText = document.getElementById('timePlayedText');
+            totalTimeText = document.getElementById('totalTimeText');
+            loader = document.getElementById('loader');
+
+            // Event listeners
+            playButton.addEventListener('click', togglePlayPause);
+            seekBar.addEventListener('input', updateProgress);
+            seekBar.addEventListener('change', seekVideo);
+            video.addEventListener('timeupdate', updateSeekTime);
+            video.addEventListener('click', togglePlayPause);
+            document.body.addEventListener('keyup', (e) => {
+                if (e.code === 'Space') togglePlayPause();
+            });
+        }
+
+        function togglePlayPause() {
+            if (video.paused) {
+                video.play();
+                playButton.src = "../images/illustration/pause.png";
+            } else {
+                video.pause();
+                playButton.src = "../images/illustration/playMain.png";
+            }
+        }
+
+        function seekVideo() {
+            const seekTo = video.duration * (seekBar.value / 100);
+            video.currentTime = seekTo;
+        }
+
+        function updateProgress() {
+            const value = ((seekBar.value - seekBar.min) / (seekBar.max - seekBar.min)) * 100;
+            seekBar.style.background = `linear-gradient(to right, #FF0000FF ${value}%, #808080FF ${value}%)`;
+        }
+
+        function updateSeekTime() {
+            const progress = (video.currentTime / video.duration) * 100;
+            seekBar.value = progress;
+            updateProgress();
+
+            // Update time display
+            timePlayedText.textContent = formatTime(video.currentTime);
+            totalTimeText.textContent = formatTime(video.duration);
+
+            // Show loader if video ends
+            loader.style.display = Math.abs(video.currentTime - video.duration) < 0.1 ? 'block' : 'none';
+        }
+
+        function formatTime(time) {
+            const hours = String(Math.floor(time / 3600)).padStart(2, '0');
+            const minutes = String(Math.floor((time % 3600) / 60)).padStart(2, '0');
+            const seconds = String(Math.floor(time % 60)).padStart(2, '0');
+            return `${hours}:${minutes}:${seconds}`;
+        }
+
+        window.onload = initializePlayer;
+    </script>
+</head>
+
+<body>
+<main class="mainContainer moviePlayerMainContainer">
+    <nav class="nav">
+        <img src="../images/illustration/back.png" alt="Go Back" width="3%" aria-label="Go Back">
+    </nav>
+    <div class="movieDisplay">
+        <video id="movieVideo" autoplay width="100%" height="100%">
+            <source src="../images/video/intro.mp4" type="video/mp4">
+            <source src="../images/video/intro.ogg" type="video/ogg">
+            Your browser does not support the video tag.
+        </video>
+        <div id="loader" style="display: none;"></div>
+    </div>
+    <footer class="movieDisplayFooter">
+        <div class="timeTracker">
+            <p id="timePlayedText">00:00:00</p>
+            <input id="seekBar" class="seekBar" type="range" min="0" max="100" value="0" step="1" aria-label="Seek Video">
+            <p id="totalTimeText">00:00:00</p>
+        </div>
+        <div class="movieControls">
+            <div>
+                <img id="playPauseButton" src="../images/illustration/pause.png" alt="Play/Pause" width="17%" aria-label="Play/Pause">
+                <img src="../images/illustration/back10.png" alt="Rewind 10 Seconds" width="17%" aria-label="Rewind 10 Seconds">
+                <img src="../images/illustration/skip10.png" alt="Skip 10 Seconds" width="17%" aria-label="Skip 10 Seconds">
+                <img src="../images/illustration/volume.png" alt="Volume" width="17%" aria-label="Volume Control">
+            </div>
+            <p class="movieDisplayTitle">Movie Title</p>
+            <div class="rightControls">
+                <img src="../images/illustration/subtitle.png" alt="Subtitles" width="25%" aria-label="Toggle Subtitles">
+                <img src="../images/illustration/fullScreen.png" alt="Fullscreen" width="25%" aria-label="Fullscreen">
+            </div>
+        </div>
+    </footer>
+</main>
+</body>
+
+</html>

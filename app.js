@@ -1,70 +1,105 @@
 const express = require("express");
-const app = express();
 const morgan = require("morgan");
+const cors = require("cors");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./com.nhlstenden/config/swaggerConfig");
+// const { authenticateToken } = require("./com.nhlstenden/middleware/authMiddleware");
+const AuthMiddleware = require("./com.nhlstenden/middleware/authMiddleware");
 
-// Add body parser middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Import routes
+const accountRoutes = require("./com.nhlstenden/api/route/accountRoute");
+const episodeRoutes = require("./com.nhlstenden/api/route/episodeRoute");
+const genreRoutes = require("./com.nhlstenden/api/route/genreRoute");
+const movieRoutes = require("./com.nhlstenden/api/route/movieRoute");
+const preferenceRoutes = require("./com.nhlstenden/api/route/preferenceRoute");
+const profileRoutes = require("./com.nhlstenden/api/route/profileRoute");
+const referralRoutes = require("./com.nhlstenden/api/route/referralDiscountRoute");
+const seasonRoutes = require("./com.nhlstenden/api/route/seasonRoute");
+const seriesRoutes = require("./com.nhlstenden/api/route/seriesRoute");
+const subscriptionRoutes = require("./com.nhlstenden/api/route/subscriptionRoute");
+const subtitleRoutes = require("./com.nhlstenden/api/route/subtitleRoute");
+const watchlistRoutes = require("./com.nhlstenden/api/route/watchlistRoute");
+const watchedMediaListRoutes = require("./com.nhlstenden/api/route/watchedMediaListRoute");
 
-// CORS handling middleware (if needed)
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-    return res.status(200).json({});
-  }
-  next();
-});
+class App {
+    constructor() {
+        this.app = express();
+        this.initializeMiddlewares();
+        this.initializeRoutes();
+        this.initializeErrorHandling();
+    }
 
-const accountRoutes = require("./com.nhlstenden/api/route/account");
-const episodeRoutes = require("./com.nhlstenden/api/route/episode");
-const genreRoutes = require("./com.nhlstenden/api/route/genre");
-const movieRoutes = require("./com.nhlstenden/api/route/movie");
-const preferenceRoutes = require("./com.nhlstenden/api/route/preference");
-const profileRoutes = require("./com.nhlstenden/api/route/profile");
-const referralRoutes = require("./com.nhlstenden/api/route/referral_discount");
-const seasonRoutes = require("./com.nhlstenden/api/route/season");
-const seriesRoutes = require("./com.nhlstenden/api/route/series");
-const subscriptionRoutes = require("./com.nhlstenden/api/route/subscription");
-const subtitleRoutes = require("./com.nhlstenden/api/route/subtitle");
-const watchedMediaRoutes = require("./com.nhlstenden/api/route/watched_media_list");
-const watchlistRoutes = require("./com.nhlstenden/api/route/watchlist");
+    // Initialize core middlewares
+    initializeMiddlewares() {
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
 
-//use morgan for terminal tracking of requests
-app.use(morgan("dev"));
+        // Swagger documentation
+        this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-//only requests with the path /<route> can use this route...
-app.use("/account", accountRoutes);
-app.use("/episode", episodeRoutes);
-app.use("/genre", genreRoutes);
-app.use("/movie", movieRoutes);
-app.use("/preference", preferenceRoutes);
-app.use("/profile", profileRoutes);
-app.use("/referral_discount", referralRoutes);
-app.use("/season", seasonRoutes);
-app.use("/series", seriesRoutes);
-app.use("/subscription", subscriptionRoutes);
-app.use("/subtitle", subtitleRoutes);
-app.use("/watched_media_list", watchedMediaRoutes);
-app.use("/watchlist", watchlistRoutes);
+        // CORS handling middleware
+        this.app.use(
+            cors({
+                origin: "*", // Allow all origins for testing
+                credentials: true,
+                allowedHeaders: [
+                    "Origin",
+                    "X-Requested-With",
+                    "Content-Type",
+                    "Accept",
+                    "Authorization",
+                ],
+            })
+        );
 
-app.use((req, res, next) => {
-  const error = new Error("Not Found");
-  error.status = 404;
-  next(error);
-});
+        // Morgan for logging
+        this.app.use(morgan("dev"));
+    }
 
-app.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  res.json({
-    error: {
-      message: error.message,
-    },
-  });
-});
+    // Initialize routes
+    initializeRoutes() {
+        // Public routes
+        this.app.use("/account", accountRoutes);
 
-module.exports = app;
+        // Protected routes - require authentication
+        this.app.use("/episode", AuthMiddleware.authenticateToken, episodeRoutes);
+        this.app.use("/genre", AuthMiddleware.authenticateToken, genreRoutes);
+        this.app.use("/movie", AuthMiddleware.authenticateToken, movieRoutes);
+        this.app.use("/preference", AuthMiddleware.authenticateToken, preferenceRoutes);
+        this.app.use("/profile", AuthMiddleware.authenticateToken, profileRoutes);
+        this.app.use("/referralDiscount", AuthMiddleware.authenticateToken, referralRoutes);
+        this.app.use("/season", AuthMiddleware.authenticateToken, seasonRoutes);
+        this.app.use("/series", AuthMiddleware.authenticateToken, seriesRoutes);
+        this.app.use("/subscription", AuthMiddleware.authenticateToken, subscriptionRoutes);
+        this.app.use("/subtitle", AuthMiddleware.authenticateToken, subtitleRoutes);
+        this.app.use("/watchlist", AuthMiddleware.authenticateToken, watchlistRoutes);
+        this.app.use("/watchedMediaList", AuthMiddleware.authenticateToken, watchedMediaListRoutes);
+    }
+
+    // Initialize error handling
+    initializeErrorHandling() {
+        // 404 Error handling
+        this.app.use((req, res, next) => {
+            const error = new Error("Not Found");
+            error.status = 404;
+            next(error);
+        });
+
+        // General error handling
+        this.app.use((error, req, res, next) => {
+            res.status(error.status || 500);
+            res.json({
+                error: {
+                    message: error.message,
+                },
+            });
+        });
+    }
+
+    // Expose the app instance
+    getApp() {
+        return this.app;
+    }
+}
+
+module.exports = new App().getApp();

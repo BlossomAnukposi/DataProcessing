@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Watch List</title>
+    <link rel="stylesheet" href="../stylesheet/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div id="wrapper">
+    <header class="nav watchlistNav">
+        <div class="navbarChild">
+            <img src="../images/logo/logoFull.png" alt="Logo" width="90">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tvShows.html">TV Shows</a></li>
+                    <li><a href="movies.html">Movies</a></li>
+                    <li><a href="watchlist.html">My List</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="navbarChild">
+            <img src="../images/illustration/notification.png" alt="Notification" width="30">
+            <a href="profileSelect.html">
+                <img id ="profileImage" src="../images/profile/chicken.jpg" alt="Profile" width="30">
+            </a>
+        </div>
+    </header>
+    <main class="watchlistMain">
+        <section class="previewContainer">
+            <div class="previewContent">
+                <div class="previewImage">
+                    <img src="" alt="Preview Movie">
+                </div>
+                <div class="previewInfoContainers">
+                    <div class="previewProgressContainer">
+                        <div class="previewProgressBar">
+                            <div class="previewProgressFill"></div>
+                        </div>
+                        <div class="previewTimeContainer">
+                            <span class="currentTime">00:20:13</span>
+                            <span class="totalTime">2:43:50</span>
+                        </div>
+                    </div>
+                    <div class="previewControlsContainer">
+                        <button class="imageButtons">
+                            <a href="moviePlayer.html">
+                                <img src="../images/illustration/playMovie.png" alt="Play" width="110px">
+                            </a>
+                        </button>
+                        <button class="imageButtons">
+                            <a href="#">
+                                <img src="../images/illustration/add.png" alt="Add" width="60px">
+                            </a>
+                        </button>
+                        <button class="imageButtons">
+                            <a href="#">
+                                <img src="../images/illustration/like.png" alt="Like" width="53px">
+                            </a>
+                        </button>
+                        <div></div>
+                        <button class="imageButtons">
+                            <a href="#">
+                                <img src="../images/illustration/mute.png" alt="Mute" width="53px">
+                            </a>
+                        </button>
+                    </div>
+                    <div class="previewInformationContainer">
+                        <div class="previewClassifications">
+                            <p>Thriller, Action, Thriller</p>
+                        </div>
+                        <div class="previewTitle"><h1>Title</h1></div>
+                        <div class="previewDescription"><p>Some description</p></div>
+                    </div>
+                    <div class="previewRecommendationsContainer">
+                        <h3>Similar Titles</h3>
+                        <div class="row previewRow">
+                            <img src="../images/movie/jawan.png" alt="Jawan">
+                            <img src="../images/movie/bro.png" alt="Bro">
+                            <img src="../images/movie/malayam.png" alt="Malayalam Movie">
+                            <img src="../images/movie/shankai.png" alt="Shankai">
+                            <img src="../images/movie/shettyPolishetty.png" alt="Shetty Polishetty">
+                            <img src="../images/movie/mismatched.png" alt="Mismatched">
+                            <img src="../images/movie/kungFuPanda.png" alt="Kung Fu Panda">
+                            <img src="../images/movie/lostInSpace.png" alt="Lost in Space">
+                            <img src="../images/movie/strongGirlNamSoon.png" alt="Strong Girl Nam-Soon">
+                            <img src="../images/movie/lucifer.png" alt="Lucifer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="category">
+            <h3>Movies</h3>
+            <div class="row watchlistRow">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <img src="../images/illustration/footer.png" alt="Footer" width="100%">
+    </footer>
+</div>
+</body>
+<script src="../public/js/auth.js"></script>
+<script src="../public/js/api.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if user is authenticated
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        const profile = JSON.parse(localStorage.getItem("profile"));
+        const profilePicture = profile.profile_picture;
+
+        // If a profile picture exists in local storage, update the image element
+        if (profilePicture) {
+            const profileImageElement = document.getElementById("profileImage");
+            profileImageElement.src = profilePicture;
+        }
+    });
+
+    const previewContainer = document.getElementsByClassName('previewContainer')[0];
+    const previewTriggers = document.getElementsByClassName('previewContainerTrigger');
+    const divToFade = document.getElementsByClassName('previewContainer')[0];
+    const token = localStorage.getItem('token');
+
+    previewContainer.addEventListener('click', () => {
+        divToFade.style.display = 'none';
+    });
+
+    for (let i = 0; i < previewTriggers.length; i++) {
+        previewTriggers[i].addEventListener('click', () => {
+            divToFade.style.display = 'block';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const moviesContainer = document.querySelector('.watchlistRow');
+        if (!moviesContainer) {
+            console.error("Error: watchlistRow container not found!");
+            return;
+        }
+
+        // Function to fetch movie data from the API
+        const fetchMovies = async () => {
+            try {
+                console.log("Fetching movies from API...");
+                const response = await fetch(
+                    'http://localhost:3000/movie',
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
+
+                console.log("Response Status:", response.status);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch data. Status: ${response.status}`);
+                }
+
+                const contentType = response.headers.get('Content-Type');
+                console.log("Content-Type:", contentType);
+
+                let moviesData;
+                if (contentType.includes('application/json')) {
+                    const data = await response.json();
+                    console.log("Parsed JSON Data:", data);
+
+                    // Extract the `result` array
+                    moviesData = data.result;
+                } else if (contentType.includes('application/xml')) {
+                    const xmlData = await response.text();
+                    console.log("Raw XML Data:", xmlData);
+
+                    const parsedData = parseXMLToJSON(xmlData);
+                    console.log("Converted XML to JSON:", parsedData);
+
+                    // Extract the `result` array
+                    moviesData = parsedData.result;
+                }
+
+                if (!moviesData || !Array.isArray(moviesData)) {
+                    console.error('Invalid movies data format:', moviesData);
+                    return;
+                }
+
+                populateMovies(moviesData);
+
+            } catch (error) {
+                console.error('Error fetching movies:', error);
+            }
+        };
+
+
+        // Function to parse XML to JSON format
+        const parseXMLToJSON = (xmlString) => {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, 'application/xml');
+            const movies = Array.from(xmlDoc.getElementsByTagName('movie'));
+
+            return movies.map((movie) => ({
+                movieId: movie.getElementsByTagName('movie_id')[0]?.textContent,
+                ageClassification: movie.getElementsByTagName('age_classification')[0]?.textContent,
+                genre: movie.getElementsByTagName('genre')[0]?.textContent,
+                qualityType: movie.getElementsByTagName('quality_type')[0]?.textContent,
+                title: movie.getElementsByTagName('title')[0]?.textContent,
+                duration: {
+                    hours: movie.getElementsByTagName('hours')[0]?.textContent,
+                    minutes: movie.getElementsByTagName('minutes')[0]?.textContent,
+                    seconds: movie.getElementsByTagName('seconds')[0]?.textContent,
+                },
+                description: movie.getElementsByTagName('description')[0]?.textContent,
+                viewCount: movie.getElementsByTagName('view_count')[0]?.textContent,
+            }));
+        };
+
+        // Function to populate movies on the page
+        const populateMovies = (movies) => {
+            if (!Array.isArray(movies)) {
+                console.error("Invalid movies data format:", movies);
+                return;
+            }
+
+            movies.forEach((movie) => {
+                const movieElement = createMovieElement(movie);
+                moviesContainer.appendChild(movieElement);
+            });
+        };
+
+        // Function to create movie elements dynamically
+        const createMovieElement = (movie) => {
+            const movieElement = document.createElement('img');
+            movieElement.classList.add('previewContainerTrigger');
+            movieElement.src = movie.movie_link; // Use the movie_link from the API
+            movieElement.alt = movie.title;
+            movieElement.title = movie.title;
+
+            // Add click event to show the preview container and populate it
+            movieElement.addEventListener('click', () => {
+                console.log('Movie clicked:', movie.title);
+                showMoviePreview(movie);
+                const previewContainer = document.querySelector('.previewContainer');
+                if (previewContainer) {
+                    previewContainer.style.display = 'block'; // Make preview container visible
+                }
+            });
+
+            return movieElement;
+        };
+
+        // Function to show the movie preview
+        const showMoviePreview = (movie) => {
+            const previewContainer = document.querySelector('.previewContainer');
+            if (!previewContainer) {
+                console.error('Preview container not found!');
+                return;
+            }
+
+            // Log the movie object to inspect its structure
+            console.log("Movie data:", movie);
+
+            // Retrieve the necessary preview elements
+            const previewTitle = previewContainer.querySelector('.previewTitle h1');
+            const previewDescription = previewContainer.querySelector('.previewDescription p');
+            const previewImage = previewContainer.querySelector('.previewImage img');
+            const previewClassifications = previewContainer.querySelector('.previewClassifications p');
+            const totalTime = previewContainer.querySelector('.totalTime');
+
+            // Check if the elements exist before trying to modify them
+            if (previewTitle) {
+                previewTitle.textContent = movie.title || "Unknown Title";
+            }
+            if (previewDescription) {
+                previewDescription.textContent = movie.description || "No Description Available";
+            }
+            if (previewImage) {
+                previewImage.src = movie.movie_link || ''; // Set the movie's preview image
+            }
+            if (previewClassifications) {
+                // Use the genre directly from the movie data
+                previewClassifications.textContent = movie.genre || "Unknown Genre";
+            }
+
+            // Check if duration exists in the movie object
+            if (movie.duration) {
+                console.log("Movie duration data:", movie.duration);
+
+                // Check if the previewDuration element exists
+                if (totalTime) {
+                    // Format the duration as HH:MM:SS
+                    totalTime.textContent = formatTime(movie.duration.hours || 0, movie.duration.minutes || 0, movie.duration.seconds || 0);
+                } else {
+                    console.error("previewDuration element not found!");
+                }
+            } else {
+                console.error("No duration data available for movie:", movie.title);
+            }
+
+            // Make the preview container visible
+            previewContainer.style.display = 'block';
+        };
+
+        const formatTime = (hours, minutes, seconds) => {
+            const formattedHours = String(hours).padStart(2, '0');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+            return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+        };
+
+        // Fetch movies when the page loads
+        fetchMovies();
+    });
+</script>
+<!--<script src="../views/index.html"></script>-->
+</html>

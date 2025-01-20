@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Sign Up Page</title>
+    <link rel="stylesheet" href="../stylesheet/loginStyle.css">
+</head>
+
+<body>
+<nav>
+    <a href="index.html"><img src="../images/logo/logoFull.png" alt="Netflix Logo"></a>
+</nav>
+<div class="formWrapper">
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+        <div class="formControl">
+            <input type="email" id="email" name="email" required>
+            <label for="email">Email</label>
+        </div>
+        <div class="formControl">
+            <input type="password" id="password" name="password" required>
+            <label for="password">Password</label>
+        </div>
+        <div class="formControl">
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <label for="confirmPassword">Confirm Password</label>
+        </div>
+        <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Log in</a></p>
+    <small>
+        This page is protected by Google reCAPTCHA to ensure you're not a bot.
+        <a href="#">Learn more.</a>
+    </small>
+</div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const signupForm = document.getElementById('signupForm');
+
+        signupForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Basic password match validation
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/account', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Account created:', data);
+                    window.location.href = 'profileCreate.html';
+                } else {
+                    const errorData = await response.json();
+                    alert('Account creation failed: ' + errorData.error);
+                }
+            } catch (error) {
+                console.error('Error creating account:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    });
+</script>
+</html>

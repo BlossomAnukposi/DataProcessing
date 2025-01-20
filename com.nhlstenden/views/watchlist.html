@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watch List</title>
+    <link rel="stylesheet" href="../stylesheet/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="wrapper">
+    <header class="nav watchlistNav">
+        <div class="navbarChild">
+            <img src="../images/logo/logoFull.png" alt="Logo" width="90">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tvShows.html">TV Shows</a></li>
+                    <li><a href="movies.html">Movies</a></li>
+                    <li><a href="watchlist.html">My List</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="navbarChild">
+            <img src="../images/illustration/notification.png" alt="Notification" width="30">
+            <img src="../images/profile/chicken.jpg" alt="profile" width="30">
+        </div>
+    </header>
+    <main class="watchlistMain">
+        <section class="previewContainer">
+            <div class="previewContent">
+                <div class="previewImage">
+                    <img src="../images/movie/previewHero.jpg" alt="Preview Movie">
+                </div>
+                <div class="previewInfoContainers">
+                    <div class="previewProgressContainer">
+                        <div class="previewProgressBar">
+                            <div class="previewProgressFill"></div>
+                        </div>
+                        <p>20 of 150m</p>
+                    </div>
+                    <div class="previewControlsContainer">
+                        <button class="imageButtons">
+                            <a href="moviePlayer.html">
+                                <img src="../images/illustration/playMovie.png" alt="Play" width="110px">
+                            </a>
+                        </button>
+                        <button class="imageButtons">
+                            <a href="#">
+                                <img src="../images/illustration/add.png" alt="Add" width="60px">
+                            </a>
+                        </button>
+                        <button class="imageButtons">
+                            <a href="#">
+                                <img src="../images/illustration/like.png" alt="Like" width="53px">
+                            </a>
+                        </button>
+                        <div></div>
+                        <button class="imageButtons">
+                            <a href="#">
+                                <img src="../images/illustration/mute.png" alt="Mute" width="53px">
+                            </a>
+                        </button>
+                    </div>
+                    <div class="previewInformationContainer">
+                        <div class="previewDuration">
+                            <p>2:13:40</p>
+                        </div>
+                        <div class="previewClassifications">
+                            <p>Thriller</p>
+                            <p>Action</p>
+                            <p>Thriller</p>
+                        </div>
+                        <p class="previewDescription">Some description</p>
+                    </div>
+                    <div class="previewRecommendationsContainer">
+                        <h3>Similar Titles</h3>
+                        <div class="row previewRow">
+                            <img src="../images/movie/jawan.png" alt="Jawan">
+                            <img src="../images/movie/bro.png" alt="Bro">
+                            <img src="../images/movie/malayam.png" alt="Malayalam Movie">
+                            <img src="../images/movie/shankai.png" alt="Shankai">
+                            <img src="../images/movie/shettyPolishetty.png" alt="Shetty Polishetty">
+                            <img src="../images/movie/mismatched.png" alt="Mismatched">
+                            <img src="../images/movie/kungFuPanda.png" alt="Kung fu panda">
+                            <img src="../images/movie/lostInSpace.png" alt="Lost in Space">
+                            <img src="../images/movie/strongGirlNamSoon.png" alt="Strong Girl Nam-Soon">
+                            <img src="../images/movie/lucifer.png" alt="Lucifer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="category">
+            <h3>My List</h3>
+            <div class="row watchlistRow">
+                <img class="previewContainerTrigger" src="../images/movie/jawan.png" alt="Jawan">
+                <img class="previewContainerTrigger" src="../images/movie/bro.png" alt="Bro">
+                <img class="previewContainerTrigger" src="../images/movie/malayam.png" alt="Malayalam Movie">
+                <img class="previewContainerTrigger" src="../images/movie/shankai.png" alt="Shankai">
+                <img class="previewContainerTrigger" src="../images/movie/shettyPolishetty.png" alt="Shetty Polishetty">
+                <img class="previewContainerTrigger" src="../images/movie/mismatched.png" alt="Mismatched">
+                <img class="previewContainerTrigger" src="../images/movie/kungFuPanda.png" alt="Kung fu panda">
+                <img class="previewContainerTrigger" src="../images/movie/lostInSpace.png" alt="Lost in Space">
+                <img class="previewContainerTrigger" src="../images/movie/strongGirlNamSoon.png" alt="Strong Girl Nam-Soon">
+                <img class="previewContainerTrigger" src="../images/movie/lucifer.png" alt="Lucifer">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <img src="../images/illustration/footer.png" alt="Footer" width="100%">
+    </footer>
+</div>
+</body>
+</html>
+<script>
+    const previewContainer = document.getElementsByClassName('previewContainer')[0];
+    const previewTriggers = document.getElementsByClassName('previewContainerTrigger');
+    var divToFade = document.getElementsByClassName('previewContainer')[0];
+
+    previewContainer.addEventListener('click', () => {
+        divToFade.style.display = 'none';
+    });
+    for (let i = 0; i < previewTriggers.length; i++) {
+        previewTriggers[i].addEventListener('click', () => {
+            divToFade.style.display = 'block';
+        });
+    }
+</script>

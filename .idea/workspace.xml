@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="Updated server script for deployment (4)">
+    <list default="true" id="9e651a6e-0f26-4fb4-b467-1111ea8ae1aa" name="Changes" comment="movie endpoints">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.nhlstenden/api/controller/accountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/com.nhlstenden/api/controller/accountController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,11 +17,19 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="backend" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -36,13 +41,14 @@
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;git@github.com:BlossomAnukposi/DataProcessing.git&quot;,
     &quot;accountId&quot;: &quot;a99c55a8-fe57-46fb-a15b-a25455c44df1&quot;
-  }
+  },
+  &quot;reviewCommentPreferred&quot;: false
 }</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
+  &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2pj5mRPCHkDldP0lP9cSlMJ9SON" />
   <component name="ProjectViewState">
@@ -52,16 +58,25 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Jest.Account Routes.executor": "Run",
+    "Jest.Episode Routes.executor": "Run",
+    "Jest.Tests in routes/.executor": "Run",
     "Node.js.app.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/blossom/Desktop/DBProc/DataProcessing",
+    "full.screen.before.presentation.mode": "false",
+    "git-widget-placeholder": "development",
+    "javascript.nodejs.core.library.configured.version": "20.17.0",
+    "javascript.nodejs.core.library.typings.version": "20.17.14",
+    "last_opened_file_path": "/Users/blossom/Desktop/DataProcessing/com.nhlstenden/images/illustration",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "/Users/blossom/Desktop/DataProcessing/node_modules/jest",
     "nodejs_package_manager_path": "npm",
     "npm.build.executor": "Run",
     "npm.start.executor": "Run",
@@ -71,19 +86,49 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/com.nhlstenden.api/api" />
+      <recent name="$PROJECT_DIR$/com.nhlstenden" />
+      <recent name="$PROJECT_DIR$/com.nhlstenden/views" />
+      <recent name="$PROJECT_DIR$/com.nhlstenden/images/video" />
+      <recent name="$PROJECT_DIR$/com.nhlstenden/images/profile" />
+      <recent name="$PROJECT_DIR$/com.nhlstenden/images/illustration" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
+  <component name="RunManager" selected="Jest.Tests in routes/">
+    <configuration name="Account Routes" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
       <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/com.nhlstenden/test/routes/account.test.js" />
+      <test-names>
+        <test-name value="Account Routes" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Episode Routes" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/com.nhlstenden/test/routes/episode.test.js" />
+      <test-names>
+        <test-name value="Episode Routes" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests in routes/" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="DIRECTORY" />
+      <test-directory value="$PROJECT_DIR$/com.nhlstenden/test/routes" />
       <method v="2" />
     </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -108,9 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
-        <item itemvalue="npm.start" />
+        <item itemvalue="Jest.Tests in routes/" />
+        <item itemvalue="Jest.Episode Routes" />
+        <item itemvalue="Jest.Account Routes" />
         <item itemvalue="npm.test" />
+        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -131,6 +178,10 @@
       <updated>1733266803033</updated>
       <workItem from="1733266804103" duration="2831000" />
       <workItem from="1733478610239" duration="7601000" />
+      <workItem from="1733752909433" duration="7494000" />
+      <workItem from="1734458040529" duration="26000" />
+      <workItem from="1736706190918" duration="19000" />
+      <workItem from="1736706215094" duration="2817000" />
     </task>
     <task id="LOCAL-00001" summary="Changed start script for deployment">
       <option name="closed" value="true" />
@@ -180,13 +231,141 @@
       <option name="project" value="LOCAL" />
       <updated>1733572556474</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Finished movie player">
+      <option name="closed" value="true" />
+      <created>1733953881972</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733953881972</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Finished main screen">
+      <option name="closed" value="true" />
+      <created>1734012774667</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1734012774667</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Finished watchlist">
+      <option name="closed" value="true" />
+      <created>1734019777388</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1734019777388</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Finished movie player details, made movie player interactable, made movies and series pages">
+      <option name="closed" value="true" />
+      <created>1734040821438</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734040821438</updated>
+    </task>
+    <task id="LOCAL-00011" summary="connected frontend to backend">
+      <option name="closed" value="true" />
+      <created>1736774955700</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1736774955700</updated>
+    </task>
+    <task id="LOCAL-00012" summary="profile connected to frontend">
+      <option name="closed" value="true" />
+      <created>1737201975170</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1737201975170</updated>
+    </task>
+    <task id="LOCAL-00013" summary="watchlist all endpoints done">
+      <option name="closed" value="true" />
+      <created>1737206317680</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1737206317680</updated>
+    </task>
+    <task id="LOCAL-00014" summary="watched media list all endpoints done">
+      <option name="closed" value="true" />
+      <created>1737209843305</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1737209843305</updated>
+    </task>
+    <task id="LOCAL-00015" summary="sibscrption">
+      <option name="closed" value="true" />
+      <created>1737217731322</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1737217731322</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fixed 4 delete endpoints">
+      <option name="closed" value="true" />
+      <created>1737222900408</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1737222900408</updated>
+    </task>
+    <task id="LOCAL-00017" summary="movie endpoints">
+      <option name="closed" value="true" />
+      <created>1737235235007</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1737235235007</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="development" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="backend" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="frontend" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/development" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -204,6 +383,17 @@
     <MESSAGE value="Updated start script for deployment (3), installed the CORS package" />
     <MESSAGE value="Updated server script for deployment (3)" />
     <MESSAGE value="Updated server script for deployment (4)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated server script for deployment (4)" />
+    <MESSAGE value="Finished movie player" />
+    <MESSAGE value="Finished main screen" />
+    <MESSAGE value="Finished watchlist" />
+    <MESSAGE value="Finished movie player details, made movie player interactable, made movies and series pages" />
+    <MESSAGE value="connected frontend to backend" />
+    <MESSAGE value="profile connected to frontend" />
+    <MESSAGE value="watchlist all endpoints done" />
+    <MESSAGE value="watched media list all endpoints done" />
+    <MESSAGE value="sibscrption" />
+    <MESSAGE value="fixed 4 delete endpoints" />
+    <MESSAGE value="movie endpoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="movie endpoints" />
   </component>
 </project>

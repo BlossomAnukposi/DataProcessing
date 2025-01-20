@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Netflix Login Page</title>
+    <link rel="stylesheet" href="../stylesheet/loginStyle.css" />
+</head>
+
+<body>
+<nav>
+    <a href="index.html">
+        <img src="../images/logo/logoFull.png" alt="Netflix Logo" />
+    </a>
+</nav>
+<div class="formWrapper">
+    <h2>Log In</h2>
+    <form id="loginForm" action="index.html" method="post" target="_blank">
+        <div class="formControl">
+            <input type="text" id="emailOrPhone" name="emailOrPhone" required />
+            <label for="emailOrPhone">Email or phone number</label>
+        </div>
+        <div class="formControl">
+            <input type="password" id="password" name="password" required />
+            <label for="password">Password</label>
+        </div>
+        <button type="submit">Sign In</button>
+        <div class="formHelp">
+            <div class="rememberMe">
+                <input type="checkbox" id="rememberMe" name="rememberMe" />
+                <label for="rememberMe">Remember me</label>
+            </div>
+            <a href="#">Need help?</a>
+        </div>
+    </form>
+    <p>New to Netflix? <a href="signUp.html">Sign up now</a></p>
+    <small>
+        This page is protected by Google reCAPTCHA to ensure you're not a bot.
+        <a href="#">Learn more.</a>
+    </small>
+</div>
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById("emailOrPhone").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                console.log("Sending login request...");
+                const response = await fetch("http://localhost:3000/account/signIn", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                console.log("Response status:", response.status);
+                const data = await response.json();
+                console.log("Response data:", data);
+
+                if (response.ok) {
+                    console.log("Token received:", data.result.token);
+                    console.log("User data:", data.result.user);
+
+                    localStorage.setItem("token", data.result.token);
+                    localStorage.setItem("user", JSON.stringify(data.result.user));
+
+                    // Check if the email contains "@netflix"
+                    if (email.includes('@netflix')) {
+                        window.location.href = "admin/dashboard.html"; // Redirect to admin dashboard
+                    } else {
+                        window.location.href = "index.html"; // Regular user redirect
+                    }
+                } else {
+                    console.error("Login failed:", data.message);
+                    alert(
+                        data.message || "Sign-in failed. Please check your credentials."
+                    );
+                }
+            } catch (error) {
+                console.error("Error signing in:", error);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    });
+</script>
+
+</html>

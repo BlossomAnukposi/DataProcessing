@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Netflix Admin Dashboard</title>
+    <link rel="stylesheet" href="../../stylesheet/admin.css" />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+</head>
+<body>
+<div class="admin-container">
+    <!-- Sidebar Navigation -->
+    <nav class="admin-sidebar">
+        <div class="logo">
+            <img
+                    src="../../images/logo/logoShort.png"
+                    alt="Netflix Logo"
+                    width="50"
+            />
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="dashboard.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="content-management.html"><i class="fas fa-film"></i> Content Management</a>
+            </li>
+            <li>
+                <a href="users.html"><i class="fas fa-users"></i> Users</a>
+            </li>
+            <li>
+                <a href="genres.html"><i class="fas fa-tags"></i> Genres</a>
+            </li>
+            <li>
+                <a href="subscriptions.html"><i class="fas fa-credit-card"></i> Subscriptions</a>
+            </li>
+            <li>
+                <a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <header class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <div class="admin-profile">
+                <span>Admin Name</span>
+                <img
+                        src="../../images/profile/lightGreen.jpg"
+                        alt="Admin Profile"
+                />
+            </div>
+        </header>
+
+        <!-- Dashboard Overview Cards -->
+        <div class="dashboard-cards">
+            <div class="card">
+                <h3>Total Users</h3>
+                <p id="totalUsers" class="number">Loading...</p>
+                <span class="trend up">+12% ↑</span>
+            </div>
+            <div class="card">
+                <h3>Active Subscriptions</h3>
+                <p id="activeSubscriptions" class="number">Loading...</p>
+                <span class="trend up">+8% ↑</span>
+            </div>
+            <div class="card">
+                <h3>Total Content</h3>
+                <p id="totalContent" class="number">Loading...</p>
+                <span class="trend up">+15% ↑</span>
+            </div>
+            <div class="card">
+                <h3>Revenue</h3>
+                <p id="revenue" class="number">Loading...</p>
+                <span class="trend up">+10% ↑</span>
+            </div>
+        </div>
+
+        <!-- Recent Activity Section -->
+        <section class="recent-activity">
+            <h2>Recent Activity</h2>
+            <div class="activity-list">
+                <div class="activity-item">
+                    <span class="time">2h ago</span>
+                    <p>New movie "Example Movie" added to library</p>
+                </div>
+                <div class="activity-item">
+                    <span class="time">3h ago</span>
+                    <p>User subscription updated</p>
+                </div>
+                <div class="activity-item">
+                    <span class="time">5h ago</span>
+                    <p>New genre "Documentary" created</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "../../views/index.html";
+            return;
+        }
+    });
+</script>
+<script src="../../public/js/auth.js"></script>
+<script src="../../public/js/api.js"></script>
+<script>
+    const token = localStorage.getItem("token");
+    document.addEventListener("DOMContentLoaded", () => {
+        // Function to randomize revenue between a range
+        function getRandomRevenue() {
+            const min = 100000;
+            const max = 1000000;
+            return (Math.random() * (max - min) + min).toFixed(2);
+        }
+
+        // Fetch data from APIs and update the dashboard
+        async function updateDashboard() {
+            try {
+                // Get total users
+                const usersResponse = await fetch("http://localhost:3000/account",
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const usersData = await usersResponse.json();
+                document.getElementById("totalUsers").innerText = usersData.result.length; // Assuming usersData is an array
+
+                // Get active subscriptions
+                const subscriptionsResponse = await fetch("http://localhost:3000/subscription/active",
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const subscriptionsData = await subscriptionsResponse.json();
+                document.getElementById("activeSubscriptions").innerText = subscriptionsData.result.length; // Assuming subscriptionsData is an array
+
+                // Get total content
+                const episodesResponse = await fetch("http://localhost:3000/episode",
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }  );
+                const episodesData = await episodesResponse.json();
+                const moviesResponse = await fetch("http://localhost:3000/movie",
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }  );
+                const moviesData = await moviesResponse.json();
+                const totalContent = episodesData.result.length + moviesData.result.length;
+                document.getElementById("totalContent").innerText = totalContent;
+
+                // Randomize revenue
+                const revenue = getRandomRevenue();
+                document.getElementById("revenue").innerText = `$${revenue}`;
+
+            } catch (error) {
+                console.error("Error fetching dashboard data:", error);
+            }
+        }
+
+        // Update dashboard on page load
+        updateDashboard();
+    });
+</script>
+
+</body>
+</html>

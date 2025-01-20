@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TV Shows</title>
+    <link rel="stylesheet" href="../stylesheet/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="wrapper">
+    <header class="nav watchlistNav">
+        <div class="navbarChild">
+            <img src="../images/logo/logoFull.png" alt="Logo" width="90">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tvShows.html">TV Shows</a></li>
+                    <li><a href="movies.html">Movies</a></li>
+                    <li><a href="watchlist.html">My List</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="navbarChild">
+            <img src="../images/illustration/notification.png" alt="Notification" width="30">
+            <a href="profileSelect.html">
+                <img id ="profileImage" src="../images/profile/chicken.jpg" alt="Profile" width="30">
+            </a>
+        </div>
+    </header>
+    <main class="watchlistMain">
+        <section class="previewContainer">
+            <div class="previewContent">
+                <div class="previewImage">
+                    <img src="../images/movie/previewHero.jpg" alt="Preview Movie">
+                </div>
+                <div class="previewInfoContainers">
+                    <div class="previewProgressContainer">
+                        <div class="previewProgressBar">
+                            <div class="previewProgressFill"></div>
+                        </div>
+                        <div class="previewTimeContainer">
+                            <span class="currentTime">00:20:13</span>
+                            <span class="totalTime">2:43:50</span>
+                        </div>
+                    </div>
+                    <div class="previewControlsContainer">
+                        <button class="imageButtons">
+                            <a href="moviePlayer.html">
+                                <img src="../images/illustration/playMovie.png" alt="Play" width="110px">
+                            </a>
+                        </button>
+                        <button class="imageButtons">
+                            <a href="#">
+                                <img src="../images/illustration/add.png" alt="Add" width="60px">
+                            </a>
+                        </button>
+                        <button class="imageButtons">
+                            <a href="#">
+                                <img src="../images/illustration/like.png" alt="Like" width="53px">
+                            </a>
+                        </button>
+                        <div></div>
+                        <button class="imageButtons">
+                            <a href="#">
+                                <img src="../images/illustration/mute.png" alt="Mute" width="53px">
+                            </a>
+                        </button>
+                    </div>
+                    <div class="previewInformationContainer">
+                        <div class="previewClassifications">
+                            <p>Thriller, Action, Thriller</p>
+                        </div>
+                        <div class="previewTitle"><h1>Title</h1></div>
+                        <div class="previewDescription"><p>Some description</p></div>
+                    </div>
+                    <div class="previewRecommendationsContainer">
+                        <h3>Similar Titles</h3>
+                        <div class="row previewRow">
+                            <img src="../images/movie/jawan.png" alt="Jawan">
+                            <img src="../images/movie/bro.png" alt="Bro">
+                            <img src="../images/movie/malayam.png" alt="Malayalam Movie">
+                            <img src="../images/movie/shankai.png" alt="Shankai">
+                            <img src="../images/movie/shettyPolishetty.png" alt="Shetty Polishetty">
+                            <img src="../images/movie/mismatched.png" alt="Mismatched">
+                            <img src="../images/movie/kungFuPanda.png" alt="Kung Fu Panda">
+                            <img src="../images/movie/lostInSpace.png" alt="Lost in Space">
+                            <img src="../images/movie/strongGirlNamSoon.png" alt="Strong Girl Nam-Soon">
+                            <img src="../images/movie/lucifer.png" alt="Lucifer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="category">
+            <h3>TV Shows</h3>
+            <div class="row watchlistRow">
+                <img class="previewContainerTrigger" src="../images/movie/crashLandingOnYou.png" alt="Crash Landing on You">
+                <img class="previewContainerTrigger" src="../images/movie/trueBeauty.png" alt="True Beauty">
+                <img class="previewContainerTrigger" src="../images/movie/lifeOnOurPlanet.png" alt="Life on Our Planet Movie">
+                <img class="previewContainerTrigger" src="../images/movie/lostInSpace.png" alt="Lost in Space">
+                <img class="previewContainerTrigger" src="../images/movie/shettyPolishetty.png" alt="Shetty Polishetty">
+                <img class="previewContainerTrigger" src="../images/movie/mismatched.png" alt="Mismatched">
+                <img class="previewContainerTrigger" src="../images/movie/lucifer.png" alt="Lucifer">
+                <img class="previewContainerTrigger" src="../images/movie/skyscraper.png" alt="Skyscraper">
+                <img class="previewContainerTrigger" src="../images/movie/strongGirlNamSoon.png" alt="Strong Girl Nam-Soon">
+                <img class="previewContainerTrigger" src="../images/movie/sweetTooth.png" alt="Sweet Tooth">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <img src="../images/illustration/footer.png" alt="Footer" width="100%">
+    </footer>
+</div>
+</body>
+<script src="../public/js/auth.js"></script>
+<script src="../public/js/api.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if user is authenticated
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        const profile = JSON.parse(localStorage.getItem("profile"));
+        const profilePicture = profile.profile_picture;
+
+        // If a profile picture exists in local storage, update the image element
+        if (profilePicture) {
+            const profileImageElement = document.getElementById("profileImage");
+            profileImageElement.src = profilePicture;
+        }
+    });
+
+
+
+    const previewContainer = document.getElementsByClassName('previewContainer')[0];
+    const previewTriggers = document.getElementsByClassName('previewContainerTrigger');
+    var divToFade = document.getElementsByClassName('previewContainer')[0];
+    const token = localStorage.getItem('token');
+
+    previewContainer.addEventListener('click', () => {
+        divToFade.style.display = 'none';
+    });
+    for (let i = 0; i < previewTriggers.length; i++) {
+        previewTriggers[i].addEventListener('click', () => {
+            divToFade.style.display = 'block';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const seriesContainer = document.querySelector('.watchlistRow');
+        if (!seriesContainer) {
+            console.error("Error: watchlistRow container not found!");
+            return;
+        }
+
+        // Function to fetch series data from the API
+        const fetchSeries = async () => {
+            try {
+                console.log("Fetching series from API...");
+                const response = await fetch('http://localhost:3000/series',
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+                );
+
+                console.log("Response Status:", response.status);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch data. Status: ${response.status}`);
+                }
+
+                const contentType = response.headers.get('Content-Type');
+                console.log("Content-Type:", contentType);
+
+                let seriesData;
+                if (contentType.includes('application/json')) {
+                    const data = await response.json();
+                    console.log("Parsed JSON Data:", data);
+
+                    // Extract the `result` array
+                    seriesData = data.result;
+                } else if (contentType.includes('application/xml')) {
+                    const xmlData = await response.text();
+                    console.log("Raw XML Data:", xmlData);
+
+                    const parsedData = parseXMLToJSON(xmlData);
+                    console.log("Converted XML to JSON:", parsedData);
+
+                    // Extract the `result` array
+                    seriesData = parsedData.result;
+                }
+
+                if (!seriesData || !Array.isArray(seriesData)) {
+                    console.error('Invalid series data format:', seriesData);
+                    return;
+                }
+
+                populateSeries(seriesData);
+
+            } catch (error) {
+                console.error('Error fetching series:', error);
+            }
+        };
+
+
+        // Function to parse XML to JSON format
+        const parseXMLToJSON = (xmlString) => {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, 'application/xml');
+            const series = Array.from(xmlDoc.getElementsByTagName('series'));
+
+            return series.map((series) => ({
+                seriesId: series.getElementsByTagName('series_id')[0]?.textContent,
+                ageClassification: series.getElementsByTagName('age_classification')[0]?.textContent,
+                genre: series.getElementsByTagName('genre')[0]?.textContent,
+                qualityType: series.getElementsByTagName('quality_type')[0]?.textContent,
+                title: series.getElementsByTagName('title')[0]?.textContent,
+                duration: {
+                    hours: series.getElementsByTagName('hours')[0]?.textContent,
+                    minutes: series.getElementsByTagName('minutes')[0]?.textContent,
+                },
+                description: series.getElementsByTagName('description')[0]?.textContent,
+                viewCount: series.getElementsByTagName('view_count')[0]?.textContent,
+            }));
+        };
+
+        // Function to populate series on the page
+        const populateSeries = (series) => {
+            if (!Array.isArray(series)) {
+                console.error("Invalid series data format:", series);
+                return;
+            }
+
+            series.forEach((series) => {
+                const seriesElement = createSeriesElement(series);
+                seriesContainer.appendChild(seriesElement);
+            });
+        };
+
+        // Function to create series elements dynamically
+        const createSeriesElement = (series) => {
+            const seriesElement = document.createElement('img');
+            seriesElement.classList.add('previewContainerTrigger');
+            seriesElement.src = series.series_url;
+            seriesElement.alt = series.title;
+            seriesElement.title = series.title;
+
+            // Add click event to show the preview container and populate it
+            seriesElement.addEventListener('click', () => {
+                console.log('series clicked:', series.title);
+                showSeriesPreview(series);
+                const previewContainer = document.querySelector('.previewContainer');
+                if (previewContainer) {
+                    previewContainer.style.display = 'block'; // Make preview container visible
+                }
+            });
+
+            return seriesElement;
+        };
+
+        // Function to show the series preview
+        const showSeriesPreview = (series) => {
+            const previewContainer = document.querySelector('.previewContainer');
+            if (!previewContainer) {
+                console.error('Preview container not found!');
+                return;
+            }
+
+            // Retrieve the necessary preview elements
+            const previewTitle = previewContainer.querySelector('.previewTitle h1');
+            const previewDescription = previewContainer.querySelector('.previewDescription p');
+            const previewImage = previewContainer.querySelector('.previewImage img');
+            const previewClassifications = previewContainer.querySelector('.previewClassifications p');
+
+            // Check if the elements exist before trying to modify them
+            if (previewTitle) {
+                previewTitle.textContent = series.title || "Unknown Title";
+            }
+            if (previewDescription) {
+                previewDescription.textContent = series.description || "No Description Available";
+            }
+            if (previewImage) {
+                previewImage.src = series.series_url || ''; // Set the series's preview image
+            }
+            if (previewClassifications) {
+                // Use the genre directly from the series data
+                previewClassifications.textContent = series.genre || "Unknown Genre";
+            }
+
+            // Optionally, you can set the series's duration here as well
+            const previewDuration = previewContainer.querySelector('.previewDuration');
+            if (previewDuration) {
+                previewDuration.textContent = `${series.duration.hours || 0}:${series.duration.minutes || 0}`;
+            }
+
+            // Make the preview container visible
+            previewContainer.style.display = 'block';
+        };
+
+        // Fetch series when the page loads
+        fetchSeries();
+    });
+</script>
+</html>

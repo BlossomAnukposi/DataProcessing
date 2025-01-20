@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.96);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.profileSelectionWrapper {
+    text-align: center;
+    max-width: 1000px;
+    width: 90%;
+    margin: auto;
+}
+
+.heading {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.profilesWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.profile {
+    width: 200px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.profile:hover {
+    transform: scale(1.1);
+}
+
+.profile img {
+    width: 180px;
+    height: 180px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+
+.profile p {
+    font-size: 1rem;
+    color: #b3b3b3;
+}
+
+.addProfile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+}
+
+.addProfileIcon {
+    font-size: 3rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.manageProfilesButton {
+    padding: 10px 20px;
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 1px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: backgroundColor 0.2s ease;
+}
+
+.manageProfilesButton:hover {
+    background-color: #c40812;
+}

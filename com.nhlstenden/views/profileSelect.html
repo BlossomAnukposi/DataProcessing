@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Profile Selection</title>
+    <link rel="stylesheet" href="../stylesheet/profileSelect.css">
+</head>
+<body>
+<div class="profileSelectionWrapper">
+    <h1 class="heading">Who's watching?</h1>
+    <div class="profilesWrapper" id="profilesWrapper">
+        <!-- Dynamically generated profiles will be inserted here -->
+        <a href="../views/profileCreate.html" style="text-decoration: none">
+            <div class="profile addProfile" id="createProfileButton">
+                <div class="addProfileIcon">+</div>
+            </div>
+        </a>
+    </div>
+    <!-- Edit Button (Initially hidden) -->
+    <button id="editButton" style="display:none;">Edit</button>
+    <!-- Create Profile Button (Initially visible) -->
+</div>
+
+<script src="../public/js/auth.js"></script>
+<script src="../public/js/api.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        // Check if user is authenticated
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        const user = JSON.parse(localStorage.getItem("user"));  // Parse user object
+        if (!user || !user.id) {
+            console.error("User is not authenticated.");
+            alert("User not authenticated. Please log in.");
+            return;
+        }
+
+        const id = user.id;
+        console.log(id); // Log to ensure the id is correct
+
+        try {
+            // Fetch user profiles from the API
+            const response = await fetch(`http://localhost:3000/profile/account/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            // Check if the response is successful
+            if (response.ok) {
+                const profilesData = await response.json();
+                console.log(profilesData); // Log the profiles data for inspection
+
+                const profiles = Array.isArray(profilesData.result) ? profilesData.result : [];
+                const profilesWrapper = document.getElementById('profilesWrapper');
+                const createProfileButton = document.getElementById('createProfileButton');
+                const editButton = document.getElementById('editButton');
+
+                // Debug log for profiles length
+                console.log("Profiles length: ", profiles.length);
+
+                // Hide create button if there are 4 profiles
+                if (profiles.length === 4) {
+                    console.log("Hiding create profile button");
+                    createProfileButton.style.display = 'none';
+                } else {
+                    console.log("Showing create profile button");
+                }
+
+                // Loop through profiles and create profile elements
+                profiles.forEach(profile => {
+                    const profileElement = document.createElement('a');
+                    profileElement.href = "#"; // Placeholder, we will handle the click event later
+                    profileElement.style.textDecoration = 'none';
+                    profileElement.classList.add('profileElement');
+                    profileElement.dataset.profileId = profile.profile_id; // Store profile ID in data attribute
+
+                    const profileDiv = document.createElement('div');
+                    profileDiv.classList.add('profile');
+
+                    const profileImage = document.createElement('img');
+                    profileImage.src = profile.profile_picture;
+                    profileImage.alt = profile.profile_name;
+
+                    const profileName = document.createElement('p');
+                    profileName.textContent = profile.profile_name;
+
+                    profileDiv.appendChild(profileImage);
+                    profileDiv.appendChild(profileName);
+                    profileElement.appendChild(profileDiv);
+
+                    profilesWrapper.appendChild(profileElement);
+                });
+
+                // Show the Edit button if profiles exist
+                if (profiles.length > 0) {
+                    editButton.style.display = 'inline-block'; // Show edit button
+                }
+
+                // Handle the "Edit" button functionality
+                let isEditing = false;  // Track whether edit mode is active
+                editButton.addEventListener('click', () => {
+                    if (isEditing) {
+                        // If we are in editing mode, toggle back to normal mode
+                        isEditing = false;
+                        editButton.textContent = "Edit"; // Change button text back to 'Edit'
+                        profilesWrapper.querySelectorAll('.profileElement').forEach(element => {
+                            element.style.cursor = 'default';  // Disable clickable profiles
+                        });
+                    } else {
+                        // Enable editing mode
+                        isEditing = true;
+                        editButton.textContent = "Cancel Editing"; // Change button text to 'Cancel Editing'
+                        profilesWrapper.querySelectorAll('.profileElement').forEach(element => {
+                            element.style.cursor = 'pointer';  // Indicate that profiles are clickable
+                        });
+                    }
+                });
+
+                // Handle profile click event
+                profilesWrapper.addEventListener('click', (e) => {
+                    const profileElement = e.target.closest('.profileElement');
+                    if (profileElement) {
+                        const selectedProfileId = profileElement.dataset.profileId;
+
+                        if (isEditing) {
+                            // If in edit mode, redirect to profile edit page
+                            const selectedProfile = profiles.find(profile => profile.profile_id == selectedProfileId);
+                            console.log("Selected Profile: ", selectedProfile);  // Debug log
+                            localStorage.setItem('profile', JSON.stringify(selectedProfile));
+                            window.location.href = `../views/profileEdit.html?profileId=${selectedProfileId}`;
+                        } else {
+                            // If not in edit mode, update localStorage and redirect to index
+                            const selectedProfile = profiles.find(profile => profile.profile_id == selectedProfileId);
+                            console.log("Selected Profile: ", selectedProfile);  // Debug log
+                            localStorage.setItem('profile', JSON.stringify(selectedProfile));
+                            window.location.href = 'index.html';
+                        }
+                    }
+                });
+            } else {
+                console.error('Failed to fetch profiles');
+                alert('Failed to load profiles');
+            }
+        } catch (error) {
+            console.error('Error fetching profiles:', error);
+            alert('An error occurred. Please try again.');
+        }
+    });
+</script>
+</body>
+</html>
