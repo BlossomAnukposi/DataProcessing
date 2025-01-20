@@ -66,14 +66,18 @@ async function createTestProfile() {
 
     console.log("Profile creation response:", response.body);
 
-    if (!response.body.result || !response.body.result[0]) {
+    if (
+      !response.body.result ||
+      !response.body.result[0] ||
+      !response.body.result[0].return_profile_id
+    ) {
       throw new Error(
         `Failed to create profile: ${JSON.stringify(response.body)}`
       );
     }
 
     const result = {
-      profileId: response.body.result[0].profile_id,
+      profileId: response.body.result[0].return_profile_id,
       accountId: account.accountId,
     };
 

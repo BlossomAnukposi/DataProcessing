@@ -6,6 +6,7 @@ describe("Preference Routes", () => {
   let authToken;
   let testPreferenceId;
   let testProfileId;
+  let testAccountId;
 
   beforeAll(async () => {
     try {
@@ -18,8 +19,10 @@ describe("Preference Routes", () => {
       console.log("Created test profile:", profile);
 
       testProfileId = profile.profileId;
+      testAccountId = profile.accountId;
 
       if (!testProfileId) {
+        console.error("Profile creation failed - no profile ID returned");
         throw new Error("Failed to get profile ID");
       }
 
@@ -32,15 +35,27 @@ describe("Preference Routes", () => {
 
   // Clean up after tests
   afterAll(async () => {
-    if (testPreferenceId) {
-      try {
+    try {
+      if (testPreferenceId) {
         await request(app)
           .delete(`/preference/${testPreferenceId}`)
           .set("Authorization", `Bearer ${authToken}`)
           .set("Accept", "application/json");
-      } catch (error) {
-        console.error("Cleanup failed:", error);
       }
+      if (testProfileId) {
+        await request(app)
+          .delete(`/profile/${testProfileId}`)
+          .set("Authorization", `Bearer ${authToken}`)
+          .set("Accept", "application/json");
+      }
+      if (testAccountId) {
+        await request(app)
+          .delete(`/account/${testAccountId}`)
+          .set("Authorization", `Bearer ${authToken}`)
+          .set("Accept", "application/json");
+      }
+    } catch (error) {
+      console.error("Cleanup failed:", error);
     }
   });
 

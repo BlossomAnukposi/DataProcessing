@@ -10,13 +10,27 @@ describe("Subtitle Routes", () => {
     authToken = await getAuthToken();
   });
 
+  // Clean up after tests
+  afterAll(async () => {
+    if (testSubtitleId) {
+      try {
+        await request(app)
+          .delete(`/subtitle/${testSubtitleId}`)
+          .set("Authorization", `Bearer ${authToken}`)
+          .set("Accept", "application/json");
+      } catch (error) {
+        console.error("Cleanup failed:", error);
+      }
+    }
+  });
+
   describe("POST /subtitle", () => {
     it("should add new subtitle", async () => {
       const subtitleData = {
         language: "English",
-        content: "Sample subtitle content",
-        movie_id: 1,
-        episode_id: null,
+        content: "Test subtitle content",
+        movieId: 1, // Assuming movie ID 1 exists
+        episodeId: null,
       };
 
       const response = await request(app)
@@ -25,7 +39,7 @@ describe("Subtitle Routes", () => {
         .set("Accept", "application/json")
         .send(subtitleData);
 
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(201);
       const result = response.body.result || response.body;
       expect(result).toHaveProperty("subtitle_id");
       testSubtitleId = result.subtitle_id;
@@ -40,8 +54,7 @@ describe("Subtitle Routes", () => {
         .set("Accept", "application/json");
 
       expect(response.status).toBe(200);
-      const result = response.body.result || response.body;
-      expect(Array.isArray(result)).toBe(true);
+      expect(Array.isArray(response.body.result)).toBe(true);
     });
   });
 
@@ -62,13 +75,16 @@ describe("Subtitle Routes", () => {
   describe("PUT /subtitle/:id", () => {
     it("should update subtitle details", async () => {
       expect(testSubtitleId).toBeDefined();
+      const updateData = {
+        content: "Updated subtitle content",
+        language: "English",
+      };
+
       const response = await request(app)
         .put(`/subtitle/${testSubtitleId}`)
         .set("Authorization", `Bearer ${authToken}`)
         .set("Accept", "application/json")
-        .send({
-          content: "Updated subtitle content",
-        });
+        .send(updateData);
 
       expect(response.status).toBe(200);
       const result = response.body.result || response.body;
@@ -85,6 +101,14 @@ describe("Subtitle Routes", () => {
         .set("Accept", "application/json");
 
       expect(response.status).toBe(200);
+
+      // Verify deletion
+      const getResponse = await request(app)
+        .get(`/subtitle/${testSubtitleId}`)
+        .set("Authorization", `Bearer ${authToken}`)
+        .set("Accept", "application/json");
+
+      expect(getResponse.status).toBe(404);
     });
   });
 });
