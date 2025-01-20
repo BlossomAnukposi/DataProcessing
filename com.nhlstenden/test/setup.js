@@ -21,6 +21,8 @@ beforeAll(async () => {
 afterAll(async () => {
   try {
     await pool.end();
+    // Add a small delay to ensure connections are closed
+    await new Promise((resolve) => setTimeout(resolve, 500));
   } catch (error) {
     console.error("Failed to close database connection:", error);
   }
