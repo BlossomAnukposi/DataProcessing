@@ -51,21 +51,17 @@ For a better understanding, you can find in the picture below where you can pres
 
    After accessing the link, this is the screen you should see:
    <img width="627" alt="Screenshot 2025-01-20 at 07 31 42" src="https://github.com/user-attachments/assets/b75b64e7-11f2-4fa1-89b1-2510506a02a5" />
-   *(Screenshot of GitHub repository)*
+   
 
 2. Next step is to click on the green button named `CODE`, then click on “Download ZIP”:
    <img width="627" alt="Screenshot 2025-01-20 at 07 31 36" src="https://github.com/user-attachments/assets/85e7ab09-82f0-4ba9-8a01-76b755f57245" />
-   *(Screenshot of download button)*
+   
 
 3. After downloading, go to the file explorer and in the folder where you downloaded your project. Right-click on the folder and select **Extract All**:
 <img width="627" alt="Screenshot 2025-01-20 at 07 31 27" src="https://github.com/user-attachments/assets/2bea0df0-498d-47f1-9b3d-410c06ed36b6" />
 
-   ![Screenshot of Extract option](image_path_here) *(Screenshot of extraction step)*
-
 4. After selecting **Extract All**, you will see this screen (look below) and click **Extract**:
 <img width="627" alt="Screenshot 2025-01-20 at 07 31 22" src="https://github.com/user-attachments/assets/4b4f312f-acf5-4579-a49d-c651ded874cd" />
-
-   ![Screenshot of Extraction window](image_path_here) *(Screenshot of extraction window)*
 
 ---
 
@@ -74,17 +70,11 @@ For a better understanding, you can find in the picture below where you can pres
 1. First, open Visual Studio Code (VS Code), and then click on the **Explorer** icon marked with an arrow.
 <img width="627" alt="Screenshot 2025-01-20 at 07 30 58" src="https://github.com/user-attachments/assets/b8419f2f-341a-496d-9ba7-c4d4ce09a1ad" />
 
-   ![Screenshot of VS Code explorer](image_path_here) *(Screenshot of VS Code explorer)*
-
 2. Select **Open Folder**:
 <img width="597" alt="Screenshot 2025-01-20 at 07 30 50" src="https://github.com/user-attachments/assets/1f1c9d76-0104-4b73-971e-470324f290e0" />
 
-   ![Screenshot of Open Folder option](image_path_here) *(Screenshot of Open Folder option)*
-
 3. Select the `DataProcessing` folder:
 <img width="627" alt="Screenshot 2025-01-20 at 07 30 38" src="https://github.com/user-attachments/assets/d6363e45-a03c-415d-92d2-7a507c5e7905" />
-
-   ![Screenshot of folder selection](image_path_here) *(Screenshot of folder selection)*
 
 4. Once the folder is selected, press on the **Terminal** option.
 <img width="627" alt="Screenshot 2025-01-20 at 07 30 29" src="https://github.com/user-attachments/assets/d0f124e8-143a-4744-aad7-0e440c672d90" />
@@ -94,32 +84,18 @@ For a better understanding, you can find in the picture below where you can pres
 
 6. In the terminal, type the following command and hit Enter:
 <img width="627" alt="Screenshot 2025-01-20 at 07 30 12" src="https://github.com/user-attachments/assets/056555fa-660a-4d83-a32e-aae36f871ead" />
-
-   ```bash
    npm init -y
 7. Then, type the following command to install dependencies:
 <img width="627" alt="Screenshot 2025-01-20 at 07 30 04" src="https://github.com/user-attachments/assets/481c3e42-5577-4a6a-b1bd-a64efda40569" />
-
-```bash
-Copy
-Edit
 npm install
 
 8. If you encounter errors similar to the image below, you can run:
 <img width="627" alt="Screenshot 2025-01-20 at 07 29 55" src="https://github.com/user-attachments/assets/db119f92-361d-4642-8338-25a066dcaede" />
-
-```bash
-Copy
-Edit
 npm install --legacy-peer-deps
 
 (Screenshot of npm install error)
 
 9. To run the project now, type the following command:
-
-```bash
-Copy
-Edit
 node server.js
 <img width="318" alt="Screenshot 2025-01-20 at 07 29 45" src="https://github.com/user-attachments/assets/096577fc-bd77-4370-9c10-1d0a382fc281" />
 
