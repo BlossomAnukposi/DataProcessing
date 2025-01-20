@@ -15,9 +15,9 @@ describe("Watchlist Routes", () => {
   describe("POST /watchlist", () => {
     it("should create new watchlist entry", async () => {
       const watchlistData = {
-        profile_id: 1,
-        movie_id: 1,
-        series_id: null,
+        profileId: 1,
+        movieId: 1,
+        seriesId: null,
         date_added: new Date().toISOString().split("T")[0],
       };
 
@@ -27,7 +27,7 @@ describe("Watchlist Routes", () => {
         .set("Accept", "application/json")
         .send(watchlistData);
 
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(201);
       const result = response.body.result || response.body;
       expect(result).toHaveProperty("watchlist_id");
       testWatchlistId = result.watchlist_id;
