@@ -152,6 +152,10 @@ class AccountController extends ControllerParent {
                 );
             }
 
+            if (!email.includes("@") || !email.includes(".") || !email.includes("com")) {
+                return this.sendResponse(res, 400, "Invalid email address", null, isXml);
+            }
+
             const account = await AccountModel.updateAccount(
                 req.params.id,
                 email,
