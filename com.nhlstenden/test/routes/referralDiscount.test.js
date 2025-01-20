@@ -7,7 +7,11 @@ describe("ReferralDiscount Routes", () => {
   let testReferralDiscountId;
 
   beforeAll(async () => {
-    authToken = await getAuthToken();
+    // Replace getAuthToken logic with actual test account credentials if needed
+    authToken = await getAuthToken({
+      email: "brad.pitt@netflix.com", // Replace with actual credentials provided
+      password: "$2a$10$mVYlVZR6b6BBd89L.h4Ro.4Zz1qsmN4wE7DfWRrEdAXVHiMXrBqv6", // Add the correct password for this account
+    });
   });
 
   // Clean up after tests
@@ -25,9 +29,9 @@ describe("ReferralDiscount Routes", () => {
   });
 
   describe("POST /referralDiscount", () => {
-    it("should create new referral discount", async () => {
+    it("should create a new referral discount", async () => {
       const referralData = {
-        accountId: 1, // Use a known account ID
+        accountId: 21, // Account ID from the given entry
         numberOfReferralUses: 5,
         referralLink: "https://example.com/refer/test123",
       };
