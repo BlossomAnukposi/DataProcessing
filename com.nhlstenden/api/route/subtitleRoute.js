@@ -1,6 +1,27 @@
 const express = require("express");
-const router = express.Router();
 const SubtitleController = require("../controller/subtitleController");
+
+class SubtitleRoute {
+    constructor() {
+        this.router = express.Router();
+        this.subtitleController = SubtitleController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/", this.subtitleController.getAllEntries.bind(this.subtitleController));
+        this.router.get("/:id", this.subtitleController.getEntryById.bind(this.subtitleController));
+        this.router.delete("/:id", this.subtitleController.deleteEntryById.bind(this.subtitleController));
+        this.router.post("/", this.subtitleController.addSubtitle.bind(this.subtitleController));
+        this.router.put("/:id", this.subtitleController.updateSubtitleById.bind(this.subtitleController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new SubtitleRoute().getRouter();
 
 /**
  * @swagger
@@ -24,8 +45,6 @@ const SubtitleController = require("../controller/subtitleController");
  *       500:
  *         description: Server error.
  */
-router.get('/', SubtitleController.getAllEntries);
-
 /**
  * @swagger
  * /subtitle/{id}:
@@ -55,8 +74,6 @@ router.get('/', SubtitleController.getAllEntries);
  *       500:
  *         description: Server error.
  */
-router.get('/:id', SubtitleController.getEntryById);
-
 /**
  * @swagger
  * /subtitle/{id}:
@@ -82,8 +99,6 @@ router.get('/:id', SubtitleController.getEntryById);
  *       500:
  *         description: Server error.
  */
-router.delete('/:id', SubtitleController.deleteEntryById);
-
 /**
  * @swagger
  * /subtitle:
@@ -126,8 +141,6 @@ router.delete('/:id', SubtitleController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.post('/', SubtitleController.addSubtitle);
-
 /**
  * @swagger
  * /subtitle/{id}:
@@ -177,6 +190,3 @@ router.post('/', SubtitleController.addSubtitle);
  *       500:
  *         description: Server error.
  */
-router.patch('/:id', SubtitleController.updateSubtitleById);
-
-module.exports = router;

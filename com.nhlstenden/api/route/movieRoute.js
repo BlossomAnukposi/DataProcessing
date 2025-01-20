@@ -1,7 +1,29 @@
 const express = require('express');
-const router = express.Router();
 const MovieController = require('../controller/movieController');
 
+class MovieRoute {
+    constructor() {
+        this.router = express.Router();
+        this.movieController = MovieController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/", this.movieController.getAllEntries.bind(this.movieController));
+        this.router.get("/:id", this.movieController.getEntryById.bind(this.movieController));
+        this.router.delete("/:id", this.movieController.deleteEntryById.bind(this.movieController));
+        this.router.post("/", this.movieController.createMovie.bind(this.movieController));
+        this.router.put("/:id", this.movieController.updateMovie.bind(this.movieController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new MovieRoute().getRouter();
+
+// MOVIE DOCUMENTATION
 /**
  * @swagger
  * /movie/media:
@@ -46,8 +68,6 @@ const MovieController = require('../controller/movieController');
  *       500:
  *         description: Server error.
  */
-router.get('/media/', MovieController.getAllMedia);
-
 /**
  * @swagger
  * /movie:
@@ -115,8 +135,6 @@ router.get('/media/', MovieController.getAllMedia);
  *       500:
  *         description: Server error.
  */
-router.get('/', MovieController.getAllEntries);
-
 /**
  * @swagger
  * /movie/{id}:
@@ -189,8 +207,6 @@ router.get('/', MovieController.getAllEntries);
  *       500:
  *         description: Server error.
  */
-router.get('/:id', MovieController.getEntryById);
-
 /**
  * @swagger
  * /movie/{id}:
@@ -216,8 +232,6 @@ router.get('/:id', MovieController.getEntryById);
  *       500:
  *         description: Server error.
  */
-router.delete('/:id', MovieController.deleteEntryById);
-
 /**
  * @swagger
  * /movie:
@@ -283,8 +297,6 @@ router.delete('/:id', MovieController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.post('/', MovieController.createMovie);
-
 /**
  * @swagger
  * /movie/{id}:
@@ -337,6 +349,3 @@ router.post('/', MovieController.createMovie);
  *       500:
  *         description: Server error.
  */
-router.put('/:id', MovieController.updateMovie);
-
-module.exports = router;

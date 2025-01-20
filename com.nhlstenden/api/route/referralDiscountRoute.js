@@ -1,6 +1,27 @@
 const express = require('express');
-const router = express.Router();
 const ReferralDiscountController = require('../controller/referralDiscountController');
+
+class ReferralDiscountRoute {
+    constructor() {
+        this.router = express.Router();
+        this.referralDiscountController = ReferralDiscountController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/status", this.referralDiscountController.getAllReferralStatuses.bind(this.referralDiscountController));
+        this.router.get("/", this.referralDiscountController.getAllEntries.bind(this.referralDiscountController));
+        this.router.get("/:id", this.referralDiscountController.getEntryById.bind(this.referralDiscountController));
+        this.router.delete("/:id", this.referralDiscountController.deleteEntryById.bind(this.referralDiscountController));
+        this.router.post("/", this.referralDiscountController.createReferralDiscount.bind(this.referralDiscountController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new ReferralDiscountRoute().getRouter();
 
 /**
  * @swagger
@@ -30,8 +51,6 @@ const ReferralDiscountController = require('../controller/referralDiscountContro
  *       500:
  *         description: Server error.
  */
-router.get('/status', ReferralDiscountController.getAllReferralStatuses);
-
 /**
  * @swagger
  * /referralDiscount:
@@ -54,8 +73,6 @@ router.get('/status', ReferralDiscountController.getAllReferralStatuses);
  *       500:
  *         description: Server error.
  */
-router.get('/', ReferralDiscountController.getAllEntries);
-
 /**
  * @swagger
  * /referralDiscount/{id}:
@@ -85,8 +102,6 @@ router.get('/', ReferralDiscountController.getAllEntries);
  *       500:
  *         description: Server error.
  */
-router.get('/:id', ReferralDiscountController.getEntryById);
-
 /**
  * @swagger
  * /referralDiscount/{id}:
@@ -112,8 +127,6 @@ router.get('/:id', ReferralDiscountController.getEntryById);
  *       500:
  *         description: Server error.
  */
-router.delete('/:id', ReferralDiscountController.deleteEntryById);
-
 /**
  * @swagger
  * /referralDiscount:
@@ -152,6 +165,3 @@ router.delete('/:id', ReferralDiscountController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.post('/', ReferralDiscountController.createReferralDiscount);
-
-module.exports = router;

@@ -1,7 +1,30 @@
 const express = require('express');
-const router = express.Router();
 const GenreController = require('../controller/genreController');
 
+class GenreRoute {
+    constructor() {
+        this.router = express.Router();
+        this.genreController = GenreController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/movie/:id", this.genreController.getMoviesByGenre.bind(this.genreController));
+        this.router.get("/series/:id", this.genreController.getSeriesByGenre.bind(this.genreController));
+        this.router.get("/", this.genreController.getAllEntries.bind(this.genreController));
+        this.router.get("/:id", this.genreController.getEntryById.bind(this.genreController));
+        this.router.delete("/:id", this.genreController.deleteEntryById.bind(this.genreController));
+        this.router.post("/", this.genreController.createGenre.bind(this.genreController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new GenreRoute().getRouter();
+
+//GENRE DOCUMENTATION
 /**
  * @swagger
  * /genre/movie/{id}:
@@ -59,8 +82,6 @@ const GenreController = require('../controller/genreController');
  *       500:
  *         description: Server error.
  */
-router.get('/movie/:id', GenreController.getMoviesByGenre);
-
 /**
  * @swagger
  * /genre/series/{id}:
@@ -118,8 +139,6 @@ router.get('/movie/:id', GenreController.getMoviesByGenre);
  *       500:
  *         description: Server error.
  */
-router.get('/series/:id', GenreController.getSeriesByGenre);
-
 /**
  * @swagger
  * /genre:
@@ -161,8 +180,6 @@ router.get('/series/:id', GenreController.getSeriesByGenre);
  *       500:
  *         description: Server error.
  */
-router.get('/', GenreController.getAllEntries);
-
 /**
  * @swagger
  * /genre/{id}:
@@ -209,8 +226,6 @@ router.get('/', GenreController.getAllEntries);
  *       500:
  *         description: Server error.
  */
-router.get('/:id', GenreController.getEntryById);
-
 /**
  * @swagger
  * /genre/{id}:
@@ -236,8 +251,6 @@ router.get('/:id', GenreController.getEntryById);
  *       500:
  *         description: Server error.
  */
-router.delete('/:id', GenreController.deleteEntryById);
-
 /**
  * @swagger
  * /genre:
@@ -296,6 +309,3 @@ router.delete('/:id', GenreController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.post('/', GenreController.createGenre);
-
-module.exports = router;

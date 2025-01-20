@@ -1,7 +1,29 @@
 const express = require("express");
-const router = express.Router();
 const SeriesController = require("../controller/seriesController");
 
+class SeriesRoute {
+    constructor() {
+        this.router = express.Router();
+        this.seriesController = SeriesController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/", this.seriesController.getAllEntries.bind(this.seriesController));
+        this.router.get("/:id", this.seriesController.getEntryById.bind(this.seriesController));
+        this.router.delete("/:id", this.seriesController.deleteEntryById.bind(this.seriesController));
+        this.router.post("/", this.seriesController.createSeries.bind(this.seriesController));
+        this.router.put("/:id", this.seriesController.updateSeries.bind(this.seriesController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new SeriesRoute().getRouter();
+
+//SERIES DOCUMENTATION
 /**
  * @swagger
  * /series:
@@ -24,8 +46,6 @@ const SeriesController = require("../controller/seriesController");
  *       500:
  *         description: Server error.
  */
-router.get("/", SeriesController.getAllEntries);
-
 /**
  * @swagger
  * /series/{id}:
@@ -55,8 +75,6 @@ router.get("/", SeriesController.getAllEntries);
  *       500:
  *         description: Server error.
  */
-router.get("/:id", SeriesController.getEntryById);
-
 /**
  * @swagger
  * /series/{id}:
@@ -82,8 +100,6 @@ router.get("/:id", SeriesController.getEntryById);
  *       500:
  *         description: Server error.
  */
-router.delete("/:id", SeriesController.deleteEntryById);
-
 /**
  * @swagger
  * /series:
@@ -131,8 +147,6 @@ router.delete("/:id", SeriesController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.post("/", SeriesController.createSeries);
-
 /**
  * @swagger
  * /series/{id}:
@@ -183,6 +197,3 @@ router.post("/", SeriesController.createSeries);
  *       500:
  *         description: Server error.
  */
-router.put("/:id", SeriesController.updateSeries);
-
-module.exports = router;

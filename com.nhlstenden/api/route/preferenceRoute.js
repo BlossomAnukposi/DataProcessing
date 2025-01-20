@@ -1,7 +1,29 @@
 const express = require('express');
-const router = express.Router();
 const PreferenceController = require('../controller/preferenceController');
 
+class PreferenceRoute {
+    constructor() {
+        this.router = express.Router();
+        this.preferenceController = PreferenceController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/", this.preferenceController.getAllEntries.bind(this.preferenceController));
+        this.router.get("/:id", this.preferenceController.getEntryById.bind(this.preferenceController));
+        this.router.get("/profile/:id", this.preferenceController.getPreferencesByProfile.bind(this.preferenceController));
+        this.router.delete("/:id", this.preferenceController.deleteEntryById.bind(this.preferenceController));
+        this.router.post("/", this.preferenceController.createPreference.bind(this.preferenceController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new PreferenceRoute().getRouter();
+
+//PREFERENCE DOCUMENTATION
 /**
  * @swagger
  * /preference:
@@ -55,8 +77,6 @@ const PreferenceController = require('../controller/preferenceController');
  *       500:
  *         description: Server error.
  */
-router.get('/', PreferenceController.getAllEntries);
-
 /**
  * @swagger
  * /preference/{id}:
@@ -115,8 +135,6 @@ router.get('/', PreferenceController.getAllEntries);
  *       500:
  *         description: Server error.
  */
-router.get('/:id', PreferenceController.getEntryById);
-
 /**
  * @swagger
  * /preference/{id}:
@@ -142,8 +160,6 @@ router.get('/:id', PreferenceController.getEntryById);
  *       500:
  *         description: Server error.
  */
-router.delete('/:id', PreferenceController.deleteEntryById);
-
 /**
  * @swagger
  * /preference/profile/{id}:
@@ -207,8 +223,6 @@ router.delete('/:id', PreferenceController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.get('/profile/:id', PreferenceController.getPreferencesByProfile);
-
 /**
  * @swagger
  * /preference:
@@ -265,6 +279,3 @@ router.get('/profile/:id', PreferenceController.getPreferencesByProfile);
  *       500:
  *         description: Server error.
  */
-router.post('/', PreferenceController.createPreference);
-
-module.exports = router;

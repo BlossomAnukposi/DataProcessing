@@ -1,7 +1,29 @@
 const express = require("express");
-const router = express.Router();
 const SeasonController = require("../controller/seasonController");
 
+class SeasonRoute {
+    constructor() {
+        this.router = express.Router();
+        this.seasonController = SeasonController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/", this.seasonController.getAllEntries.bind(this.seasonController));
+        this.router.get("/:id", this.seasonController.getEntryById.bind(this.seasonController));
+        this.router.delete("/:id", this.seasonController.deleteEntryById.bind(this.seasonController));
+        this.router.post("/", this.seasonController.createSeason.bind(this.seasonController));
+        this.router.put("/:id", this.seasonController.updateSeason.bind(this.seasonController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new SeasonRoute().getRouter();
+
+//SEASON DOCUMENTATION
 /**
  * @swagger
  * /season:
@@ -33,8 +55,6 @@ const SeasonController = require("../controller/seasonController");
  *       500:
  *         description: Server error.
  */
-router.get('/', SeasonController.getAllEntries);
-
 /**
  * @swagger
  * /season/{id}:
@@ -73,8 +93,6 @@ router.get('/', SeasonController.getAllEntries);
  *       500:
  *         description: Server error.
  */
-router.get('/:id', SeasonController.getEntryById);
-
 /**
  * @swagger
  * /season/{id}:
@@ -100,8 +118,6 @@ router.get('/:id', SeasonController.getEntryById);
  *       500:
  *         description: Server error.
  */
-router.delete('/:id', SeasonController.deleteEntryById);
-
 /**
  * @swagger
  * /season:
@@ -150,8 +166,6 @@ router.delete('/:id', SeasonController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.post('/', SeasonController.createSeason);
-
 /**
  * @swagger
  * /season/{id}:
@@ -209,8 +223,6 @@ router.post('/', SeasonController.createSeason);
  *       500:
  *         description: Server error.
  */
-router.put('/:id', SeasonController.updateSeason);
-
 /**
  * @swagger
  * /season/series/{id}:
@@ -252,6 +264,3 @@ router.put('/:id', SeasonController.updateSeason);
  *       500:
  *         description: Server error.
  */
-router.get("/series/:id", SeasonController.getSeasonsBySeries);
-
-module.exports = router;

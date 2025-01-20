@@ -1,6 +1,27 @@
 const express = require("express");
-const router = express.Router();
 const WatchedMediaListController = require("../controller/watchedMediaListController");
+
+class WatchedMediaListRoute {
+    constructor() {
+        this.router = express.Router();
+        this.watchedMediaListController = WatchedMediaListController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/", this.watchedMediaListController.getAllEntries.bind(this.watchedMediaListController));
+        this.router.get("/:id", this.watchedMediaListController.getEntryById.bind(this.watchedMediaListController));
+        this.router.get("/profile/:id", this.watchedMediaListController.getWatchedMediaListByProfile.bind(this.watchedMediaListController));
+        this.router.delete("/:id", this.watchedMediaListController.deleteEntryById.bind(this.watchedMediaListController));
+        this.router.post("/", this.watchedMediaListController.createWatchedMediaList.bind(this.watchedMediaListController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new WatchedMediaListRoute().getRouter();
 
 /**
  * @swagger
@@ -24,8 +45,6 @@ const WatchedMediaListController = require("../controller/watchedMediaListContro
  *       500:
  *         description: Server error.
  */
-router.get("/", WatchedMediaListController.getAllEntries);
-
 /**
  * @swagger
  * /watchedMediaList/{id}:
@@ -55,8 +74,6 @@ router.get("/", WatchedMediaListController.getAllEntries);
  *       500:
  *         description: Server error.
  */
-router.get("/:id", WatchedMediaListController.getEntryById);
-
 /**
  * @swagger
  * /watchedMediaList/{id}:
@@ -82,8 +99,6 @@ router.get("/:id", WatchedMediaListController.getEntryById);
  *       500:
  *         description: Server error.
  */
-router.delete("/:id", WatchedMediaListController.deleteEntryById);
-
 /**
  * @swagger
  * /watchedMediaList:
@@ -128,8 +143,6 @@ router.delete("/:id", WatchedMediaListController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.post("/", WatchedMediaListController.createWatchedMediaList);
-
 /**
  * @swagger
  * /watchedMediaList/profile/{id}:
@@ -162,6 +175,3 @@ router.post("/", WatchedMediaListController.createWatchedMediaList);
  *       500:
  *         description: Server error.
  */
-router.get('/profile/:id', WatchedMediaListController.getWatchedMediaListByProfile);
-
-module.exports = router;

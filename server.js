@@ -3,31 +3,47 @@ const app = require("./app");
 require("./com.nhlstenden/config/database");
 require("dotenv").config({ path: "./com.nhlstenden/.env" });
 
-const port = process.env.PORT || 3000;
-app.set("port", port);
+class Server {
+    constructor() {
+        this.port = process.env.PORT || 3000;
+        this.app = app;
+        this.server = http.createServer(this.app);
 
-const server = http.createServer(app);
+        this.initializeServer();
+        this.initializeErrorHandling();
+    }
 
-server.on("error", (error) => {
-  if (error.syscall !== "listen") {
-    throw error;
-  }
+    initializeServer() {
+        this.app.set("port", this.port);
 
-  switch (error.code) {
-    case "EACCES":
-      console.error(`Port ${port} requires elevated privileges`);
-      process.exit(1);
-      break;
-    case "EADDRINUSE":
-      console.error(`Port ${port} is already in use`);
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-});
+        this.server.listen(this.port, () => {
+            console.log(`Server is running on port ${this.port}`);
+            console.log(`API docs available at http://localhost:${this.port}/api-docs`);
+        });
+    }
 
-server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-  console.log("API docs available at http://localhost:3000/api-docs");
-});
+    initializeErrorHandling() {
+        this.server.on("error", (error) => this.handleServerError(error));
+    }
+
+    handleServerError(error) {
+        if (error.syscall !== "listen") {
+            throw error;
+        }
+
+        switch (error.code) {
+            case "EACCES":
+                console.error(`Port ${this.port} requires elevated privileges`);
+                process.exit(1);
+                break;
+            case "EADDRINUSE":
+                console.error(`Port ${this.port} is already in use`);
+                process.exit(1);
+                break;
+            default:
+                throw error;
+        }
+    }
+}
+
+module.exports = new Server();

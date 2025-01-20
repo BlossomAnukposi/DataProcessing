@@ -1,6 +1,27 @@
 const express = require("express");
-const router = express.Router();
 const WatchlistController = require("../controller/watchlistController");
+
+class WatchlistRoute {
+    constructor() {
+        this.router = express.Router();
+        this.watchlistController = WatchlistController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/", this.watchlistController.getAllEntries.bind(this.watchlistController));
+        this.router.get("/:id", this.watchlistController.getEntryById.bind(this.watchlistController));
+        this.router.delete("/:id", this.watchlistController.deleteEntryById.bind(this.watchlistController));
+        this.router.post("/", this.watchlistController.createWatchlist.bind(this.watchlistController));
+        this.router.get("/profile/:id", this.watchlistController.getWatchlistByProfile.bind(this.watchlistController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new WatchlistRoute().getRouter();
 
 /**
  * @swagger
@@ -24,8 +45,6 @@ const WatchlistController = require("../controller/watchlistController");
  *       500:
  *         description: Server error.
  */
-router.get("/", WatchlistController.getAllEntries);
-
 /**
  * @swagger
  * /watchlist/{id}:
@@ -55,8 +74,6 @@ router.get("/", WatchlistController.getAllEntries);
  *       500:
  *         description: Server error.
  */
-router.get("/:id", WatchlistController.getEntryById);
-
 /**
  * @swagger
  * /watchlist/{id}:
@@ -82,8 +99,6 @@ router.get("/:id", WatchlistController.getEntryById);
  *       500:
  *         description: Server error.
  */
-router.delete("/:id", WatchlistController.deleteEntryById);
-
 /**
  * @swagger
  * /watchlist:
@@ -121,8 +136,6 @@ router.delete("/:id", WatchlistController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.post("/", WatchlistController.createWatchlist);
-
 /**
  * @swagger
  * /watchlist/profile/{id}:
@@ -154,6 +167,3 @@ router.post("/", WatchlistController.createWatchlist);
  *       500:
  *         description: Server error.
  */
-router.get('/profile/:id', WatchlistController.getWatchlistByProfile);
-
-module.exports = router;

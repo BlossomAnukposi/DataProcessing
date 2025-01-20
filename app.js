@@ -1,35 +1,10 @@
 const express = require("express");
-const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
-const { authenticateToken,} = require("./com.nhlstenden/middleware/authMiddleware");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./com.nhlstenden/config/swaggerConfig");
-
-// Add body parser middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Swagger documentation
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-// CORS handling middleware
-app.use(
-  cors({
-    origin: "*", // Allow all origins for testing
-    credentials: true,
-    allowedHeaders: [
-      "Origin",
-      "X-Requested-With",
-      "Content-Type",
-      "Accept",
-      "Authorization",
-    ],
-  })
-);
-
-// Morgan for logging
-app.use(morgan("dev"));
+// const { authenticateToken } = require("./com.nhlstenden/middleware/authMiddleware");
+const AuthMiddleware = require("./com.nhlstenden/middleware/authMiddleware");
 
 // Import routes
 const accountRoutes = require("./com.nhlstenden/api/route/accountRoute");
@@ -46,37 +21,85 @@ const subtitleRoutes = require("./com.nhlstenden/api/route/subtitleRoute");
 const watchlistRoutes = require("./com.nhlstenden/api/route/watchlistRoute");
 const watchedMediaListRoutes = require("./com.nhlstenden/api/route/watchedMediaListRoute");
 
-// Public routes
-app.use("/account", accountRoutes);
+class App {
+    constructor() {
+        this.app = express();
+        this.initializeMiddlewares();
+        this.initializeRoutes();
+        this.initializeErrorHandling();
+    }
 
-// Protected routes - require authentication
-app.use("/episode", authenticateToken, episodeRoutes);
-app.use("/genre", authenticateToken, genreRoutes);
-app.use("/movie", authenticateToken, movieRoutes);
-app.use("/preference", authenticateToken, preferenceRoutes);
-app.use("/profile", authenticateToken, profileRoutes);
-app.use("/referralDiscount", authenticateToken, referralRoutes);
-app.use("/season", authenticateToken, seasonRoutes);
-app.use("/series", authenticateToken, seriesRoutes);
-app.use("/subscription", authenticateToken, subscriptionRoutes);
-app.use("/subtitle", authenticateToken, subtitleRoutes);
-app.use("/watchlist", authenticateToken, watchlistRoutes);
-app.use("/watchedMediaList", authenticateToken, watchedMediaListRoutes);
+    // Initialize core middlewares
+    initializeMiddlewares() {
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
 
-// Error handling
-app.use((req, res, next) => {
-  const error = new Error("Not Found");
-  error.status = 404;
-  next(error);
-});
+        // Swagger documentation
+        this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  res.json({
-    error: {
-      message: error.message,
-    },
-  });
-});
+        // CORS handling middleware
+        this.app.use(
+            cors({
+                origin: "*", // Allow all origins for testing
+                credentials: true,
+                allowedHeaders: [
+                    "Origin",
+                    "X-Requested-With",
+                    "Content-Type",
+                    "Accept",
+                    "Authorization",
+                ],
+            })
+        );
 
-module.exports = app;
+        // Morgan for logging
+        this.app.use(morgan("dev"));
+    }
+
+    // Initialize routes
+    initializeRoutes() {
+        // Public routes
+        this.app.use("/account", accountRoutes);
+
+        // Protected routes - require authentication
+        this.app.use("/episode", AuthMiddleware.authenticateToken, episodeRoutes);
+        this.app.use("/genre", AuthMiddleware.authenticateToken, genreRoutes);
+        this.app.use("/movie", AuthMiddleware.authenticateToken, movieRoutes);
+        this.app.use("/preference", AuthMiddleware.authenticateToken, preferenceRoutes);
+        this.app.use("/profile", AuthMiddleware.authenticateToken, profileRoutes);
+        this.app.use("/referralDiscount", AuthMiddleware.authenticateToken, referralRoutes);
+        this.app.use("/season", AuthMiddleware.authenticateToken, seasonRoutes);
+        this.app.use("/series", AuthMiddleware.authenticateToken, seriesRoutes);
+        this.app.use("/subscription", AuthMiddleware.authenticateToken, subscriptionRoutes);
+        this.app.use("/subtitle", AuthMiddleware.authenticateToken, subtitleRoutes);
+        this.app.use("/watchlist", AuthMiddleware.authenticateToken, watchlistRoutes);
+        this.app.use("/watchedMediaList", AuthMiddleware.authenticateToken, watchedMediaListRoutes);
+    }
+
+    // Initialize error handling
+    initializeErrorHandling() {
+        // 404 Error handling
+        this.app.use((req, res, next) => {
+            const error = new Error("Not Found");
+            error.status = 404;
+            next(error);
+        });
+
+        // General error handling
+        this.app.use((error, req, res, next) => {
+            res.status(error.status || 500);
+            res.json({
+                error: {
+                    message: error.message,
+                },
+            });
+        });
+    }
+
+    // Expose the app instance
+    getApp() {
+        return this.app;
+    }
+}
+
+module.exports = new App().getApp();

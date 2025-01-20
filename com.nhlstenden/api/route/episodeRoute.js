@@ -1,8 +1,31 @@
 const express = require("express");
-const router = express.Router();
 const EpisodeController = require("../controller/episodeController");
 
-// All routes are already protected by middleware in app.js
+class EpisodeRoute {
+    constructor() {
+        this.router = express.Router();
+        this.episodeController = EpisodeController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/", this.episodeController.getAllEntries.bind(this.episodeController));
+        this.router.get("/:id", this.episodeController.getEntryById.bind(this.episodeController));
+        this.router.delete("/:id", this.episodeController.deleteEntryById.bind(this.episodeController));
+        this.router.post("/", this.episodeController.createEpisode.bind(this.episodeController));
+        this.router.put("/:id", this.episodeController.updateEpisode.bind(this.episodeController));
+        this.router.get("/season/:id", this.episodeController.getEpisodesBySeason.bind(this.episodeController));
+        this.router.get("/series/:id", this.episodeController.getEpisodesBySeries.bind(this.episodeController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new EpisodeRoute().getRouter();
+
+//EPISODE DOCUMENTATION
 /**
  * @swagger
  * /episode:
@@ -64,8 +87,6 @@ const EpisodeController = require("../controller/episodeController");
  *       500:
  *         description: Server error
  */
-router.get("/", EpisodeController.getAllEntries);
-
 /**
  * @swagger
  * /episode/{id}:
@@ -132,8 +153,6 @@ router.get("/", EpisodeController.getAllEntries);
  *       500:
  *         description: Server error
  */
-router.get("/:id", EpisodeController.getEntryById);
-
 /**
  * @swagger
  * /episode:
@@ -228,8 +247,6 @@ router.get("/:id", EpisodeController.getEntryById);
  *       500:
  *         description: Server error
  */
-router.post("/", EpisodeController.createEpisode);
-
 /**
  * @swagger
  * /episode/{id}:
@@ -331,8 +348,6 @@ router.post("/", EpisodeController.createEpisode);
  *       500:
  *         description: Server error
  */
-router.put("/:id", EpisodeController.updateEpisode);
-
 /**
  * @swagger
  * /episode/{id}:
@@ -358,8 +373,6 @@ router.put("/:id", EpisodeController.updateEpisode);
  *       500:
  *         description: Server error
  */
-router.delete("/:id", EpisodeController.deleteEntryById);
-
 /**
  * @swagger
  * /episodes/season/{id}:
@@ -409,8 +422,6 @@ router.delete("/:id", EpisodeController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.get("/season/:id", EpisodeController.getEpisodesBySeason);
-
 /**
  * @swagger
  * /episodes/series/{id}:
@@ -460,6 +471,3 @@ router.get("/season/:id", EpisodeController.getEpisodesBySeason);
  *       500:
  *         description: Server error.
  */
-router.get("/series/:id", EpisodeController.getEpisodesBySeries);
-
-module.exports = router;

@@ -1,7 +1,33 @@
 const express = require("express");
-const router = express.Router();
 const SubscriptionController = require("../controller/subscriptionController");
 
+class SubscriptionRoute {
+    constructor() {
+        this.router = express.Router();
+        this.subscriptionController = SubscriptionController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/", this.subscriptionController.getAllEntries.bind(this.subscriptionController));
+        this.router.get("/account", this.subscriptionController.getAccountSubscriptions.bind(this.subscriptionController));
+        this.router.get("/active", this.subscriptionController.getActiveSubscriptions.bind(this.subscriptionController));
+        this.router.get("/:id", this.subscriptionController.getEntryById.bind(this.subscriptionController));
+        this.router.delete("/:id", this.subscriptionController.deleteEntryById.bind(this.subscriptionController));
+        this.router.post("/", this.subscriptionController.createSubscription.bind(this.subscriptionController));
+        this.router.put("/:id", this.subscriptionController.updateSubscription.bind(this.subscriptionController));
+    }
+
+    //get subscription for account
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new SubscriptionRoute().getRouter();
+
+//SUBSCRIPTION DOCUMENTATION
 /**
  * @swagger
  * /subscription:
@@ -24,8 +50,6 @@ const SubscriptionController = require("../controller/subscriptionController");
  *       500:
  *         description: Server error.
  */
-router.get('/', SubscriptionController.getAllEntries);
-
 /**
  * @swagger
  * /subscription/account:
@@ -51,8 +75,6 @@ router.get('/', SubscriptionController.getAllEntries);
  *       500:
  *         description: Server error.
  */
-router.get('/account', SubscriptionController.getAccountSubscriptions);
-
 /**
  * @swagger
  * /subscription/active:
@@ -78,8 +100,6 @@ router.get('/account', SubscriptionController.getAccountSubscriptions);
  *       500:
  *         description: Server error.
  */
-router.get('/active', SubscriptionController.getActiveSubscriptions);
-
 /**
  * @swagger
  * /subscription/{id}:
@@ -109,8 +129,6 @@ router.get('/active', SubscriptionController.getActiveSubscriptions);
  *       500:
  *         description: Server error.
  */
-router.get('/:id', SubscriptionController.getEntryById);
-
 /**
  * @swagger
  * /subscription/{id}:
@@ -136,8 +154,6 @@ router.get('/:id', SubscriptionController.getEntryById);
  *       500:
  *         description: Server error.
  */
-router.delete('/:id', SubscriptionController.deleteEntryById);
-
 /**
  * @swagger
  * /subscription:
@@ -175,8 +191,6 @@ router.delete('/:id', SubscriptionController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.post('/', SubscriptionController.createSubscription);
-
 /**
  * @swagger
  * /subscription/{id}:
@@ -223,6 +237,3 @@ router.post('/', SubscriptionController.createSubscription);
  *       500:
  *         description: Server error.
  */
-router.patch('/:id', SubscriptionController.updateSubscription);
-
-module.exports = router;

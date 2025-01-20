@@ -1,6 +1,28 @@
 const express = require('express');
-const router = express.Router();
 const ProfileController = require('../controller/profileController');
+
+class ProfileRoute {
+    constructor() {
+        this.router = express.Router();
+        this.profileController = ProfileController;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        this.router.get("/", this.profileController.getAllEntries.bind(this.profileController));
+        this.router.get("/:id", this.profileController.getEntryById.bind(this.profileController));
+        this.router.get("/account/:id", this.profileController.getProfilesByAccount.bind(this.profileController));
+        this.router.delete("/:id", this.profileController.deleteEntryById.bind(this.profileController));
+        this.router.post("/", this.profileController.createProfile.bind(this.profileController));
+        this.router.put("/:id", this.profileController.updateProfile.bind(this.profileController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new ProfileRoute().getRouter();
 
 /**
  * @swagger
@@ -24,8 +46,6 @@ const ProfileController = require('../controller/profileController');
  *       500:
  *         description: Server error.
  */
-router.get('/', ProfileController.getAllEntries);
-
 /**
  * @swagger
  * /profile/{id}:
@@ -55,8 +75,6 @@ router.get('/', ProfileController.getAllEntries);
  *       500:
  *         description: Server error.
  */
-router.get('/:id', ProfileController.getEntryById);
-
 /**
  * @swagger
  * /profile/{id}:
@@ -82,8 +100,6 @@ router.get('/:id', ProfileController.getEntryById);
  *       500:
  *         description: Server error.
  */
-router.delete('/:id', ProfileController.deleteEntryById);
-
 /**
  * @swagger
  * /profile/account/{id}:
@@ -116,8 +132,6 @@ router.delete('/:id', ProfileController.deleteEntryById);
  *       500:
  *         description: Server error.
  */
-router.get('/account/:id', ProfileController.getProfilesByAccount);
-
 /**
  * @swagger
  * /profile:
@@ -163,8 +177,6 @@ router.get('/account/:id', ProfileController.getProfilesByAccount);
  *       500:
  *         description: Server error.
  */
-router.post('/', ProfileController.createProfile);
-
 /**
  * @swagger
  * /profile/{id}:
@@ -216,6 +228,3 @@ router.post('/', ProfileController.createProfile);
  *       500:
  *         description: Server error.
  */
-router.put('/:id', ProfileController.updateProfile);
-
-module.exports = router;

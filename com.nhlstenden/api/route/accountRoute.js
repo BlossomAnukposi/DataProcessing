@@ -1,10 +1,35 @@
 const express = require("express");
-const router = express.Router();
 const AccountController = require("../controller/accountController");
-const { authenticateToken } = require("../../middleware/authMiddleware");
-const TokenUtils = require("../../utils/tokenUtils");
+const AuthMiddleware = require("../../middleware/authMiddleware");
 
-//Swagger Schemas
+class AccountRoute {
+    constructor() {
+        this.router = express.Router();
+        this.accountController = AccountController;
+        this.authMiddleware = AuthMiddleware;
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+        //PUBLIC ROUTES
+        this.router.post("/signIn", this.accountController.signIn.bind(this.accountController));
+        this.router.post("/", this.accountController.createAccount.bind(this.accountController));
+
+        //PROTECTED ROUTES
+        this.router.get("/", this.authMiddleware.authenticateToken, this.accountController.getAllEntries.bind(this.accountController));
+        this.router.get("/:id", this.authMiddleware.authenticateToken, this.accountController.getEntryById.bind(this.accountController));
+        this.router.delete("/:id", this.authMiddleware.authenticateToken, this.accountController.deleteEntryById.bind(this.accountController));
+        this.router.put("/:id", this.authMiddleware.authenticateToken, this.accountController.updateAccount.bind(this.accountController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = new AccountRoute().getRouter();
+
+//ALL SCHEMAS
 /**
  * @swagger
  * tags:
@@ -327,7 +352,7 @@ const TokenUtils = require("../../utils/tokenUtils");
  *         - profile_id
  */
 
-// Public routes
+//ACCOUNT DOCUMENTATION
 /**
  * @swagger
  * /account/signIn:
@@ -397,8 +422,6 @@ const TokenUtils = require("../../utils/tokenUtils");
  *       500:
  *         description: Server error
  */
-router.post("/signIn", AccountController.signIn);
-
 /**
  * @swagger
  * /account:
@@ -463,9 +486,6 @@ router.post("/signIn", AccountController.signIn);
  *       500:
  *         description: Server error
  */
-router.post("/", AccountController.createAccount);
-
-// Protected routes - require authentication
 /**
  * @swagger
  * /account:
@@ -521,8 +541,6 @@ router.post("/", AccountController.createAccount);
  *       500:
  *         description: Server error
  */
-router.get("/", authenticateToken, AccountController.getAllEntries);
-
 /**
  * @swagger
  * /account/{id}:
@@ -583,8 +601,6 @@ router.get("/", authenticateToken, AccountController.getAllEntries);
  *       500:
  *         description: Server error
  */
-router.get("/:id", authenticateToken, AccountController.getEntryById);
-
 /**
  * @swagger
  * /account/{id}:
@@ -612,8 +628,6 @@ router.get("/:id", authenticateToken, AccountController.getEntryById);
  *       500:
  *         description: Server error
  */
-router.delete("/:id", authenticateToken, AccountController.deleteEntryById);
-
 /**
  * @swagger
  * /account/{id}:
@@ -691,96 +705,3 @@ router.delete("/:id", authenticateToken, AccountController.deleteEntryById);
  *       500:
  *         description: Server error
  */
-router.patch("/:id", authenticateToken, AccountController.updateAccount);
-
-// Testing route
-/**
- * @swagger
- * /account/test-token:
- *   get:
- *     tags:
- *       - Authentication
- *     summary: Test token generation and verification
- *     description: PUBLIC ROUTE - Generates a test JWT token for a mock user and verifies it
- *     responses:
- *       200:
- *         description: Successfully generated and verified the test token
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                   example: true
- *                 token:
- *                   type: string
- *                   description: The generated JWT token
- *                   example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
- *                 decoded:
- *                   type: object
- *                   description: The decoded information from the token
- *                   properties:
- *                     id:
- *                       type: integer
- *                       description: User ID
- *                       example: 1
- *                     email:
- *                       type: string
- *                       description: User email
- *                       example: "test@test.com"
- *                     account_status:
- *                       type: string
- *                       description: User account status
- *                       example: "active"
- *           application/xml:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                   example: true
- *                 token:
- *                   type: string
- *                   description: The generated JWT token
- *                   example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
- *                 decoded:
- *                   type: object
- *                   description: The decoded information from the token
- *                   properties:
- *                     id:
- *                       type: integer
- *                       description: User ID
- *                       example: 1
- *                     email:
- *                       type: string
- *                       description: User email
- *                       example: "test@test.com"
- *                     account_status:
- *                       type: string
- *                       description: User account status
- *                       example: "active"
- */
-router.get("/test-token", async (req, res) => {
-    try {
-        const testUser = {
-            id: 1,
-            email: "test@test.com",
-            account_status: "active",
-        };
-
-        const token = TokenUtils.generateToken(testUser);
-        res.json({
-            success: true,
-            token,
-            decoded: TokenUtils.verifyToken(token),
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            error: error.message,
-        });
-    }
-});
-
-module.exports = router;
