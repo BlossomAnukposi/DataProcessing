@@ -134,8 +134,6 @@ Last part is to create an account and press Sign up
 
 <img width="629" alt="Screenshot 2025-01-20 at 07 29 12" src="https://github.com/user-attachments/assets/02fb3a80-6a97-46d0-ba30-9260c03ebb36" />
 
-
-
 ## PLEASE NOTE!!!
 There are two test files. One is a .json (contract test.json) file that can be imported into postman, the other can be run directly in the api environment (right click test folder and click run tests in folder)
 
@@ -143,7 +141,8 @@ There are two test files. One is a .json (contract test.json) file that can be i
 To connect to the postgreSQL database, download pgAdmin and use these values to connect. The database we use is api-structure
 
 <img width="602" alt="Screenshot 2025-01-20 at 11 06 56" src="https://github.com/user-attachments/assets/967d5176-8d2d-40c9-9460-d1a507a1fb78" />
-connection details:
+
+### connection details:
 PGHOST=netflix-ms-db.postgres.database.azure.com
 export PGUSER=NetflixAdmin
 export PGPORT=5432
