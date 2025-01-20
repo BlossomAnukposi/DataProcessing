@@ -136,6 +136,7 @@ Last part is to create an account and press Sign up
 
 
 
-
+PLEASE NOTE!!!
+There are two test files. One is a .json (contract test.json) file that can be imported into postman, the other can be run directly in the api environment (right click test folder and click run tests in folder)
 
 
