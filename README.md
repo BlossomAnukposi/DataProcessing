@@ -90,20 +90,20 @@ For a better understanding, you can find in the picture below where you can pres
 6. In the terminal, type the following command and hit Enter:
 
    ```bash
-   npm init -y```
+   npm init -y
 7. Then, type the following command to install dependencies:
 
 ```bash
 Copy
 Edit
-npm install```
+npm install
 
 8. If you encounter errors similar to the image below, you can run:
 
 ```bash
 Copy
 Edit
-npm install --legacy-peer-deps```
+npm install --legacy-peer-deps
 
 (Screenshot of npm install error)
 
@@ -112,7 +112,7 @@ npm install --legacy-peer-deps```
 ```bash
 Copy
 Edit
-node server.js```
+node server.js
 
 (Screenshot of terminal with node server.js)
 
